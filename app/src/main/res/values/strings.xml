@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Huamengtong</string>
+
+    <string name="error_tips">糟糕！加载失败了~</string>
+    <string name="loading">加载中...</string>
+
+    <string name="feed_manage">喂养管理</string>
+    <string name="weight_manage">称重管理</string>
+    <string name="ic_immune">免疫管理</string>
+    <string name="disinfect_manage">消毒管理</string>
+    <string name="diagnosis_manage">诊疗管理</string>
+    <string name="new_ear_tag">新建耳标</string>
+    <string name="quarantine_manage">检疫证明</string>
+    <string name="fertilization_manage">受孕管理</string>
+    <string name="inocuity_deal">无害化处理</string>
+    <string name="sale_offline">线下销售</string>
+    <string name="envior_monitor">环境检测</string>
+    <string name="purchase">收购入栏</string>
+</resources>

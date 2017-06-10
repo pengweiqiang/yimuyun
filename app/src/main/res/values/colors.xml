@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_bg">#8fc320</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#8fc320</color>
+    <color name="colorAccent">#8fc320</color>
+    <color name="colorHeader">#8fc320</color>
+
+    <color name="color_content_bg">#f9f9f9</color>
+    <color name="color_line_grey">#cbcccd</color>
+    <color name="color_btn_normal">#379908</color>
+    <color name="color_btn_selected">#379908</color>
+    <color name="color_navigation_normal">#9a9b9c</color>
+    <color name="color_lv_item">#EBECED</color>
+    <color name="toast_bg">#dddfe0</color>
+    <color name="colorBackground">#EEEEEE</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#CCCCCC</color>
+    <color name="colorGreen1">#149648</color>
+    <color name="colorRed">#FF00</color>
+    <color name="color_normal_text">#333333</color>
+    <color name="color_text_product_desc">#999999</color>
+    <color name="mask_color">#00000000</color>
+    <color name="color_edittext_hint">#999999</color>
+    <color name="tab_text_color_unselected">#707070</color>
+
+
+
+
+    <color name="cp_colorAccent">#F3F3F3</color>
+    <color name="cp_colorPrimary">#F3F3F3</color>
+    <color name="cp_colorPrimaryDark">#F3F3F3</color>
+
+    <color name="cp_divider">#E5E5E5</color>
+    <color name="cp_shadow">#AAEBEBEB</color>
+    <color name="cp_common_bg">#FAFAFA</color>
+    <color name="cp_content_bg">#F3F3F3</color>
+    <color name="cp_gray">#8c8c8c</color>
+    <color name="cp_gray_deep">#5c5c5c</color>
+    <color name="cp_alpha_gray">#CC646464</color>
+    <color name="cp_theme_gray">#646464</color>
+    <color name="divider">#ffd2d2d2</color>
+
+
+    <color name="color_grey_text">#bfc0bf</color>
+    <color name="color_main_tab_title">#747474</color>
+</resources>

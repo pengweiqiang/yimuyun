@@ -1,0 +1,62 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="btn_text_size">18sp</dimen>
+
+    <dimen name="content_padding">8dp</dimen>
+
+    <dimen name="home_normal_text_size">15sp</dimen>
+    //主页特优商户、热销商品
+    <dimen name="home_good_size">17sp</dimen>
+    <dimen name="side_letter_bar_letter_size">12sp</dimen>
+    <dimen name="side_letter_bar_width">36dp</dimen>
+    <dimen name="city_text_size">15sp</dimen>
+    <dimen name="appbar_Right_text">15sp</dimen>
+    <dimen name="search_text_size">13sp</dimen>
+
+    <dimen name="spinner_supply_size">18sp</dimen>
+
+    <dimen name="navigation_height">56dp</dimen>
+    <dimen name="banner_height">160dp</dimen>
+
+    //大B首页管理字段的字体大小
+    <dimen name="text_manage_size">18sp</dimen>
+    <dimen name="text_subtitle_size">16sp</dimen>
+    <dimen name="img_text_margin">6dp</dimen>
+    <dimen name="top_bottom_margin">10dp</dimen>
+    <dimen name="img_width_height">75dp</dimen>
+
+    <dimen name="spinner_filter">14sp</dimen>
+
+    //卖货
+    <dimen name="item_module_size">14sp</dimen>
+
+    //新品发布 模块
+
+    <!--供应商-->
+    <dimen name="supplytext">18sp</dimen>
+    <!--spinner文本-->
+    <dimen name="spinnertext">18sp</dimen>
+    <!--商品item描述-->
+    <dimen name="protext1">14sp</dimen>
+    <dimen name="protext2">13sp</dimen>
+    <dimen name="protext3">15sp</dimen>
+    <!--￥ 盒 等特殊字符-->
+    <dimen name="teshutext">14sp</dimen>
+    <!--价格、库存等数字大小-->
+    <dimen name="numtext">20sp</dimen>
+    <!--特级商户等着重字体大小-->
+    <dimen name="tejishanghu">18sp</dimen>
+    <!--方框中的字体-->
+    <dimen name="recttext">18sp</dimen>
+
+    <!--listview item 的 右边距-->
+    <dimen name="margin_right">20dp</dimen>
+
+    <!--店铺图片字体大小-->
+    <dimen name="shop_img_textsize">30sp</dimen>
+
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tool_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:minHeight="?attr/actionBarSize"
+    app:titleTextColor="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:text="概览菜单"
+        android:textColor="#333333"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_gravity="right|center_vertical"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/appbar_Right_text"
+        android:gravity="center"
+        android:text="上级"
+        android:visibility="gone"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:state_pressed="true">
+
+        <shape>
+            <!-- 矩形的圆角弧度 -->
+            <corners android:radius="2dp" />
+            <!-- 矩形的填充色 -->
+            <solid android:color="@color/color_btn_normal" />
+
+        </shape>
+
+    </item>
+
+    <item android:state_focused="true">
+        <shape>
+            <!-- 矩形的圆角弧度 -->
+            <corners android:radius="2dp" />
+            <!-- 矩形的填充色 -->
+            <solid android:color="@color/color_btn_normal" />
+
+        </shape>
+
+
+    </item>
+    <item>
+        <shape>
+            <!-- 矩形的圆角弧度 -->
+            <corners android:radius="2dp" />
+            <!-- 矩形的填充色 -->
+            <solid android:color="@color/colorGreen1" />
+        </shape>
+
+    </item>
+</selector>

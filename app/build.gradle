@@ -1,0 +1,154 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+apply plugin: 'realm-android'
+
+def buildTime(String yyMMddHHmm) {
+    def simpleDateFormat = new SimpleDateFormat(yyMMddHHmm)
+    simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"))
+    return simpleDateFormat.format(new Date())
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        multiDexEnabled true
+        //简单而快速的图像处理
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
+
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        debug {
+            storeFile file("yimuyun.jks") //
+            storePassword "yimuyun"
+            keyAlias "yimuyun"
+            keyPassword "yimuyun"
+        }
+        release {
+            storeFile file("yimuyun.jks") //
+            storePassword "yimuyun"
+            keyAlias "yimuyun"
+            keyPassword "yimuyun"
+        }
+    }
+    buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false // 移除无用的resource文件
+            signingConfig signingConfigs.debug
+            //自定义属性 API接口
+            buildConfigField "boolean", "API_ENV", "true"
+
+            versionNameSuffix "-alpha${buildTime("")}" // 版本号后缀，yyMM，yyMMdd，yyMMddHHmm
+
+            // 定义输出文件名
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    // 默认名称 -> app-alpha-debug-unaligned.apk
+                    if (outputFile != null && outputFile.name.endsWith('debug-unaligned.apk')) {
+                        // 输出APK名称为 app-alpha-debug-unaligned.apk
+                        def fileName = "app-alpha-debug-unaligned.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false // 移除无用的resource文件
+            signingConfig signingConfigs.release
+            //自定义属性 API接口
+            buildConfigField "boolean", "API_ENV", "false"
+
+            // 定义输出文件名
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    // 默认名称 -> app-beta-release.apk
+                    if (outputFile != null && outputFile.name.endsWith('release.apk')) {
+                        // 输出APK名称为 proname-1.0.0-beta-release.apk
+                        def fileName = "yimuyunRasie-${defaultConfig.versionName}-${variant.productFlavors[0].name}-${buildTime("yyMMddHHmm")}-release.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+            aidl.srcDirs = ['src/main/aidl']
+        }
+    }
+
+
+    productFlavors {
+        // -1.调试包 - alpha
+        alpha {}
+        // 0.未分渠道包 - beta
+        beta {}
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    //base
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+//    compile rootProject.ext.dependencies["cardview-v7"]
+    //ui
+//    compile rootProject.ext.dependencies["materialsearchview"]
+    compile rootProject.ext.dependencies["multiline-collapsingtoolbar"]
+    compile rootProject.ext.dependencies["PhotoView"]
+    compile rootProject.ext.dependencies["glide-transformations"]
+//    compile rootProject.ext.dependencies["html-textview"]
+    //rx
+    compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxpermissions"]
+    //network
+    compile rootProject.ext.dependencies["gson"]
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["retrofit-converter-gson"]
+    compile rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    compile rootProject.ext.dependencies["okhttp"]
+    compile rootProject.ext.dependencies["okhttp-logging-interceptor"]
+    compile rootProject.ext.dependencies["glide"]
+    //compile rootProject.ext.dependencies["glide-okhttp3-integration"]
+    compile rootProject.ext.dependencies["jsoup"]
+    //di
+    compile rootProject.ext.dependencies["dagger"]
+    compile rootProject.ext.dependencies["dagger-compiler"]
+    compile rootProject.ext.dependencies["butterknife"]
+    apt rootProject.ext.dependencies["butterknife-compiler"]
+    provided rootProject.ext.dependencies["annotation"]
+    //other
+    compile rootProject.ext.dependencies["multidex"]
+    compile rootProject.ext.dependencies["logger"]
+    compile rootProject.ext.dependencies["fragmentation"]
+    compile rootProject.ext.dependencies["crashreport-upgrade"]
+
+}
