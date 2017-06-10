@@ -9,6 +9,7 @@ import com.yimuyun.lowraiseapp.ui.MainActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
+import com.yimuyun.lowraiseapp.ui.feed.FeedListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
 import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
@@ -33,6 +34,8 @@ public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(FeedManageActivity feedManageActivity);
+
+    void inject(FeedListActivity feedListActivity);
 
     void inject(WeightManageActivity weightManageActivity);
 

@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 16:33
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class FeedBean {
+public class FeedBean implements Serializable{
 
     /**
      * id : 1
@@ -19,7 +21,7 @@ public class FeedBean {
      * enterpriseId : 1
      */
 
-    private int id;
+    private long id;
     private String manufacturer;
     private String picture;
     private String name;
@@ -27,11 +29,11 @@ public class FeedBean {
     private long updateTime;
     private int enterpriseId;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

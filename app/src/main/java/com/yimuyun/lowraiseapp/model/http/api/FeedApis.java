@@ -44,6 +44,11 @@ public interface FeedApis {
     @POST("culture/v1/equipment/info")
     Flowable<PadResultResponse<EquipmentInfoVo>> getEquipmentInfoByNumber(@Query("equipmentNumber")String equipmentNumber);
 
+    /**
+     * 获取种类
+     * @param enterpriseId
+     * @return
+     */
     @GET("culture/v1/livestock/varieties/list")
     Flowable<PadResultResponse<VarietiesVo>> getVarietieList(@Query("enterpriseId")String enterpriseId);
     /**

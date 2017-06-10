@@ -2,7 +2,7 @@ package com.yimuyun.lowraiseapp.presenter;
 
 
 import com.yimuyun.lowraiseapp.base.RxPresenter;
-import com.yimuyun.lowraiseapp.base.contract.feed.FeedContract;
+import com.yimuyun.lowraiseapp.base.contract.disinfect.DisinfectContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
 import com.yimuyun.lowraiseapp.model.bean.FeedVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class DisinfectPresenter extends RxPresenter<FeedContract.View> implements FeedContract.Presenter {
+public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> implements DisinfectContract.Presenter {
 
     private DataManager mDataManager;
 
@@ -51,8 +51,4 @@ public class DisinfectPresenter extends RxPresenter<FeedContract.View> implement
                 }));
     }
 
-    @Override
-    public void feeding(String equipmentIds, String feedId, String feedTime, String grass) {
-
-    }
 }

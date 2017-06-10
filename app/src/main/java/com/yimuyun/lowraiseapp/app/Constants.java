@@ -67,41 +67,22 @@ public class Constants {
     public static final String SP_USER_INSTANCE_STR = "";
 
     //================= INTENT ====================
-    public static final String BUY_SHOW_BACK_BTN = "isShowBtn";
+    public static final String ID = "id";
+    public static final String SELECTED_FEED = "selectedFeed";
 
-    public static final String SKU = "sku";
 
     public static final String CITY_NAME = "cityName";
 
-    //第一级分类sid
-    public static final String FIRST_CATEGORY_SID = "firstCategorySid";
 
-    //末级分类sid
-    public static final String LAST_CATEGORY_SID = "lastCategorySid";
-
-    //品类名称
-    public static final String CATEGORY_NAME = "categoryName";
 
     public static final String CATEGORY_SIDS = "categorySids";
 
     public static final String USER_NAME = "userName";
 
-    public static final String IT_GOLD_TYPE = "type";
 
-    public static final String IT_GOLD_TYPE_STR = "type_str";
-
-    public static final String IT_GOLD_MANAGER = "manager";
-
-    public static final String IT_VTEX_TYPE = "type";
-
-    public static final String IT_VTEX_TOPIC_ID = "id";
-
-    public static final String IT_VTEX_REPLIES_TOP = "top_info";
-
-    public static final String IT_VTEX_NODE_NAME = "node_name";
 
     /*------------------------------activity request code----------------------------------*/
-
+    public static final int REQUEST_FEED_LIST = 1001;
 
 
 

@@ -57,6 +57,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
         <activity
+            android:name=".ui.feed.FeedListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
             android:name=".ui.weight.WeightManageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
@@ -76,6 +80,8 @@
             android:name=".ui.immune.ImmuneManageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+
+
 
     </application>
 

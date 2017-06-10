@@ -7,10 +7,7 @@ import android.widget.TextView;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.feed.FeedContract;
-import com.yimuyun.lowraiseapp.model.bean.FeedBean;
 import com.yimuyun.lowraiseapp.presenter.FeedPresenter;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,7 +25,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
 
-    private String enterpriseId = "1";
+    private long selectedFeedId;
 
     private String equipmentIds, feedId, feedTime, grass;
     @Override
@@ -55,8 +52,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
     @OnClick(R.id.tv_feed_name)
     public void getFeedList(View view){
-        stateLoading();
-        mPresenter.getFeedList(enterpriseId);
+        FeedListActivity.open(FeedManageActivity.this,selectedFeedId);
     }
 
 
@@ -66,10 +62,6 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
         getActivityComponent().inject(this);
     }
 
-    @Override
-    public void setFeedList(List<FeedBean> feedList) {
-
-    }
 
     @Override
     public void feedingSuccess() {

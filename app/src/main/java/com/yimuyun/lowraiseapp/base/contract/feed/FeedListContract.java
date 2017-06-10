@@ -14,15 +14,15 @@ import java.util.List;
  * @Version
  */
 
-public interface FeedContract {
+public interface FeedListContract {
     interface View extends BaseView {
+        void setFeedList(List<FeedBean> feedList);
 
-        void feedingSuccess();
     }
 
     interface Presenter extends BasePresenter<View> {
+        void getFeedList(String enterpriseId);
 
-        void feeding(String equipmentIds,String feedId,String feedTime,String grass);
     }
 
 }

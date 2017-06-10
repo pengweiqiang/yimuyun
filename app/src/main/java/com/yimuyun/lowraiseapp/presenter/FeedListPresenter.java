@@ -2,8 +2,9 @@ package com.yimuyun.lowraiseapp.presenter;
 
 
 import com.yimuyun.lowraiseapp.base.RxPresenter;
-import com.yimuyun.lowraiseapp.base.contract.feed.FeedContract;
+import com.yimuyun.lowraiseapp.base.contract.feed.FeedListContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
+import com.yimuyun.lowraiseapp.model.bean.FeedVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
@@ -18,27 +19,27 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class FeedPresenter extends RxPresenter<FeedContract.View> implements FeedContract.Presenter {
+public class FeedListPresenter extends RxPresenter<FeedListContract.View> implements FeedListContract.Presenter {
 
     private DataManager mDataManager;
 
     @Inject
-    public FeedPresenter(DataManager mDataManager) {
+    public FeedListPresenter(DataManager mDataManager) {
         this.mDataManager = mDataManager;
     }
 
 
-
     @Override
-    public void feeding(String equipmentIds, String feedId, String feedTime, String grass) {
-        addSubscribe(mDataManager.feeding(equipmentIds, feedId, feedTime, grass)
-                .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<Object>(mView, true) {
+    public void getFeedList(String enterpriseId) {
+        addSubscribe(mDataManager.feedList(enterpriseId)
+                .compose(RxUtil.<PadResultResponse<FeedVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<FeedVo>(mView, true) {
                     @Override
-                    public void dataHandle(Object body) {
-                        if(body==null) {
-                           ToastUtil.show("提交成功");
-                            mView.feedingSuccess();
+                    public void dataHandle(FeedVo feedVo) {
+                        if(feedVo!=null) {
+                            mView.setFeedList(feedVo.getFeeds());
+                        }else{
+                            ToastUtil.show("查询结果为空");
                         }
                     }
 
@@ -49,5 +50,7 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
                     }
                 }));
     }
+
+
 
 }
