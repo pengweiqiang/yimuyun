@@ -8,7 +8,7 @@
     <color name="colorHeader">#8fc320</color>
 
     <color name="color_content_bg">#f9f9f9</color>
-    <color name="color_line_grey">#cbcccd</color>
+    <color name="color_line_grey">#EEEEEE</color>
     <color name="color_btn_normal">#379908</color>
     <color name="color_btn_selected">#379908</color>
     <color name="color_navigation_normal">#9a9b9c</color>

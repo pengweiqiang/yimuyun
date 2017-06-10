@@ -15,8 +15,6 @@ public class Constants {
 
     public static final String HOST_URL = "http://115.28.109.174:8383/yimu/";
 //    public static final String HOST_URL = "http://192.168.31.36:8080/";
-//    public static final String HOST_URL = "http://172.16.101.216:8080/";
-//    public static final String HOST_URL = "http://172.16.100.133:8080/";
 
     //================= KEY ====================
 

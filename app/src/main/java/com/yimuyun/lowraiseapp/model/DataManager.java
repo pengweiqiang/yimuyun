@@ -2,6 +2,7 @@ package com.yimuyun.lowraiseapp.model;
 
 
 import com.yimuyun.lowraiseapp.app.App;
+import com.yimuyun.lowraiseapp.model.bean.FeedVo;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.db.DBHelper;
 import com.yimuyun.lowraiseapp.model.http.HttpHelper;
@@ -58,5 +59,20 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<PadResultResponse<UserBean>> login(String userName, String password) {
         return mHttpHelper.login(userName,password);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<FeedVo>> feedList(String enterpriseId) {
+        return mHttpHelper.feedList(enterpriseId);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> feeding(String equipmentIds, String feedId, String feedTime, String grass) {
+        return mHttpHelper.feeding(equipmentIds, feedId, feedTime, grass);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> insertWeight(String equipmentId, String weighTime, String weighPhase, String cultureProcess, String weight, Long weighId) {
+        return mHttpHelper.insertWeight(equipmentId, weighTime, weighPhase, cultureProcess, weight, weighId);
     }
 }

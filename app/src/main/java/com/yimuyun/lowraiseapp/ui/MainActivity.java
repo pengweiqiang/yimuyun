@@ -1,5 +1,6 @@
 package com.yimuyun.lowraiseapp.ui;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,12 @@ import android.widget.TextView;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
+import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
+import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
+import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
+import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
+import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +43,13 @@ public class MainActivity extends SimpleActivity {
     private List<View> viewList;//view数组
     private View functionView1,functionView2;
 
+    private View mViewFeed,//饲养
+            mViewWeight,//称重
+            mViewImmune,//免疫
+            mViewDisinfect,//消毒
+            mViewDiagnosis,//诊疗
+            mViewNewEarTag;//新建耳标
+
 
     @Override
     protected int getLayout() {
@@ -56,10 +70,26 @@ public class MainActivity extends SimpleActivity {
         initViewPager();
     }
 
+
     private void initViewPager(){
         LayoutInflater inflater=getLayoutInflater();
         functionView1 = inflater.inflate(R.layout.item_main_function1, null);
         functionView2 = inflater.inflate(R.layout.item_main_function2, null);
+
+        mViewFeed = functionView1.findViewById(R.id.rl_feed);
+        mViewWeight = functionView1.findViewById(R.id.rl_weight);
+        mViewDisinfect = functionView1.findViewById(R.id.rl_disinfect);
+        mViewImmune = functionView1.findViewById(R.id.rl_immune);
+        mViewDiagnosis = functionView1.findViewById(R.id.rl_diagnosis);
+        mViewNewEarTag = functionView1.findViewById(R.id.rl_new_ear_tag);
+
+        mViewFeed.setOnClickListener(onClickListener);
+        mViewWeight.setOnClickListener(onClickListener);
+        mViewDisinfect.setOnClickListener(onClickListener);
+        mViewImmune.setOnClickListener(onClickListener);
+        mViewDiagnosis.setOnClickListener(onClickListener);
+        mViewNewEarTag.setOnClickListener(onClickListener);
+
 
         viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
         viewList.add(functionView1);
@@ -116,6 +146,36 @@ public class MainActivity extends SimpleActivity {
         });
 
         mViewPager.setAdapter(pagerAdapter);
+    }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.rl_feed:
+                    startActivityForIntent(FeedManageActivity.class);
+                    break;
+                case R.id.rl_weight:
+                    startActivityForIntent(WeightManageActivity.class);
+                    break;
+                case R.id.rl_immune:
+                    startActivityForIntent(ImmuneManageActivity.class);
+                    break;
+                case R.id.rl_disinfect:
+                    startActivityForIntent(DisinfectManageActivity.class);
+                    break;
+                case R.id.rl_diagnosis:
+                    startActivityForIntent(DiagnosisManageActivity.class);
+                    break;
+                case R.id.rl_new_ear_tag:
+                    startActivityForIntent(NewEarTagManageActivity.class);
+                    break;
+            }
+        }
+    };
+    private void startActivityForIntent(Class className){
+        Intent intent = new Intent(mContext,className);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tv_logout)

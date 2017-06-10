@@ -7,6 +7,12 @@ import com.yimuyun.lowraiseapp.di.scope.ActivityScope;
 import com.yimuyun.lowraiseapp.ui.LoginActivity;
 import com.yimuyun.lowraiseapp.ui.MainActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
+import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
+import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
+import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
+import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
+import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import dagger.Component;
 
@@ -25,6 +31,18 @@ public interface ActivityComponent {
     void inject(MainActivity mainActivity);
 
     void inject(LoginActivity loginActivity);
+
+    void inject(FeedManageActivity feedManageActivity);
+
+    void inject(WeightManageActivity weightManageActivity);
+
+    void inject(ImmuneManageActivity immuneManageActivity);
+
+    void inject(DisinfectManageActivity disinfectManageActivity);
+
+    void inject(DiagnosisManageActivity diagnosisManageActivity);
+
+    void inject(NewEarTagManageActivity diagnosisManageActivity);
 
 //
 //    void inject(ThemeActivity themeActivity);

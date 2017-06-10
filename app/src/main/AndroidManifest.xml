@@ -44,14 +44,39 @@
             android:name=".ui.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme"></activity>
-        //主页
+            android:theme="@style/MainTheme"/>
+
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.feed.FeedManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.weight.WeightManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.diagnosis.DiagnosisManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.disinfect.DisinfectManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.neweartag.NewEarTagManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.immune.ImmuneManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+
     </application>
 
 </manifest>
