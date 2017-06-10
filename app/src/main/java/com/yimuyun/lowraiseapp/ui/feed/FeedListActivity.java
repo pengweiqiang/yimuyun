@@ -17,7 +17,6 @@ import com.yimuyun.lowraiseapp.presenter.FeedListPresenter;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * @author will on 2017/6/10 22:41
@@ -57,23 +56,23 @@ public class FeedListActivity extends RootActivity<FeedListPresenter> implements
         setToolBar(mToolBar,"饲料");
         feedListAdapter = new FeedListAdapter(mContext,feedLists,selectedId);
 
+        mListView.setAdapter(feedListAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FeedBean feedBean = feedLists.get(position);
                 Intent intent = new Intent();
                 intent.putExtra(Constants.SELECTED_FEED,feedBean);
-                setResult(RESULT_OK);
+                setResult(RESULT_OK,intent);
+                finish();
 
             }
         });
-    }
 
-    @OnClick(R.id.tv_feed_name)
-    public void getFeedList(View view){
         stateLoading();
         mPresenter.getFeedList(enterpriseId);
     }
+
 
 
 

@@ -73,7 +73,7 @@ public class FeedListAdapter extends BaseListAdapter{
             viewHolder.mIvSelectedOk.setVisibility(View.GONE);
         }
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 
     class ViewHolder{
