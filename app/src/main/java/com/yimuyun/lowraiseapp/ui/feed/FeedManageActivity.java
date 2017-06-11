@@ -169,7 +169,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
                     case 0:
                         // delete
                         EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
-                        equipmentIdMap.remove(equipmentDetailVo.getLivestock().getEquipmentId());
+                        equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 

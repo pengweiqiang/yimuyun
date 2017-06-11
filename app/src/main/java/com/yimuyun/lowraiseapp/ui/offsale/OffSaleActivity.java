@@ -134,7 +134,7 @@ public class OffSaleActivity extends RootActivity<OffSalePresenter> implements O
                     case 0:
                         // delete
                         EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
-                        equipmentIdMap.remove(equipmentDetailVo.getLivestock().getEquipmentId());
+                        equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 
