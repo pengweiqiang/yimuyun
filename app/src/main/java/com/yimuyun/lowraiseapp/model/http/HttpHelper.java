@@ -12,6 +12,7 @@ import com.yimuyun.lowraiseapp.model.bean.PersonnelVo;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
+import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 
 import java.util.List;
@@ -45,6 +46,8 @@ public interface HttpHelper {
                                                 String weighTime,String weighPhase,
                                                 String cultureProcess,String weight,Long weighId);
 
+    //称重记录
+    Flowable<PadResultResponse<WeightVo>> getWeightList(String equipmentId);
 
     Flowable<PadResultResponse<UserInfo>> getUserInfo(String phoneNumber);
 

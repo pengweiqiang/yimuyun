@@ -49,4 +49,6 @@
 
     <color name="color_grey_text">#bfc0bf</color>
     <color name="color_main_tab_title">#747474</color>
+    <color name="color_grey_text_weight">#999999</color>
+    <color name="color_green_btn">#009744</color>
 </resources>

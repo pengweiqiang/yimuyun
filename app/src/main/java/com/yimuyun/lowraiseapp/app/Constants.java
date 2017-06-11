@@ -40,6 +40,10 @@ public class Constants {
     public static final int START_PAGE = 0;//开始页码
     public static final int PAGE_SIZE = 10;//每页显示条数
 
+    public static final int SEX_FEMALE= 1;//母
+    public static final int SEX_MALE = 2;//公
+
+
     //================= PATH ====================
 
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
@@ -69,6 +73,7 @@ public class Constants {
     //================= INTENT ====================
     public static final String ID = "id";
     public static final String SELECTED_FEED = "selectedFeed";
+    public static final String EQUPIMENT_ID = "equpimentId";
 
 
     public static final String CITY_NAME = "cityName";

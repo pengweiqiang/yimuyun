@@ -15,6 +15,7 @@ import com.yimuyun.lowraiseapp.base.SimpleActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
+import com.yimuyun.lowraiseapp.ui.fertilization.FertilizationManageActivity;
 import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
@@ -50,6 +51,13 @@ public class MainActivity extends SimpleActivity {
             mViewDiagnosis,//诊疗
             mViewNewEarTag;//新建耳标
 
+    private View mViewQuarantine,//检疫
+            mViewFertilization,//受孕管理
+            mViewInnocuityDeal,//无害化处理
+            mViewOfflineSale,//线下销售
+            mVewnvironmentMonitor,//环境监测
+            mViewPurchase;//收购入栏
+
 
     @Override
     protected int getLayout() {
@@ -83,12 +91,26 @@ public class MainActivity extends SimpleActivity {
         mViewDiagnosis = functionView1.findViewById(R.id.rl_diagnosis);
         mViewNewEarTag = functionView1.findViewById(R.id.rl_new_ear_tag);
 
+        mViewQuarantine = functionView2.findViewById(R.id.rl_quarantine);
+        mViewFertilization = functionView2.findViewById(R.id.rl_fertilization);
+        mViewInnocuityDeal = functionView2.findViewById(R.id.rl_innocuity_deal);
+        mViewOfflineSale = functionView2.findViewById(R.id.rl_offline_sale);
+        mVewnvironmentMonitor = functionView2.findViewById(R.id.rl_environment_monitor);
+        mViewPurchase = functionView2.findViewById(R.id.rl_purchase);
+
         mViewFeed.setOnClickListener(onClickListener);
         mViewWeight.setOnClickListener(onClickListener);
         mViewDisinfect.setOnClickListener(onClickListener);
         mViewImmune.setOnClickListener(onClickListener);
         mViewDiagnosis.setOnClickListener(onClickListener);
         mViewNewEarTag.setOnClickListener(onClickListener);
+
+        mViewQuarantine.setOnClickListener(onClickListener);
+        mViewFertilization.setOnClickListener(onClickListener);
+        mViewInnocuityDeal.setOnClickListener(onClickListener);
+        mViewOfflineSale.setOnClickListener(onClickListener);
+        mVewnvironmentMonitor.setOnClickListener(onClickListener);
+        mViewPurchase.setOnClickListener(onClickListener);
 
 
         viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
@@ -156,7 +178,8 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(FeedManageActivity.class);
                     break;
                 case R.id.rl_weight:
-                    startActivityForIntent(WeightManageActivity.class);
+                    GetEarTagActivity.open(mContext,WeightManageActivity.class.getName());
+//                    startActivityForIntent(WeightManageActivity.class);
                     break;
                 case R.id.rl_immune:
                     startActivityForIntent(ImmuneManageActivity.class);
@@ -165,11 +188,15 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(DisinfectManageActivity.class);
                     break;
                 case R.id.rl_diagnosis:
-                    startActivityForIntent(DiagnosisManageActivity.class);
+                    GetEarTagActivity.open(mContext,DiagnosisManageActivity.class.getName());
                     break;
                 case R.id.rl_new_ear_tag:
-                    startActivityForIntent(NewEarTagManageActivity.class);
+                    GetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
+                case R.id.rl_fertilization:
+                    GetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
+                    break;
+
             }
         }
     };

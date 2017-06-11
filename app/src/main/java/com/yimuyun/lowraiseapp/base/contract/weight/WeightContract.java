@@ -3,9 +3,7 @@ package com.yimuyun.lowraiseapp.base.contract.weight;
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
 import com.yimuyun.lowraiseapp.base.BaseView;
-import com.yimuyun.lowraiseapp.model.bean.FeedBean;
-
-import java.util.List;
+import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 
 /**
  * @author will on 2017/6/6 21:57
@@ -16,14 +14,17 @@ import java.util.List;
 
 public interface WeightContract {
     interface View extends BaseView {
-        void setFeedList(List<FeedBean> feedList);
+        void setWeightList(WeightVo weightVo);
 
+        void insertWeightSuccess();
 
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getFeedList(String enterpriseId);
-
+        void getWeightList(String equipmentId);
+        void insertWeight(String equipmentId,
+                          String weighTime,String weighPhase,
+                          String cultureProcess,String weight,Long weighId);
     }
 
 }

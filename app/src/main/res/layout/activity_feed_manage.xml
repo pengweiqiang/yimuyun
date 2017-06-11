@@ -2,14 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
+        android:gravity="top"
+        android:layout_above="@+id/btn_add_ear_tag"
+        android:background="@color/colorWhite"
         >
 
         <include layout="@layout/view_toolbar" />
@@ -54,13 +56,26 @@
             android:layout_marginTop="10dp"
             android:background="@color/color_line_grey" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="牧草"
-            android:textColor="@color/color_normal_text"
-            android:textSize="@dimen/home_normal_text_size" />
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="牧草"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <include layout="@layout/layout_grass_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -75,13 +90,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="喂养时间"
+                android:text="喂养日期"
                 android:textColor="@color/color_normal_text"
                 android:textSize="@dimen/home_normal_text_size" />
 
@@ -93,7 +109,7 @@
                 android:drawablePadding="7dp"
                 android:drawableRight="@mipmap/btn_right_back"
                 android:gravity="right|center_vertical"
-                android:hint="请选择喂养时间"
+                android:hint="请选择喂养日期"
                 android:textColor="@color/color_normal_text"
                 android:textColorHint="@color/color_grey_text"
                 android:textSize="@dimen/home_normal_text_size" />
@@ -101,13 +117,48 @@
 
         </LinearLayout>
 
-        <View
+
+        <LinearLayout
+            android:id="@+id/ll_equipments"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/color_line_grey" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorWhite"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@color/cp_content_bg"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="耳标信息"
+                android:padding="10dp"
+                android:textSize="@dimen/home_normal_text_size"
+                android:gravity="center_horizontal"
+                android:textColor="@color/color_normal_text"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_line_grey" />
+
+            <com.baoyz.swipemenulistview.SwipeMenuListView
+                android:id="@+id/listview"
+                android:divider="@color/color_line_grey"
+                android:dividerHeight="1dp"
+                android:paddingLeft="10dp"
+                android:scrollbars="none"
+                android:footerDividersEnabled="true"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

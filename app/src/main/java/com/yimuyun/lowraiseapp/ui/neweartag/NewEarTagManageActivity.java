@@ -5,9 +5,9 @@ import android.widget.TextView;
 
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.base.RootActivity;
-import com.yimuyun.lowraiseapp.base.contract.weight.WeightContract;
+import com.yimuyun.lowraiseapp.base.contract.neweartag.NewEarTagContract;
 import com.yimuyun.lowraiseapp.model.bean.FeedBean;
-import com.yimuyun.lowraiseapp.presenter.WeightPresenter;
+import com.yimuyun.lowraiseapp.presenter.NewEarTagPresenter;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * @description 新建耳标管理
  * @Version
  */
-public class NewEarTagManageActivity extends RootActivity<WeightPresenter> implements WeightContract.View{
+public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> implements NewEarTagContract.View{
 
     @BindView(R.id.tv_feed_name)
     TextView mTvFeedName;

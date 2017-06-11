@@ -16,6 +16,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rl_quarantine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -57,6 +58,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_fertilization"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -64,7 +66,7 @@
                 android:background="@drawable/shape_main_item_function">
 
                 <ImageView
-                    android:id="@+id/iv_weigh_logo"
+                    android:id="@+id/iv_fertilization_logo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_alignParentRight="true"
@@ -73,7 +75,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_weigh_logo"
+                    android:layout_below="@+id/iv_fertilization_logo"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
@@ -106,6 +108,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rl_innocuity_deal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -149,6 +152,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_offline_sale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -200,6 +204,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rl_environment_monitor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -242,6 +247,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_purchase"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"

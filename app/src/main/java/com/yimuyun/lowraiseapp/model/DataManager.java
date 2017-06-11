@@ -14,6 +14,7 @@ import com.yimuyun.lowraiseapp.model.bean.PersonnelVo;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
+import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.model.db.DBHelper;
 import com.yimuyun.lowraiseapp.model.http.HttpHelper;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
@@ -86,6 +87,11 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<PadResultResponse<Object>> insertWeight(String equipmentId, String weighTime, String weighPhase, String cultureProcess, String weight, Long weighId) {
         return mHttpHelper.insertWeight(equipmentId, weighTime, weighPhase, cultureProcess, weight, weighId);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<WeightVo>> getWeightList(String equipmentId) {
+        return mHttpHelper.getWeightList(equipmentId);
     }
 
     @Override

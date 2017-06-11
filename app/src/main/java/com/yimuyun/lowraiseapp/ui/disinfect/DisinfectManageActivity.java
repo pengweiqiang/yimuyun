@@ -5,9 +5,9 @@ import android.widget.TextView;
 
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.base.RootActivity;
-import com.yimuyun.lowraiseapp.base.contract.weight.WeightContract;
+import com.yimuyun.lowraiseapp.base.contract.disinfect.DisinfectContract;
 import com.yimuyun.lowraiseapp.model.bean.FeedBean;
-import com.yimuyun.lowraiseapp.presenter.WeightPresenter;
+import com.yimuyun.lowraiseapp.presenter.DisinfectPresenter;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * @description 消毒管理
  * @Version
  */
-public class DisinfectManageActivity extends RootActivity<WeightPresenter> implements WeightContract.View{
+public class DisinfectManageActivity extends RootActivity<DisinfectPresenter> implements DisinfectContract.View{
 
     @BindView(R.id.tv_feed_name)
     TextView mTvFeedName;

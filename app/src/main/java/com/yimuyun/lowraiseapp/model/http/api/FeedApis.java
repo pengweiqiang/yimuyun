@@ -9,6 +9,7 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.FeedVo;
 import com.yimuyun.lowraiseapp.model.bean.FertilizationBean;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
+import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 
 import java.util.List;
@@ -64,7 +65,13 @@ public interface FeedApis {
     Flowable<PadResultResponse<Object>> feeding(@Query("equipmentIds")String equipmentIds,@Query("feedId")String feedId,@Query("feedTime")String feedTime,@Query("grass")String grass);
 
 
-
+    /**
+     * 称重记录
+     * @param equipmentId
+     * @return
+     */
+    @GET("culture/v1/weigh/weigh/list")
+    Flowable<PadResultResponse<WeightVo>> getWeightList(@Query("equipmentId") String equipmentId);
 
     /**
      * 称重
@@ -74,12 +81,13 @@ public interface FeedApis {
                                                 @Query("weighTime") String weighTime,@Query("weighPhase") String weighPhase,
                                                 @Query("cultureProcess") String cultureProcess,@Query("weight") String weight,@Query("weighId") Long weighId);
 
+
     /**
      * 耳标详情
      * @param equipmentId
      * @return
      */
-    @GET("culture/v1/livestock/info")
+    @POST("culture/v1/livestock/info")
     Flowable<PadResultResponse<EquipmentDetailVo>> getEquimentInfoById(@Query("equipmentId")String equipmentId);
 
     /**

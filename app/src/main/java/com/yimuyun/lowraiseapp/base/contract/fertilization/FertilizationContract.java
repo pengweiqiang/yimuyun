@@ -1,4 +1,4 @@
-package com.yimuyun.lowraiseapp.base.contract.feed;
+package com.yimuyun.lowraiseapp.base.contract.fertilization;
 
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
@@ -12,19 +12,19 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
  * @Version
  */
 
-public interface FeedContract {
+public interface FertilizationContract {
     interface View extends BaseView {
+        void setLivestockInfo(EquipmentDetailVo equipmentDetailVo);
 
-        void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo);
-        void feedingSuccess();
-
+        void updatePreganacySuccess();
     }
 
     interface Presenter extends BasePresenter<View> {
+        void getLiveStockInfo(String equipmentId);
 
-        void feeding(String equipmentIds,String feedId,String feedTime,String grass);
 
-        void getEquipmentDetailById(String equipmentId);
+        void updatePregnancy(String equipmentId,String type);
+
     }
 
 }

@@ -66,6 +66,8 @@ ext{
             "jsoup"                     : "org.jsoup:jsoup:1.10.1",
             //"crashreport"               : "com.tencent.bugly:crashreport:latest.release",
             "crashreport-upgrade"       : "com.tencent.bugly:crashreport_upgrade:latest.release",
+            //swipemenulistview
+            "swipemenulistview"         : "com.baoyz.swipemenulistview:library:1.3.0"
 
     ]
 

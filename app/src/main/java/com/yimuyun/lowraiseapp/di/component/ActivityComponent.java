@@ -11,6 +11,7 @@ import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
+import com.yimuyun.lowraiseapp.ui.fertilization.FertilizationManageActivity;
 import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
@@ -46,6 +47,8 @@ public interface ActivityComponent {
     void inject(DiagnosisManageActivity diagnosisManageActivity);
 
     void inject(NewEarTagManageActivity diagnosisManageActivity);
+
+    void inject(FertilizationManageActivity fertilizationManageActivity);
 
 //
 //    void inject(ThemeActivity themeActivity);

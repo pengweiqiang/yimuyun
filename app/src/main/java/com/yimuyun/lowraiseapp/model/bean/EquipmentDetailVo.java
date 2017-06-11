@@ -10,7 +10,7 @@ package com.yimuyun.lowraiseapp.model.bean;
 public class EquipmentDetailVo {
     private Varieties varieties;
     private LivestockBean livestock;
-    private EquipmentBean equipment;
+    private EquipmentBean parentEquipment;
 
 
     public Varieties getVarieties() {
@@ -29,11 +29,12 @@ public class EquipmentDetailVo {
         this.livestock = livestock;
     }
 
-    public EquipmentBean getEquipment() {
-        return equipment;
+
+    public EquipmentBean getParentEquipment() {
+        return parentEquipment;
     }
 
-    public void setEquipment(EquipmentBean equipment) {
-        this.equipment = equipment;
+    public void setParentEquipment(EquipmentBean parentEquipment) {
+        this.parentEquipment = parentEquipment;
     }
 }

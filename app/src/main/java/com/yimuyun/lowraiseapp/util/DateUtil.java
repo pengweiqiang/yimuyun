@@ -1,6 +1,7 @@
 package com.yimuyun.lowraiseapp.util;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,6 +93,15 @@ public class DateUtil {
         return formatTime2String(showTime,false);
     }
 
+    public static String formartTime2String(long showTime){
+        Calendar current = Calendar.getInstance();
+        current.setTime(new Date(showTime));
+        int year = current.get(Calendar.YEAR);
+        int month = current.get(Calendar.MONTH);
+        int day = current.get(Calendar.DAY_OF_MONTH);
+        return year+"年"+(month+1)+"月"+(day+1)+"日";
+    }
+
     public static String formatTime2String(long showTime , boolean haveYear) {
         String str = "";
         long distance = currentTimeMillis()/1000 - showTime;
@@ -176,5 +186,44 @@ public class DateUtil {
                 return time.substring(yearIndex,time.length()).substring(0,index);
             }
         }
+    }
+
+    /**
+     * 使用用户格式提取字符串日期
+     *
+     * @param strDate 日期字符串
+     * @param pattern 日期格式
+     * @return
+     */
+
+    public static Date parse(String strDate, String pattern) {
+
+        if (TextUtils.isEmpty(strDate)) {
+            return null;
+        }
+        try {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            return df.parse(strDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 使用用户格式格式化日期
+     *
+     * @param date    日期
+     * @param pattern 日期格式
+     * @return
+     */
+
+    public static String format(Date date, String pattern) {
+        String returnValue = "";
+        if (date != null) {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            returnValue = df.format(date);
+        }
+        return (returnValue);
     }
 }

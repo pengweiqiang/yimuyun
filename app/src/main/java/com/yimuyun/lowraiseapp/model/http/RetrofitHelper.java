@@ -13,6 +13,7 @@ import com.yimuyun.lowraiseapp.model.bean.PersonnelVo;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
+import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.model.http.api.FeedApis;
 import com.yimuyun.lowraiseapp.model.http.api.UserApis;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
@@ -56,6 +57,11 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<PadResultResponse<Object>> insertWeight(String equipmentId, String weighTime, String weighPhase, String cultureProcess, String weight, Long weighId) {
         return feedApis.insertWeight(equipmentId, weighTime, weighPhase, cultureProcess, weight, weighId);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<WeightVo>> getWeightList(String equipmentId) {
+        return feedApis.getWeightList(equipmentId);
     }
 
     @Override
