@@ -193,8 +193,23 @@ public class MainActivity extends SimpleActivity {
                 case R.id.rl_new_ear_tag:
                     GetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
+                case R.id.rl_quarantine:
+
+                    break;
                 case R.id.rl_fertilization:
                     GetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
+                    break;
+                case R.id.rl_innocuity_deal:
+
+                    break;
+                case R.id.rl_offline_sale:
+
+                    break;
+                case R.id.rl_environment_monitor:
+
+                    break;
+                case R.id.rl_purchase:
+
                     break;
 
             }
