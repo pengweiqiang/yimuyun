@@ -2,13 +2,12 @@ package com.yimuyun.lowraiseapp.presenter;
 
 
 import com.yimuyun.lowraiseapp.base.RxPresenter;
-import com.yimuyun.lowraiseapp.base.contract.feed.FeedContract;
+import com.yimuyun.lowraiseapp.base.contract.offsale.OffSaleContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
-import com.yimuyun.lowraiseapp.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -19,27 +18,26 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class FeedPresenter extends RxPresenter<FeedContract.View> implements FeedContract.Presenter {
+public class OffSalePresenter extends RxPresenter<OffSaleContract.View> implements OffSaleContract.Presenter {
 
     private DataManager mDataManager;
 
     @Inject
-    public FeedPresenter(DataManager mDataManager) {
+    public OffSalePresenter(DataManager mDataManager) {
         this.mDataManager = mDataManager;
     }
 
 
-
     @Override
-    public void feeding(String equipmentIds, String feedId, String feedTime, String grass) {
-        addSubscribe(mDataManager.feeding(equipmentIds, feedId, feedTime, grass)
+    public void insertOffSale(String equipmentIds, String salesTime, String customerName, String contactWay, String unitPrice, String weight) {
+        addSubscribe(mDataManager.offlineSale(equipmentIds, salesTime, customerName, contactWay, unitPrice, weight)
                 .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<Object>(mView, true) {
                     @Override
                     public void dataHandle(Object body) {
                         if(body==null) {
-                           ToastUtil.show("提交成功");
-                            mView.feedingSuccess();
+                            mView.showErrorMsgToast("提交成功");
+                            mView.insertOffSaleSuccess();
                         }
                     }
 
@@ -50,7 +48,6 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
                     }
                 }));
     }
-
     @Override
     public void getEquipmentDetailById(final String equipmentId) {
         addSubscribe(mDataManager.getEquimentInfoById(equipmentId)
@@ -70,5 +67,4 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
                     }
                 }));
     }
-
 }

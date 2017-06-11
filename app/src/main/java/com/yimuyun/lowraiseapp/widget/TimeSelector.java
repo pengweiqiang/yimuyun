@@ -157,7 +157,7 @@ public class TimeSelector {
         tv_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handler.handle(DateUtil.format(selectedCalender.getTime(), "yyyy年MM月dd日"),DateUtil.format(selectedCalender.getTime(), FORMAT_STR));
+                handler.handle(DateUtil.format(selectedCalender.getTime(), "yyyy年MM月dd日"),DateUtil.format(selectedCalender.getTime(), "yyyyMMdd"));
                 seletorDialog.dismiss();
             }
         });

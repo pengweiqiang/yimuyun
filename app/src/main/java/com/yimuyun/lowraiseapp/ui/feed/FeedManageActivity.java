@@ -26,7 +26,10 @@ import org.jsoup.helper.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -85,7 +88,9 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
     private long selectedFeedId;
 
-    private String equipmentIds, feedTime, grass;
+//    private StringBuffer equipmentIds = new StringBuffer();
+    Map<String,String> equipmentIdMap = new HashMap<>();
+    private String  feedTime, grass;
 
 
     @Override
@@ -106,7 +111,12 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
             public void onClick(View v) {
                 if(checkFeeding()){
                     stateLoading();
-                    mPresenter.feeding(equipmentIds,String.valueOf(selectedFeedId),feedTime,grass);
+                    Set<String> keys = equipmentIdMap.keySet();
+                    StringBuffer equipmentIds = new StringBuffer();
+                    for (String key : keys) {
+                        equipmentIds.append(key+",");
+                    }
+                    mPresenter.feeding(equipmentIds.toString(),String.valueOf(selectedFeedId),feedTime,grass);
                 }
             }
         });
@@ -158,7 +168,8 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
                 switch (index) {
                     case 0:
                         // delete
-                        equipmentDetailVoList.remove(position);
+                        EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
+                        equipmentIdMap.remove(equipmentDetailVo.getLivestock().getEquipmentId());
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 
@@ -176,8 +187,12 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-        equipmentIds = "1";
         String equipmentId = "2";//TODO 获取耳标
+        if(equipmentIdMap.containsKey(equipmentId)){
+            showErrorMsg("已扫描耳标"+equipmentId);
+            return;
+        }
+
         stateLoading();
         mPresenter.getEquipmentDetailById(equipmentId);
     }
@@ -190,6 +205,10 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
     private boolean checkFeeding(){
         boolean isPassed = false;
+        if(equipmentIdMap.isEmpty()){
+            showErrorMsg("请录入耳标");
+            return isPassed;
+        }
         if(selectedFeedId == 0){
             showErrorMsg("请选择饲料");
             return isPassed;
@@ -204,10 +223,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
             showErrorMsg("请选择喂养日期");
             return isPassed;
         }
-        if(StringUtil.isBlank(equipmentIds)){
-            showErrorMsg("请录入耳标");
-            return isPassed;
-        }
+
         isPassed = true;
         return isPassed;
     }
@@ -221,17 +237,20 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
 
     @Override
-    public void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo) {
+    public void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo,String equipmentId) {
         findViewById(R.id.ll_equipments).setVisibility(View.VISIBLE);
         equipmentDetailVoList.add(0,equipmentDetailVo);
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
+
+        equipmentIdMap.put(equipmentId,equipmentId);
     }
 
     @Override
     public void feedingSuccess() {
         //喂养成功
-        equipmentIds = null;
-
+        equipmentIdMap.clear();
+        equipmentDetailVoList.clear();
+        equipmentDetailAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -14,10 +14,13 @@ import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
+import com.yimuyun.lowraiseapp.ui.environmentmonitor.EnvironmentMonitorActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
 import com.yimuyun.lowraiseapp.ui.fertilization.FertilizationManageActivity;
 import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
+import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
+import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import java.util.ArrayList;
@@ -200,13 +203,13 @@ public class MainActivity extends SimpleActivity {
                     GetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
                     break;
                 case R.id.rl_innocuity_deal:
-
+                    GetEarTagActivity.open(mContext, InnocuityDealActivity.class.getName());
                     break;
                 case R.id.rl_offline_sale:
-
+                    startActivityForIntent(OffSaleActivity.class);
                     break;
                 case R.id.rl_environment_monitor:
-
+                    startActivityForIntent(EnvironmentMonitorActivity.class);
                     break;
                 case R.id.rl_purchase:
 

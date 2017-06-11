@@ -9,11 +9,14 @@ import com.yimuyun.lowraiseapp.ui.MainActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
+import com.yimuyun.lowraiseapp.ui.environmentmonitor.EnvironmentMonitorActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedManageActivity;
 import com.yimuyun.lowraiseapp.ui.fertilization.FertilizationManageActivity;
 import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
+import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
+import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import dagger.Component;
@@ -50,12 +53,10 @@ public interface ActivityComponent {
 
     void inject(FertilizationManageActivity fertilizationManageActivity);
 
-//
-//    void inject(ThemeActivity themeActivity);
-//
-//    void inject(SectionActivity sectionActivity);
-//
-//    void inject(RepliesActivity repliesActivity);
-//
-//    void inject(NodeListActivity nodeListActivity);
+    void inject(EnvironmentMonitorActivity environmentMonitorActivity);
+
+    void inject(InnocuityDealActivity innocuityDealActivity);
+
+    void inject(OffSaleActivity offSaleActivity);
+
 }

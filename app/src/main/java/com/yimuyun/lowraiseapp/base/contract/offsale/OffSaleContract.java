@@ -1,4 +1,4 @@
-package com.yimuyun.lowraiseapp.base.contract.feed;
+package com.yimuyun.lowraiseapp.base.contract.offsale;
 
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
@@ -12,19 +12,18 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
  * @Version
  */
 
-public interface FeedContract {
+public interface OffSaleContract {
     interface View extends BaseView {
-
         void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo,String equipmentId);
-        void feedingSuccess();
-
+        void insertOffSaleSuccess();
     }
 
     interface Presenter extends BasePresenter<View> {
-
-        void feeding(String equipmentIds,String feedId,String feedTime,String grass);
-
         void getEquipmentDetailById(String equipmentId);
+        void insertOffSale(String equipmentIds,String salesTime,
+                           String customerName,String contactWay,
+                           String unitPrice,String weight);
+
     }
 
 }
