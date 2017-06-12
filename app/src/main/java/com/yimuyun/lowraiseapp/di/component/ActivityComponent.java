@@ -23,6 +23,7 @@ import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.online.OnlineSaleActivity;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
@@ -79,5 +80,7 @@ public interface ActivityComponent {
     void inject(DrugListActivity drugListActivity);
 
     void inject(DisifectWaysListActivity disifectWaysListActivity);
+
+    void inject(OnlineSaleActivity onlineSaleActivity);
 
 }

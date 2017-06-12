@@ -21,6 +21,7 @@ import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.online.OnlineSaleActivity;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
@@ -198,7 +199,7 @@ public class MainActivity extends SimpleActivity {
                     GetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
                 case R.id.rl_quarantine:
-
+                    GetEarTagActivity.open(mContext,OnlineSaleActivity.class.getName());
                     break;
                 case R.id.rl_fertilization:
                     GetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());

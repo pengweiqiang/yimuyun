@@ -84,7 +84,7 @@ public class DiagnosisAdapter extends BaseListAdapter{
             sbDetail.append("药品名称："+diagnosisTreatmentVo.getDrug().getDrugName()+"\n");
         }
         if(diagnosisTreatmentVo.getDiagnosisTreatment()!=null){
-            sbDetail.append(DateUtil.formartTime2String(diagnosisTreatmentVo.getDiagnosisTreatment().getTime())+"\n");
+            sbDetail.append(DateUtil.formartTime2String(diagnosisTreatmentVo.getDiagnosisTreatment().getTime()));
         }
 
         if(diagnosisTreatmentVo.getDiagnosisResult()!=null){
