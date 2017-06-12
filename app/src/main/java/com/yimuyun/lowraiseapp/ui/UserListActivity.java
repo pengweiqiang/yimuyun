@@ -3,8 +3,12 @@ package com.yimuyun.lowraiseapp.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.yimuyun.lowraiseapp.R;
@@ -28,7 +32,7 @@ import butterknife.BindView;
  * @description 用户列表
  * @Version
  */
-public class UserListActivity extends RootActivity<UserListPresenter> implements UserListContract.View{
+public class UserListActivity extends RootActivity<UserListPresenter> implements UserListContract.View,TextWatcher {
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
 
@@ -37,6 +41,7 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
     UserListAdapter userListAdapter;
     private List<Personnel> personnelList = new ArrayList<>();
 
+    EditText mEtSearchFriends;
 
     private String enterpriseId;
     @Override
@@ -68,6 +73,16 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
                 finish();
             }
         });
+        addSearchView();
+    }
+
+    private void addSearchView(){
+        View mViewFriendHeader = View.inflate(mContext,R.layout.header_search_user,null);
+        mEtSearchFriends = (EditText) mViewFriendHeader.findViewById(R.id.et_search_friend);
+
+        mEtSearchFriends.addTextChangedListener(this);
+
+        mListView.addHeaderView(mViewFriendHeader);
     }
 
     public static void open(Activity activity){
@@ -97,4 +112,49 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
         this.personnelList = personnelList;
         userListAdapter.setDatas(personnelList);
     }
+
+
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+// 当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
+        filterData(s.toString(), personnelList);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+
+    /**
+     * 根据输入框中的值来过滤数据并更新ListView
+     *
+     * @param filterStr
+     */
+    private void filterData(String filterStr, List<Personnel> list) {
+        List<Personnel> filterDateList = new ArrayList<Personnel>();
+
+        if (TextUtils.isEmpty(filterStr)) {
+            filterDateList = list;
+
+        } else {
+            filterDateList.clear();
+            for (Personnel sortModel : list) {
+                String name = sortModel.getName();
+                if (name!=null && name.indexOf(filterStr.toString()) != -1) {
+                    filterDateList.add(sortModel);
+                }
+            }
+        }
+
+        // 根据a-z进行排序
+//        Collections.sort(filterDateList, pinyinComparator);
+        userListAdapter.setDatas(filterDateList);
+    }
+
 }

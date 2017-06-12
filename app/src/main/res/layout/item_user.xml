@@ -12,6 +12,7 @@
         android:id="@+id/ctimage"
         android:layout_height="45dp"
         android:layout_width="45dp"
+        android:layout_marginLeft="5dp"
         circletextview:circle_text_color="@color/colorWhite"
         circletextview:random_color="true"/>
     <RelativeLayout

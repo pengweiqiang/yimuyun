@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/cp_content_bg"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        >
+
+        <com.yimuyun.lowraiseapp.widget.ClearEditText
+            android:id="@+id/et_search_friend"
+            android:background="@drawable/bg_search_friends"
+            android:padding="10dp"
+            android:hint="搜索"
+            android:gravity="left|center_vertical"
+            android:textColorHint="#999999"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:drawablePadding="6dp"
+            android:drawableLeft="@mipmap/search_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</LinearLayout>
