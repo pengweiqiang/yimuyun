@@ -1,5 +1,6 @@
 package com.yimuyun.lowraiseapp.ui.innocuitydeal;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +15,9 @@ import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.innocuitydeal.InnocuityDealContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.LivestockBean;
+import com.yimuyun.lowraiseapp.model.bean.Personnel;
 import com.yimuyun.lowraiseapp.presenter.InnocuityDealPresenter;
+import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
 import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
@@ -57,6 +60,8 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
     EditText mEtInnocuityDealWay;
     @BindView(R.id.tv_deal_personnel)
     TextView mTvDealPersonnel;
+
+    Personnel selectedPersonnel;
 
 
 
@@ -179,6 +184,22 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
                 break;
 
         }
+    }
+    @OnClick(R.id.tv_deal_personnel)
+    public void selectUser(View view){
+        UserListActivity.open(InnocuityDealActivity.this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data==null){
+            return;
+        }
+        selectedPersonnel = (Personnel) data.getSerializableExtra(Constants.SELECTED_USER_ITEM);
+
+        mTvDealPersonnel.setText(selectedPersonnel.getName());
+        personnelId = String.valueOf(selectedPersonnel.getId());
     }
 
     private void showConfirmDialog(){

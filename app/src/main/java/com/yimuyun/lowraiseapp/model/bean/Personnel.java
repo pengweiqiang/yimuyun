@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 21:04
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class Personnel {
+public class Personnel implements Serializable{
 
     /**
      * id : 1
@@ -58,7 +60,7 @@ public class Personnel {
     }
 
     public String getName() {
-        return name;
+        return name==null?"":name;
     }
 
     public void setName(String name) {

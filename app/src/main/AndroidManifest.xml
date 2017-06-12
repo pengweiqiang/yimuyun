@@ -109,6 +109,11 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
             />
 
+        <activity android:name=".ui.UserListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            />
+
         <activity android:name=".ui.GetEarTagActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"

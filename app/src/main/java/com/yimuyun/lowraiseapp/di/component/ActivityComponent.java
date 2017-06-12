@@ -6,6 +6,7 @@ import com.yimuyun.lowraiseapp.di.module.ActivityModule;
 import com.yimuyun.lowraiseapp.di.scope.ActivityScope;
 import com.yimuyun.lowraiseapp.ui.LoginActivity;
 import com.yimuyun.lowraiseapp.ui.MainActivity;
+import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
@@ -61,5 +62,7 @@ public interface ActivityComponent {
     void inject(OffSaleActivity offSaleActivity);
 
     void inject(PurchaseActivity purchaseActivity);
+
+    void inject(UserListActivity userListActivity);
 
 }

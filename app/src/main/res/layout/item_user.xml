@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circletextview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <circletextimage.viviant.com.circletextimagelib.view.CircleTextImage
+        android:id="@+id/ctimage"
+        android:layout_height="45dp"
+        android:layout_width="45dp"
+        circletextview:circle_text_color="@color/colorWhite"
+        circletextview:random_color="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="赵三"
+            android:textColor="@color/color_normal_text"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_user_name"
+            android:text="15623123123"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_text_product_desc"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

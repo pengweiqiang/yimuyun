@@ -74,6 +74,7 @@ public class Constants {
     public static final String ID = "id";
     public static final String SELECTED_FEED = "selectedFeed";
     public static final String EQUPIMENT_ID = "equpimentId";
+    public static final String SELECTED_USER_ITEM = "selectedUser";
 
 
     public static final String CITY_NAME = "cityName";
@@ -88,6 +89,7 @@ public class Constants {
 
     /*------------------------------activity request code----------------------------------*/
     public static final int REQUEST_FEED_LIST = 1001;
+    public static final int REQUEST_USER_ITEM = 1002;
 
 
 
