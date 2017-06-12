@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_content_bg"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/view_toolbar" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="诊疗结果"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_diagnosis_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择诊疗结果"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="诊疗方案"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_diagnosis_way"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择诊疗方案"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_line_grey" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="药品名称"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_drug_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择药品"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+        
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="诊疗人员"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_diagnosis_personnel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择诊疗人员"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_line_grey" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="喂养日期"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_feed_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择喂养日期"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+
+
+    </LinearLayout>
+</ScrollView>

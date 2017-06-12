@@ -29,7 +29,7 @@ public class Personnel implements Serializable{
      */
 
     private int id;
-    private int enterpriseId;
+    private long enterpriseId;
     private String name;
     private String sex;
     private String dateOfBirth;
@@ -51,11 +51,11 @@ public class Personnel implements Serializable{
         this.id = id;
     }
 
-    public int getEnterpriseId() {
+    public long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 

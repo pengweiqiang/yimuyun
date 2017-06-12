@@ -209,7 +209,7 @@ public interface HttpHelper {
      * @param time
      * @return
      */
-    Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId,String treatmentPlanId,
+    Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId,String personnelId,String treatmentPlanId,
                                                                  String symptoms,String result,
                                                                  String dragId,String time);
 

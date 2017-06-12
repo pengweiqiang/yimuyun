@@ -12,6 +12,7 @@ import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.feed.FeedListContract;
 import com.yimuyun.lowraiseapp.model.bean.FeedBean;
+import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.presenter.FeedListPresenter;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class FeedListActivity extends RootActivity<FeedListPresenter> implements
 
     private long selectedId;
 
-    String enterpriseId = "1";
+    String enterpriseId;
 
     FeedListAdapter feedListAdapter ;
     private List<FeedBean> feedLists;
@@ -79,6 +80,11 @@ public class FeedListActivity extends RootActivity<FeedListPresenter> implements
     @Override
     protected void initInject() {
         getActivityComponent().inject(this);
+    }
+
+    @Override
+    public void setUserInfo(UserInfo userInfo) {
+        enterpriseId = String.valueOf(userInfo.getPersonnel().getEnterpriseId());
     }
 
     @Override

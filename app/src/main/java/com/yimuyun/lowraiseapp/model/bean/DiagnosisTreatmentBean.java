@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 21:39
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class DiagnosisTreatmentBean {
+public class DiagnosisTreatmentBean implements Serializable{
 
     /**
      * id : 1
@@ -27,13 +29,13 @@ public class DiagnosisTreatmentBean {
     private int livestockId;
     private long time;
     private String documentNumber;
-    private int personnelId;
+    private long personnelId;
     private String treatmentPlanId;
     private String symptoms;
     private String result;
     private long createTime;
     private long updateTime;
-    private int dragId;
+    private long dragId;
 
     public int getId() {
         return id;
@@ -67,11 +69,11 @@ public class DiagnosisTreatmentBean {
         this.documentNumber = documentNumber;
     }
 
-    public int getPersonnelId() {
+    public long getPersonnelId() {
         return personnelId;
     }
 
-    public void setPersonnelId(int personnelId) {
+    public void setPersonnelId(long personnelId) {
         this.personnelId = personnelId;
     }
 
@@ -115,11 +117,11 @@ public class DiagnosisTreatmentBean {
         this.updateTime = updateTime;
     }
 
-    public int getDragId() {
+    public long getDragId() {
         return dragId;
     }
 
-    public void setDragId(int dragId) {
+    public void setDragId(long dragId) {
         this.dragId = dragId;
     }
 }

@@ -170,8 +170,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId, String treatmentPlanId, String symptoms, String result, String dragId, String time) {
-        return mHttpHelper.insertDiagnosisTreatment(equipmentId, treatmentPlanId, symptoms, result, dragId, time);
+    public Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId, String personnelId,String treatmentPlanId, String symptoms, String result, String dragId, String time) {
+        return mHttpHelper.insertDiagnosisTreatment(equipmentId, personnelId,treatmentPlanId, symptoms, result, dragId, time);
     }
 
     @Override

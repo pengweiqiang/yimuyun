@@ -72,16 +72,17 @@ public class Constants {
 
     //================= INTENT ====================
     public static final String ID = "id";
+    public static final String TYPE = "type";
     public static final String SELECTED_FEED = "selectedFeed";
     public static final String EQUPIMENT_ID = "equpimentId";
     public static final String SELECTED_USER_ITEM = "selectedUser";
+    public static final String ADD_DIAGNOSI_RECORD = "diagnosisTreatment";
+    public static final String SELECTED_DIAGNOSIS_RESULT = "selectedDiagnosisResult";
+    public static final String SELECTED_DIAGNOSIS_TREATMENT_PLAN = "selectedDiagnosisTreatmentPlan";
+    public static final String SELECTED_DRUG = "selectedDrug";
+    public static final String SELECTED_DISINFECT_NAME = "selectedDisinfectName";
 
 
-    public static final String CITY_NAME = "cityName";
-
-
-
-    public static final String CATEGORY_SIDS = "categorySids";
 
     public static final String USER_NAME = "userName";
 
@@ -90,6 +91,10 @@ public class Constants {
     /*------------------------------activity request code----------------------------------*/
     public static final int REQUEST_FEED_LIST = 1001;
     public static final int REQUEST_USER_ITEM = 1002;
+    public static final int REQUEST_ADD_DIAGNOSIS_RECORD = 1003;
+    public static final int REQUEST_ADD_DIAGNOSIS_TREATMENT_PLAN = 1004;
+    public static final int REQUEST_DRUG = 1005;
+    public static final int REQUEST_DISINFECT = 1006;
 
 
 

@@ -66,7 +66,8 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Personnel personnel = personnelList.get(position);
+                position --;
+                Personnel personnel = userListAdapter.getItem(position);
                 Intent intent = new Intent();
                 intent.putExtra(Constants.SELECTED_USER_ITEM,personnel);
                 setResult(RESULT_OK,intent);

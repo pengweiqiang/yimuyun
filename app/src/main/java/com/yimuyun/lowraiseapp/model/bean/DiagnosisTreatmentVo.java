@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 21:39
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class DiagnosisTreatmentVo {
+public class DiagnosisTreatmentVo implements Serializable{
 
     private DiagnosisTreatmentBean diagnosisTreatment;
     private DiagnosisTreatmentPlanBean diagnosisTreatmentPlan;

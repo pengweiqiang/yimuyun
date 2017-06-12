@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 21:36
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class DrugBean {
+public class DrugBean implements Serializable{
 
     /**
      * id : 1
@@ -18,18 +20,18 @@ public class DrugBean {
      * enterpriseId : 1
      */
 
-    private int id;
+    private long id;
     private String drugName;
     private String drugType;
     private long createTime;
     private long updateTime;
     private int enterpriseId;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

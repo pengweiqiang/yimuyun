@@ -2,8 +2,9 @@ package com.yimuyun.lowraiseapp.presenter;
 
 
 import com.yimuyun.lowraiseapp.base.RxPresenter;
-import com.yimuyun.lowraiseapp.base.contract.disinfect.DisinfectContract;
+import com.yimuyun.lowraiseapp.base.contract.diagnosis.DiagnosisTreatmentPlanListContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
+import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentPlanVo;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
@@ -19,14 +20,15 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> implements DisinfectContract.Presenter {
+public class DiagnosisTreatmentPlanListPresenter extends RxPresenter<DiagnosisTreatmentPlanListContract.View> implements DiagnosisTreatmentPlanListContract.Presenter {
 
     private DataManager mDataManager;
 
     @Inject
-    public DisinfectPresenter(DataManager mDataManager) {
+    public DiagnosisTreatmentPlanListPresenter(DataManager mDataManager) {
         this.mDataManager = mDataManager;
     }
+
 
     @Override
     public void getUserInfo(String phoneNumber) {
@@ -51,15 +53,14 @@ public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> impl
     }
 
     @Override
-    public void insertDisinfection(String disinfectantName, String disinfectionTime, String disinfectionMethod, String enterpriseId, String disinfectionPersonnelId) {
-        addSubscribe(mDataManager.insertDisinfection(disinfectantName, disinfectionTime, disinfectionMethod, enterpriseId, disinfectionPersonnelId)
-                .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<Object>(mView, true) {
+    public void getDiagnosisTreatmentPlanList(String enterpriseId) {
+        addSubscribe(mDataManager.getDiagnosisTreatmentPlanList(enterpriseId)
+                .compose(RxUtil.<PadResultResponse<DiagnosisTreatmentPlanVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<DiagnosisTreatmentPlanVo>(mView, true) {
                     @Override
-                    public void dataHandle(Object body) {
-                        if(body==null) {
-                            mView.showErrorMsgToast("提交成功");
-                            mView.insertDisinfectionSuccess();
+                    public void dataHandle(DiagnosisTreatmentPlanVo diagnosisTreatmentPlanVo) {
+                        if(diagnosisTreatmentPlanVo!=null) {
+                            mView.setDiagnosisTreatmentPlanList(diagnosisTreatmentPlanVo.getDiagnosisTreatmentPlans());
                         }else{
                             ToastUtil.show("查询结果为空");
                         }
@@ -72,4 +73,6 @@ public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> impl
                     }
                 }));
     }
+
+
 }

@@ -1,9 +1,12 @@
-package com.yimuyun.lowraiseapp.base.contract.disinfect;
+package com.yimuyun.lowraiseapp.base.contract.diagnosis;
 
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
 import com.yimuyun.lowraiseapp.base.BaseView;
+import com.yimuyun.lowraiseapp.model.bean.DrugBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
+
+import java.util.List;
 
 /**
  * @author will on 2017/6/6 21:57
@@ -12,19 +15,17 @@ import com.yimuyun.lowraiseapp.model.bean.UserInfo;
  * @Version
  */
 
-public interface DisinfectContract {
+public interface DrugListContract {
     interface View extends BaseView {
         void setUserInfo(UserInfo userInfo);
-        void insertDisinfectionSuccess();
-
+        void setDrugList(List<DrugBean> drugList);
 
     }
 
     interface Presenter extends BasePresenter<View> {
+
         void getUserInfo(String phoneNumber);
-        void insertDisinfection(String disinfectantName,String disinfectionTime,
-                                String disinfectionMethod,String enterpriseId,
-                                String disinfectionPersonnelId);
+        void getDrugList(String enterpriseId,String type);
 
     }
 

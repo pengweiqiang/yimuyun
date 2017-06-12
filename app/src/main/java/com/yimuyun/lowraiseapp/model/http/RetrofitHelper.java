@@ -140,8 +140,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId, String treatmentPlanId, String symptoms, String result, String dragId, String time) {
-        return feedApis.insertDiagnosisTreatment(equipmentId, treatmentPlanId, symptoms, result, dragId, time);
+    public Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(String equipmentId,String personnalId, String treatmentPlanId, String symptoms, String result, String dragId, String time) {
+        return feedApis.insertDiagnosisTreatment(equipmentId,personnalId, treatmentPlanId, symptoms, result, dragId, time);
     }
 
     @Override

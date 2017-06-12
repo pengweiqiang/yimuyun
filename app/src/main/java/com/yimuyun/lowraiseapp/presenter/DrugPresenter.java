@@ -2,13 +2,16 @@ package com.yimuyun.lowraiseapp.presenter;
 
 
 import com.yimuyun.lowraiseapp.base.RxPresenter;
-import com.yimuyun.lowraiseapp.base.contract.disinfect.DisinfectContract;
+import com.yimuyun.lowraiseapp.base.contract.diagnosis.DrugListContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
+import com.yimuyun.lowraiseapp.model.bean.DrugBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,14 +22,15 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> implements DisinfectContract.Presenter {
+public class DrugPresenter extends RxPresenter<DrugListContract.View> implements DrugListContract.Presenter {
 
     private DataManager mDataManager;
 
     @Inject
-    public DisinfectPresenter(DataManager mDataManager) {
+    public DrugPresenter(DataManager mDataManager) {
         this.mDataManager = mDataManager;
     }
+
 
     @Override
     public void getUserInfo(String phoneNumber) {
@@ -51,15 +55,14 @@ public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> impl
     }
 
     @Override
-    public void insertDisinfection(String disinfectantName, String disinfectionTime, String disinfectionMethod, String enterpriseId, String disinfectionPersonnelId) {
-        addSubscribe(mDataManager.insertDisinfection(disinfectantName, disinfectionTime, disinfectionMethod, enterpriseId, disinfectionPersonnelId)
-                .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<Object>(mView, true) {
+    public void getDrugList(String enterpriseId, String type) {
+        addSubscribe(mDataManager.getDrugList(enterpriseId,type)
+                .compose(RxUtil.<PadResultResponse<List<DrugBean>>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<List<DrugBean>>(mView, true) {
                     @Override
-                    public void dataHandle(Object body) {
-                        if(body==null) {
-                            mView.showErrorMsgToast("提交成功");
-                            mView.insertDisinfectionSuccess();
+                    public void dataHandle(List<DrugBean> drugBeanList) {
+                        if(drugBeanList!=null &&!drugBeanList.isEmpty()) {
+                            mView.setDrugList(drugBeanList);
                         }else{
                             ToastUtil.show("查询结果为空");
                         }
@@ -72,4 +75,6 @@ public class DisinfectPresenter extends RxPresenter<DisinfectContract.View> impl
                     }
                 }));
     }
+
+
 }

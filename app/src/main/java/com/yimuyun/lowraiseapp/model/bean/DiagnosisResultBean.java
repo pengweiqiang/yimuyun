@@ -1,5 +1,7 @@
 package com.yimuyun.lowraiseapp.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/6/10 21:40
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.yimuyun.lowraiseapp.model.bean;
  * @Version
  */
 
-public class DiagnosisResultBean {
+public class DiagnosisResultBean implements Serializable{
 
 
     /**
@@ -18,17 +20,17 @@ public class DiagnosisResultBean {
      * updateTime : 1496647607699
      */
 
-    private int id;
+    private long id;
     private int enterpriseId;
     private String diagnosisResult;
     private String createTime;
     private String updateTime;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -241,6 +241,7 @@ public interface FeedApis {
     /**
      * 诊疗插入
      * @param equipmentId
+     * @param personnelId
      * @param treatmentPlanId
      * @param symptoms
      * @param result
@@ -250,7 +251,7 @@ public interface FeedApis {
      */
     //equipmentId=1&personnelId=1&treatmentPlanId=1&symptoms=1&result=1&dragId=1&time=20170808
     @POST("culture/v1/diagnosis/diagnosisTreatment/insert")
-    Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(@Query("equipmentId")String equipmentId,@Query("treatmentPlanId")String treatmentPlanId,
+    Flowable<PadResultResponse<Object>> insertDiagnosisTreatment(@Query("equipmentId")String equipmentId,@Query("personnelId")String personnelId,@Query("treatmentPlanId")String treatmentPlanId,
                                                            @Query("symptoms")String symptoms,@Query("result")String result,
                                                            @Query("dragId")String dragId,@Query("time")String time);
 

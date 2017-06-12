@@ -8,7 +8,12 @@ import com.yimuyun.lowraiseapp.ui.LoginActivity;
 import com.yimuyun.lowraiseapp.ui.MainActivity;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.AddDiagnosisRecordActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisManageActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisResultListActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.DiagnosisTreatmentPlanListActivity;
+import com.yimuyun.lowraiseapp.ui.diagnosis.DrugListActivity;
+import com.yimuyun.lowraiseapp.ui.disinfect.DisifectWaysListActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectManageActivity;
 import com.yimuyun.lowraiseapp.ui.environmentmonitor.EnvironmentMonitorActivity;
 import com.yimuyun.lowraiseapp.ui.feed.FeedListActivity;
@@ -64,5 +69,15 @@ public interface ActivityComponent {
     void inject(PurchaseActivity purchaseActivity);
 
     void inject(UserListActivity userListActivity);
+
+    void inject(AddDiagnosisRecordActivity addDiagnosisRecordActivity);
+
+    void inject(DiagnosisResultListActivity diagnosisResultListActivity);
+
+    void inject(DiagnosisTreatmentPlanListActivity diagnosisTreatmentPlanListActivity);
+
+    void inject(DrugListActivity drugListActivity);
+
+    void inject(DisifectWaysListActivity disifectWaysListActivity);
 
 }

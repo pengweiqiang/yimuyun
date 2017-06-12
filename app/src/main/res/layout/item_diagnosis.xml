@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:gravity="center_vertical"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_grey_circle"
+            />
+        <View
+            android:id="@+id/view_line_vertical"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="#d8d8d8"
+            android:visibility="visible"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_diagnosis"
+        android:layout_toRightOf="@+id/ll_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_normal_text"
+        android:text="100公斤"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_diagnosis_detail"
+        android:layout_below="@+id/tv_diagnosis"
+        android:layout_toLeftOf="@+id/ll_right"
+        android:layout_toRightOf="@+id/ll_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/color_grey_text_weight"
+        android:text="常规称重\n2017年5月23日"
+        android:lineSpacingMultiplier="1.1"
+        android:textSize="13sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/color_normal_text"
+            />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="#D0011B"
+            />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

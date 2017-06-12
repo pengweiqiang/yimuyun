@@ -102,6 +102,27 @@ public class DateUtil {
         return year+"年"+(month+1)+"月"+(day+1)+"日";
     }
 
+    public static String formartTime2String_(long showTime){
+        Calendar current = Calendar.getInstance();
+        current.setTime(new Date(showTime));
+        int year = current.get(Calendar.YEAR);
+        int month = current.get(Calendar.MONTH)+1;
+        int day = current.get(Calendar.DAY_OF_MONTH)+1;
+        if(month<10){
+            if(day<10){
+                return year+"0"+month+"0"+day;
+            }else{
+                return year+"0"+month+day;
+            }
+        }else{
+            if(day<10){
+                return year+month+"0"+day;
+            }else{
+                return year+""+month+day;
+            }
+        }
+    }
+
     public static String formatTime2String(long showTime , boolean haveYear) {
         String str = "";
         long distance = currentTimeMillis()/1000 - showTime;
