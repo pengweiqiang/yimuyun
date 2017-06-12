@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
-    android:padding="10dp">
+    android:padding="13dp">
 
     <TextView
         android:id="@+id/tv_livestock_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="饲料A"
+        android:text="大水牛"
         android:textColor="@color/color_normal_text"
         android:textSize="14sp" />
 

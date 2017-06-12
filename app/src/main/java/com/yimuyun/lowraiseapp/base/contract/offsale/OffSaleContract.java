@@ -14,6 +14,7 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 
 public interface OffSaleContract {
     interface View extends BaseView {
+
         void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo,String equipmentId);
         void insertOffSaleSuccess();
     }

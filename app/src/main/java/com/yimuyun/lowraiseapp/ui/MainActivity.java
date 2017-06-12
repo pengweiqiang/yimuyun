@@ -21,6 +21,7 @@ import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import java.util.ArrayList;
@@ -212,7 +213,7 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(EnvironmentMonitorActivity.class);
                     break;
                 case R.id.rl_purchase:
-
+                    GetEarTagActivity.open(mContext, PurchaseActivity.class.getName());
                     break;
 
             }

@@ -17,6 +17,7 @@ import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import dagger.Component;
@@ -58,5 +59,7 @@ public interface ActivityComponent {
     void inject(InnocuityDealActivity innocuityDealActivity);
 
     void inject(OffSaleActivity offSaleActivity);
+
+    void inject(PurchaseActivity purchaseActivity);
 
 }

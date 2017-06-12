@@ -98,6 +98,16 @@
             android:name=".ui.offsale.OffSaleActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+        <activity
+            android:name=".ui.purchase.PurchaseActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+
+        <activity android:name=".ui.purchase.PurchaseSuccessActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            />
 
         <activity android:name=".ui.GetEarTagActivity"
             android:screenOrientation="portrait"

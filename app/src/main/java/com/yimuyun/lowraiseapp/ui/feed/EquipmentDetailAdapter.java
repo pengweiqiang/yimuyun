@@ -69,9 +69,8 @@ public class EquipmentDetailAdapter extends BaseListAdapter{
         }
         if(equipmentDetailVo.getLivestock()!=null){
             liveStockNameSb.append(" "+equipmentDetailVo.getLivestock().getLairageWeight());
-        }
-        if(equipmentDetailVo.getParentEquipment()!=null){
-            viewHolder.mTvEquipmentNumber.setText(equipmentDetailVo.getParentEquipment().getEquipmentNumber());
+
+            viewHolder.mTvEquipmentNumber.setText(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
         }
 
         viewHolder.mTvLiveStockName.setText(liveStockNameSb.toString());

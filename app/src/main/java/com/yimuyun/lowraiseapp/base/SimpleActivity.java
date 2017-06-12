@@ -43,6 +43,7 @@ public abstract class SimpleActivity extends SupportActivity {
         initEventAndData();
     }
 
+
     protected void setToolBar(Toolbar toolbar, String title) {
        setToolBar(toolbar, title,"",R.mipmap.ic_back, new View.OnClickListener() {
            @Override

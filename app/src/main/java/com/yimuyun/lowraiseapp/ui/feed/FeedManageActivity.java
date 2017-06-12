@@ -116,7 +116,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
                     for (String key : keys) {
                         equipmentIds.append(key+",");
                     }
-                    mPresenter.feeding(equipmentIds.toString(),String.valueOf(selectedFeedId),feedTime,grass);
+                    mPresenter.feeding(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1),String.valueOf(selectedFeedId),feedTime,grass);
                 }
             }
         });
@@ -131,6 +131,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
         equipmentDetailAdapter = new EquipmentDetailAdapter(mContext,equipmentDetailVoList);
         mListView.setAdapter(equipmentDetailAdapter);
+        mListView.addFooterView(new View(this));
 
         initMenuListView();
     }
