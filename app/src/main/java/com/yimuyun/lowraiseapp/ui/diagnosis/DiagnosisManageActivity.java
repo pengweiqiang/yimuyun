@@ -86,7 +86,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
                 String personnelId = String.valueOf(diagnosisTreatmentVo.getDiagnosisTreatment().getPersonnelId());
                 String treatmentPlanId = String.valueOf(diagnosisTreatmentVo.getDiagnosisTreatmentPlan().getId());
                 String symptoms = diagnosisTreatmentVo.getDiagnosisTreatment().getSymptoms();
-                String result = diagnosisTreatmentVo.getDiagnosisResult().getDiagnosisResult();
+                String result = diagnosisTreatmentVo.getDiagnosisResult().getId()+"";
                 String dragId = diagnosisTreatmentVo.getDrug().getId()+"";
                 String time = DateUtil.formartTime2String_(diagnosisTreatmentVo.getDiagnosisTreatment().getTime());
                 mPresenter.insertDiagnosisTreatment(equipmentId,personnelId,treatmentPlanId,symptoms,result,dragId,time);
@@ -199,7 +199,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
         }
         if(diagnosisTreatmentVo==null){//新增
             diagnosisTreatmentVo = (DiagnosisTreatmentVo)data.getSerializableExtra(Constants.ADD_DIAGNOSI_RECORD);
-            diagnosisTreatmentVoList.add(diagnosisTreatmentVo);
+            diagnosisTreatmentVoList.add(0,diagnosisTreatmentVo);
         }else{//修改
             diagnosisTreatmentVo = (DiagnosisTreatmentVo)data.getSerializableExtra(Constants.ADD_DIAGNOSI_RECORD);
             diagnosisTreatmentVoList.set(0,diagnosisTreatmentVo);

@@ -24,7 +24,7 @@
         <View
             android:id="@+id/view_line_vertical"
             android:layout_width="1dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:background="#d8d8d8"
             android:visibility="visible"
