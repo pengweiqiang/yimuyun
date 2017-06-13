@@ -1,7 +1,6 @@
 package com.yimuyun.lowraiseapp.ui.diagnosis;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -153,8 +152,8 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
             stringBuffer.append(livestockBean.getLairageWeight());
             mTvLiveStockWeight.setText(stringBuffer.toString());
 
-            Glide.with(mContext).load(livestockBean.getPicture()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey))).//加载中显示的图片
-                    error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
+            Glide.with(mContext).load(livestockBean.getPicture()).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
+                    error(R.mipmap.ic_default_head)//加载失败时显示的图片
                     .transform(new GlideRoundTransform(mContext,5))
 //                    .centerCrop()
                     .into(mIvLiveStockHead);
