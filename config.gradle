@@ -6,8 +6,8 @@ ext{
             applicationId     : "com.yimuyun.lowraiseapp",
             minSdkVersion     : 15,
             targetSdkVersion  : 25,
-            versionCode       : 1,
-            versionName       : "1.0.0"
+            versionCode       : 3,
+            versionName       : "1.0.3"
     ]
 
     def dependVersion = [

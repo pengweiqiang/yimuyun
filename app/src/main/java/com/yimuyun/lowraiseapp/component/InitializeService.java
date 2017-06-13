@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.util.SystemUtil;
@@ -66,9 +67,13 @@ public class InitializeService extends IntentService {
     private void initBugly() {
         Context context = getApplicationContext();
         String packageName = context.getPackageName();
+        //获取当前进程名
         String processName = SystemUtil.getProcessName(android.os.Process.myPid());
+        //设置是否为上报进程
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
+        //初始化Bugly
+//        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
+        Bugly.init(context, Constants.BUGLY_ID,isDebug,strategy);
     }
 }
