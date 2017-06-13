@@ -40,8 +40,8 @@ public class Constants {
     public static final int START_PAGE = 0;//开始页码
     public static final int PAGE_SIZE = 10;//每页显示条数
 
-    public static final int SEX_FEMALE= 1;//母
-    public static final int SEX_MALE = 2;//公
+    public static final int SEX_FEMALE= 0;//母
+    public static final int SEX_MALE = 1;//公
 
 
     //================= PATH ====================
@@ -95,6 +95,7 @@ public class Constants {
     public static final int REQUEST_ADD_DIAGNOSIS_TREATMENT_PLAN = 1004;
     public static final int REQUEST_DRUG = 1005;
     public static final int REQUEST_DISINFECT = 1006;
+    public static final int REQUEST_IMAGE_PICKER = 1007;
 
 
 

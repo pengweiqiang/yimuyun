@@ -202,6 +202,7 @@ public interface FeedApis {
 
     /**
      * 新建耳标
+     * @param enterpriseId
      * @param equipmentId
      * @param livestockMasterId
      * @param type
@@ -220,7 +221,7 @@ public interface FeedApis {
      */
     //equipmentId=3&enterpriseId=1&livestockMasterId=1&type=1&state=00&initialWeight=111&initialTime=20170922&lairageWeight=112&lairageTime=20170923&birthplace=%E5%8C%97%E4%BA%AC&varietiesId=1&sex=1&isPregnancy=1&picture=1&parentEquipmentId=2
     @POST("culture/v1/livestock/insert")
-    Flowable<PadResultResponse<Object>> insertLivestock(@Query("equipmentId")String equipmentId,@Query("livestockMasterId")String livestockMasterId,
+    Flowable<PadResultResponse<Object>> insertLivestock(@Query("enterpriseId")String enterpriseId,@Query("equipmentId")String equipmentId,@Query("livestockMasterId")String livestockMasterId,
                                                            @Query("type")String type,@Query("state")String state,
                                                            @Query("initialWeight")String initialWeight,@Query("initialTime")String initialTime,
                                                         @Query("lairageWeight")String lairageWeight,@Query("lairageTime")String lairageTime,

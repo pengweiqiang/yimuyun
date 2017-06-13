@@ -16,6 +16,7 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.LivestockBean;
 import com.yimuyun.lowraiseapp.presenter.FertilizationPresenter;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
+import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
@@ -154,7 +155,8 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
 
             Glide.with(mContext).load(livestockBean.getPicture()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey))).//加载中显示的图片
                     error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
-                    .centerCrop()
+//                    .centerCrop()
+                    .transform(new GlideRoundTransform(mContext,5))
                     .into(mIvLiveStockHead);
         }
     }

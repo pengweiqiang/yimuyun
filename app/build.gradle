@@ -105,13 +105,21 @@ android {
         beta {}
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
 
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    androidTestCompile 'com.android.support:support-annotations:25.1.1'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
     //base
@@ -120,11 +128,13 @@ dependencies {
     compile rootProject.ext.dependencies["recyclerview-v7"]
     compile rootProject.ext.dependencies["swipemenulistview"]
     compile rootProject.ext.dependencies["circletextimage"]
+    compile rootProject.ext.dependencies["imagepicker"]
+
 //    compile rootProject.ext.dependencies["cardview-v7"]
     //ui
 //    compile rootProject.ext.dependencies["materialsearchview"]
     compile rootProject.ext.dependencies["multiline-collapsingtoolbar"]
-    compile rootProject.ext.dependencies["PhotoView"]
+    //compile rootProject.ext.dependencies["PhotoView"]
     compile rootProject.ext.dependencies["glide-transformations"]
 //    compile rootProject.ext.dependencies["html-textview"]
     //rx

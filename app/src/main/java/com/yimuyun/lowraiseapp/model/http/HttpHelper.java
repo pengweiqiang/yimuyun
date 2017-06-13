@@ -166,6 +166,7 @@ public interface HttpHelper {
 
     /**
      * 新建耳标
+     * @param enterpriseId
      * @param equipmentId
      * @param livestockMasterId
      * @param type
@@ -182,7 +183,7 @@ public interface HttpHelper {
      * @param parentEquipmentId
      * @return
      */
-    Flowable<PadResultResponse<Object>> insertLivestock(String equipmentId,String livestockMasterId,
+    Flowable<PadResultResponse<Object>> insertLivestock(String enterpriseId,String equipmentId,String livestockMasterId,
                                                         String type,String state,
                                                         String initialWeight,String initialTime,
                                                         String lairageWeight,String lairageTime,

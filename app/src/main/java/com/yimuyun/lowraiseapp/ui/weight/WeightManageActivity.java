@@ -22,6 +22,7 @@ import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.presenter.WeightPresenter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
+import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 
 import org.jsoup.helper.StringUtil;
@@ -164,7 +165,8 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
 
             Glide.with(mContext).load(livestockBean.getPicture()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey))).//加载中显示的图片
                     error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
-                    .centerCrop()
+                    .transform(new GlideRoundTransform(mContext,5))
+//                    .centerCrop()
                     .into(mIvLiveStockHead);
         }
     }

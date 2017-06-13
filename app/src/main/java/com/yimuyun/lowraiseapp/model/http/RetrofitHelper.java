@@ -130,8 +130,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<Object>> insertLivestock(String equipmentId, String livestockMasterId, String type, String state, String initialWeight, String initialTime, String lairageWeight, String lairageTime, String birthplace, String varietiesId, String sex, String isPregnancy, String picture, String parentEquipmentId) {
-        return feedApis.insertLivestock(equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, picture, parentEquipmentId);
+    public Flowable<PadResultResponse<Object>> insertLivestock(String enterpriseId,String equipmentId, String livestockMasterId, String type, String state, String initialWeight, String initialTime, String lairageWeight, String lairageTime, String birthplace, String varietiesId, String sex, String isPregnancy, String picture, String parentEquipmentId) {
+        return feedApis.insertLivestock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, picture, parentEquipmentId);
     }
 
     @Override
