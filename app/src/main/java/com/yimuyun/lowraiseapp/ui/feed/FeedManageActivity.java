@@ -134,6 +134,8 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
         mListView.addFooterView(new View(this));
 
         initMenuListView();
+
+
     }
 
     private void initMenuListView(){
@@ -237,6 +239,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
     }
 
 
+
     @Override
     public void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo,String equipmentId) {
         findViewById(R.id.ll_equipments).setVisibility(View.VISIBLE);
@@ -305,7 +308,10 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
         if(checkBox12.isChecked()){
             passSelected.append(","+checkBox12.getText());
         }
-
-        return passSelected.toString();
+        String passStr = passSelected.toString();
+        if(!StringUtil.isBlank(passStr)){
+            passStr = passSelected.subSequence(1,passSelected.length()).toString();
+        }
+        return passStr;
     }
 }

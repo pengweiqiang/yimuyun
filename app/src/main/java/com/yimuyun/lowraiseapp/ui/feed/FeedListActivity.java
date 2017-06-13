@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.feed.FeedListContract;
@@ -69,9 +70,9 @@ public class FeedListActivity extends RootActivity<FeedListPresenter> implements
 
             }
         });
-
         stateLoading();
-        mPresenter.getFeedList(enterpriseId);
+        mPresenter.getUserInfo(App.getInstance().getUserBeanInstance().getPhoneNumber());
+
     }
 
 
@@ -85,6 +86,7 @@ public class FeedListActivity extends RootActivity<FeedListPresenter> implements
     @Override
     public void setUserInfo(UserInfo userInfo) {
         enterpriseId = String.valueOf(userInfo.getPersonnel().getEnterpriseId());
+        mPresenter.getFeedList(enterpriseId);
     }
 
     @Override

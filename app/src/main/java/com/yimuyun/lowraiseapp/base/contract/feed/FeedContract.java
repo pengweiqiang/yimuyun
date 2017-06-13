@@ -14,14 +14,12 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 
 public interface FeedContract {
     interface View extends BaseView {
-
         void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo,String equipmentId);
         void feedingSuccess();
 
     }
 
     interface Presenter extends BasePresenter<View> {
-
         void feeding(String equipmentIds,String feedId,String feedTime,String grass);
 
         void getEquipmentDetailById(String equipmentId);
