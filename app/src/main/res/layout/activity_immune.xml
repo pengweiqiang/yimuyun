@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_content_bg"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add_ear_tag"
+        android:background="@color/colorWhite"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_toolbar" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="13dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="免疫方法"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RadioButton
+                    android:id="@+id/rb_way_injection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/checked_selector"
+                    android:checked="true"
+                    android:paddingLeft="5dp"
+                    android:text="注射"
+                    android:textColor="@color/color_normal_text"
+                    android:textSize="@dimen/home_normal_text_size" />
+
+                <RadioButton
+                    android:id="@+id/rb_oral_medication"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/checked_selector"
+                    android:paddingLeft="5dp"
+                    android:text="口服"
+                    android:textColor="@color/color_normal_text"
+                    android:textSize="@dimen/home_normal_text_size" />
+
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="疫苗品种"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_drug_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择疫苗品种"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="免疫人员"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_immnue_personnel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择免疫人员"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_line_grey" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="免疫日期"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_immune_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/btn_right_back"
+                android:gravity="right|center_vertical"
+                android:hint="请选择免疫日期"
+                android:textColor="@color/color_normal_text"
+                android:textColorHint="@color/color_grey_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line_grey" />
+
+        <LinearLayout
+            android:id="@+id/ll_equipments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="耳标信息"
+                android:textColor="@color/color_normal_text"
+                android:textSize="@dimen/home_normal_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_line_grey" />
+
+            <com.baoyz.swipemenulistview.SwipeMenuListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:divider="@color/color_line_grey"
+                android:dividerHeight="1dp"
+                android:footerDividersEnabled="true"
+                android:paddingLeft="10dp"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add_ear_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_color_add"
+        android:text="录入耳标"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp" />
+
+</RelativeLayout>
+

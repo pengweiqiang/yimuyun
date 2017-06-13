@@ -45,7 +45,7 @@ public abstract class SimpleActivity extends SupportActivity {
 
 
     protected void setToolBar(Toolbar toolbar, String title) {
-       setToolBar(toolbar, title,"",R.mipmap.ic_back, new View.OnClickListener() {
+       setToolBar(toolbar, title,"",R.mipmap.ic_left_back, new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                onBackPressedSupport();
@@ -53,7 +53,7 @@ public abstract class SimpleActivity extends SupportActivity {
        },null);
     }
     protected void setToolBar(Toolbar toolbar, String title, View.OnClickListener onClickListener) {
-        setToolBar(toolbar,title,"",R.mipmap.ic_back,onClickListener,null);
+        setToolBar(toolbar,title,"",R.mipmap.ic_left_back,onClickListener,null);
     }
 
     protected void setToolBarTitleColor(Toolbar toolbar,int colorId){

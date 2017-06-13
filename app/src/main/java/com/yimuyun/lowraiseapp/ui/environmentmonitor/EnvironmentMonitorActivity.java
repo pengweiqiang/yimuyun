@@ -55,7 +55,7 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar, "环境监测", "提交", R.mipmap.ic_back, new View.OnClickListener() {
+        setToolBar(mToolBar, "环境监测", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressedSupport();

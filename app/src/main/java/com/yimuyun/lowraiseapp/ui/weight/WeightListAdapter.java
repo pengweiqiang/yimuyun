@@ -73,7 +73,7 @@ public class WeightListAdapter extends BaseListAdapter{
         }
         viewHolder.position = position;
         WeightBean weightBean = getItem(position);
-        viewHolder.mTvWeight.setText(weightBean.getWeight());
+        viewHolder.mTvWeight.setText(weightBean.getWeight()+"公斤");
 
         String weightDate = DateUtil.formartTime2String(weightBean.getWeighTime());
         viewHolder.mTvWeightTagName.setText(weightBean.getWeighPhase()+"\n"+weightDate);

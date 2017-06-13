@@ -101,7 +101,7 @@ public class FeedManageActivity extends RootActivity<FeedPresenter> implements F
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar, "喂养管理", "提交", R.mipmap.ic_back, new View.OnClickListener() {
+        setToolBar(mToolBar, "喂养管理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressedSupport();

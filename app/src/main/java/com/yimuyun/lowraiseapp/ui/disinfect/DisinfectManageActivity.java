@@ -62,7 +62,7 @@ public class DisinfectManageActivity extends RootActivity<DisinfectPresenter> im
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar, "消毒管理", "提交", R.mipmap.ic_back, new View.OnClickListener() {
+        setToolBar(mToolBar, "消毒管理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressedSupport();

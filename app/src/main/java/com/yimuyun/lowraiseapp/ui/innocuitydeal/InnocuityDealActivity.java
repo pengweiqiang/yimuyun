@@ -1,7 +1,6 @@
 package com.yimuyun.lowraiseapp.ui.innocuitydeal;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
@@ -87,7 +86,7 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar, "无害化处理", "提交", R.mipmap.ic_back, new View.OnClickListener() {
+        setToolBar(mToolBar, "无害化处理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressedSupport();
@@ -166,8 +165,8 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
 //            stringBuffer.append(livestockBean.getLairageWeight());
             mTvLiveStockWeight.setText(stringBuffer.toString());
 
-            Glide.with(mContext).load(livestockBean.getPicture()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey))).//加载中显示的图片
-                    error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
+            Glide.with(mContext).load(livestockBean.getPicture()).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
+                    error(R.mipmap.ic_default_head)//加载失败时显示的图片
 //                    .centerCrop()
                     .transform(new GlideRoundTransform(mContext,5))
                     .into(mIvLiveStockHead);

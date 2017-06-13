@@ -7,6 +7,7 @@ import android.os.Handler;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
+import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 
 /**
  * @author will on 2017/6/11 13:43
@@ -43,6 +44,9 @@ public class GetEarTagActivity extends SimpleActivity{
 
     private String getEquipmentId(){
         //TODO 读卡获取（高频、低频）
+        if(className.equals(NewEarTagManageActivity.class.getName())){
+            return System.currentTimeMillis()+"";
+        }
         return "2";
     }
 

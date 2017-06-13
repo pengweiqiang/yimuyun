@@ -71,7 +71,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar, "诊疗管理", "提交", R.mipmap.ic_back, new View.OnClickListener() {
+        setToolBar(mToolBar, "诊疗管理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressedSupport();
