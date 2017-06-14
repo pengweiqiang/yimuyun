@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line_grey" />
+
+    <LinearLayout
+        android:id="@+id/ll_login_center"
+        android:layout_below="@+id/iv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_new_password"
+            style="@style/addUserStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入新密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/color_normal_text"
+            android:textColorHint="@color/color_grey_text" />
+
+        <EditText
+            android:id="@+id/et_password"
+            style="@style/addUserStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="请再次输入密码"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            android:textColor="@color/color_normal_text"
+            android:textColorHint="@color/color_grey_text" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_login_center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_selector"
+        android:text="确 定"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp" />
+
+</LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -7,6 +7,7 @@ import com.yimuyun.lowraiseapp.di.scope.ActivityScope;
 import com.yimuyun.lowraiseapp.ui.ForgetPasswordActivity;
 import com.yimuyun.lowraiseapp.ui.LoginActivity;
 import com.yimuyun.lowraiseapp.ui.MainActivity;
+import com.yimuyun.lowraiseapp.ui.UpdatePwdActivity;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.WelcomeActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.AddDiagnosisRecordActivity;
@@ -86,6 +87,7 @@ public interface ActivityComponent {
     void inject(OnlineSaleActivity onlineSaleActivity);
 
     void inject(ForgetPasswordActivity forgetPasswordActivity);
+    void inject(UpdatePwdActivity updatePwdActivity);
 
     void inject(QuarantineActivity quarantineActivity);
 

@@ -23,6 +23,17 @@
 
 
     </item>
+    <!--<item android:state_enabled="false">-->
+        <!--<shape>-->
+            <!--&lt;!&ndash; 矩形的圆角弧度 &ndash;&gt;-->
+            <!--<corners android:radius="2dp" />-->
+            <!--&lt;!&ndash; 矩形的填充色 &ndash;&gt;-->
+            <!--<solid android:color="@color/color_line_grey" />-->
+
+        <!--</shape>-->
+
+
+    <!--</item>-->
     <item>
         <shape>
             <!-- 矩形的圆角弧度 -->

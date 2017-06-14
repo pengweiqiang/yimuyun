@@ -152,6 +152,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
             />
+        <activity android:name=".ui.UpdatePwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            />
 
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"

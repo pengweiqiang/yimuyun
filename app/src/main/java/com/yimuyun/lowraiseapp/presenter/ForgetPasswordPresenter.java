@@ -38,12 +38,14 @@ public class ForgetPasswordPresenter extends RxPresenter<ForgetPasswordContract.
                     @Override
                     public void dataHandle(CodeBean codeBean) {
                         mView.setCode(codeBean.getCode());
+                        mView.resetCode();
                     }
 
                     @Override
                     public void onError(String msg) {
                         super.onError(msg);
                         mView.stateMain();
+                        mView.resetCode();
                     }
                 }));
     }

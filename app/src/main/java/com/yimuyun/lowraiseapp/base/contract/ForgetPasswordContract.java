@@ -14,6 +14,7 @@ import com.yimuyun.lowraiseapp.base.BaseView;
 public interface ForgetPasswordContract {
     interface View extends BaseView {
         void setCode(String code);
+        void resetCode();
 
         void forgetPasswordSuccess();
     }
