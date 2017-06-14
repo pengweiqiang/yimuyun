@@ -138,8 +138,17 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
             />
+        <activity android:name=".ui.quarantine.QuarantineActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            />
 
         <activity android:name=".ui.GetEarTagActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            />
+
+        <activity android:name=".ui.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
             />

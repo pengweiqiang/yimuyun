@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.yimuyun.lowraiseapp.di.module.ActivityModule;
 import com.yimuyun.lowraiseapp.di.scope.ActivityScope;
+import com.yimuyun.lowraiseapp.ui.ForgetPasswordActivity;
 import com.yimuyun.lowraiseapp.ui.LoginActivity;
 import com.yimuyun.lowraiseapp.ui.MainActivity;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
@@ -25,6 +26,7 @@ import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
 import com.yimuyun.lowraiseapp.ui.online.OnlineSaleActivity;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
+import com.yimuyun.lowraiseapp.ui.quarantine.QuarantineActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
 
 import dagger.Component;
@@ -82,5 +84,9 @@ public interface ActivityComponent {
     void inject(DisifectWaysListActivity disifectWaysListActivity);
 
     void inject(OnlineSaleActivity onlineSaleActivity);
+
+    void inject(ForgetPasswordActivity forgetPasswordActivity);
+
+    void inject(QuarantineActivity quarantineActivity);
 
 }

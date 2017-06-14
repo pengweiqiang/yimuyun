@@ -1,6 +1,7 @@
 package com.yimuyun.lowraiseapp.model.http.api;
 
 
+import com.yimuyun.lowraiseapp.model.bean.CodeBean;
 import com.yimuyun.lowraiseapp.model.bean.PersonnelVo;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
@@ -9,6 +10,7 @@ import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -40,5 +42,11 @@ public interface UserApis {
      */
     @GET("culture/v1/user/user/list")
     Flowable<PadResultResponse<PersonnelVo>> getUserList(@Query("enterpriseId")String enterpriseId);
+
+    @GET("culture/v1/user/getRegisteVerifyCode/m/{mobile}")
+    Flowable<PadResultResponse<CodeBean>> getRegisteVerifyCode(@Path("mobile") String mobile);
+
+    @POST("culture/v1/user/changepassword")
+    Flowable<PadResultResponse<Object>> changepassword(@Query("mobile")String mobile,@Query("verifyCode")String verifyCode,@Query("password")String password);
 
 }

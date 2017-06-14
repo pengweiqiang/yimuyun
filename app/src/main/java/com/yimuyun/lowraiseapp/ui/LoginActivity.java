@@ -52,7 +52,8 @@ public class LoginActivity extends RootActivity<UserPresenter> implements UserCo
 
     @OnClick(R.id.tv_forget_password)
     public void forgetPassword(View v){
-
+        Intent intent = new Intent(mContext,ForgetPasswordActivity.class);
+        startActivity(intent);
     }
 
     private void login(){

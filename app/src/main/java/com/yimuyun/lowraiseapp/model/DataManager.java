@@ -2,6 +2,7 @@ package com.yimuyun.lowraiseapp.model;
 
 
 import com.yimuyun.lowraiseapp.app.App;
+import com.yimuyun.lowraiseapp.model.bean.CodeBean;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisResultVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentPlanVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentVo;
@@ -187,5 +188,20 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<PadResultResponse<DiagnosisTreatmentPlanVo>> getDiagnosisTreatmentPlanList(String enterpriseId) {
         return mHttpHelper.getDiagnosisTreatmentPlanList(enterpriseId);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<CodeBean>> getRegisteVerifyCode(String mobile) {
+        return mHttpHelper.getRegisteVerifyCode(mobile);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> changepassword(String mobile, String verifyCode, String password) {
+        return mHttpHelper.changepassword(mobile, verifyCode, password);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> insertQuarantine(String equipmentIds, String quarantinePicture, long personnelId) {
+        return mHttpHelper.insertQuarantine(equipmentIds, quarantinePicture, personnelId);
     }
 }

@@ -1,5 +1,6 @@
 package com.yimuyun.lowraiseapp.model.http;
 
+import com.yimuyun.lowraiseapp.model.bean.CodeBean;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisResultVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentPlanVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentVo;
@@ -238,7 +239,10 @@ public interface HttpHelper {
     Flowable<PadResultResponse<DiagnosisTreatmentPlanVo>> getDiagnosisTreatmentPlanList(String enterpriseId);
 
 
+    Flowable<PadResultResponse<CodeBean>> getRegisteVerifyCode(String mobile);
 
+    Flowable<PadResultResponse<Object>> changepassword(String mobile, String verifyCode,String password);
 
+    Flowable<PadResultResponse<Object>> insertQuarantine(String equipmentIds, String quarantinePicture,long personnelId);
 
 }

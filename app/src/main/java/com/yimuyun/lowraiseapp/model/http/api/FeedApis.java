@@ -282,4 +282,6 @@ public interface FeedApis {
     @GET("culture/v1/diagnosis/diagnosisTreatmentPlan/list")
     Flowable<PadResultResponse<DiagnosisTreatmentPlanVo>> getDiagnosisTreatmentPlanList(@Query("enterpriseId")String enterpriseId);
 
+    @POST("culture/v1/quarantine/insert")
+    Flowable<PadResultResponse<Object>> insertQuarantine(@Query("equipmentIds")String equipmentIds,@Query("quarantinePicture")String quarantinePicture,@Query("personnelId")long personnelId);
 }

@@ -1,6 +1,7 @@
 package com.yimuyun.lowraiseapp.model.http;
 
 
+import com.yimuyun.lowraiseapp.model.bean.CodeBean;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisResultVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentPlanVo;
 import com.yimuyun.lowraiseapp.model.bean.DiagnosisTreatmentVo;
@@ -157,6 +158,21 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<PadResultResponse<DiagnosisTreatmentPlanVo>> getDiagnosisTreatmentPlanList(String enterpriseId) {
         return feedApis.getDiagnosisTreatmentPlanList(enterpriseId);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<CodeBean>> getRegisteVerifyCode(String mobile) {
+        return mUserApisService.getRegisteVerifyCode(mobile);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> changepassword(String mobile, String verifyCode, String password) {
+        return mUserApisService.changepassword(mobile, verifyCode, password);
+    }
+
+    @Override
+    public Flowable<PadResultResponse<Object>> insertQuarantine(String equipmentIds, String quarantinePicture, long personnelId) {
+        return feedApis.insertQuarantine(equipmentIds, quarantinePicture, personnelId);
     }
 
 
