@@ -100,7 +100,7 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
     }
     @Override
     public void resetCode(){
-        handler.sendEmptyMessage(1);
+        handler.sendEmptyMessage(0);
     }
 
 

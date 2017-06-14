@@ -120,6 +120,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
             }
         });
 
+        mListView.setVisibility(View.GONE);
         stateLoading();
         mPresenter.getWeightList(equipmentId);
     }
@@ -136,6 +137,9 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
     @Override
     public void setWeightList(WeightVo weightVo) {
         this.weightBeanList = weightVo.getWeighs();
+        if(weightBeanList!=null && !weightBeanList.isEmpty()){
+            mListView.setVisibility(View.VISIBLE);
+        }
         this.livestockBean = weightVo.getLivestock();
         weightListAdapter.setDatas(weightBeanList);
         showLiveStockInfo();
@@ -175,6 +179,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
         WeightBean weightBean = weightBeanList.get(0);
         weightBean.setId(DateUtil.getCurrentDay());
         weightListAdapter.notifyDataSetChanged();
+        mListView.setVisibility(View.VISIBLE);
     }
 
     //添加记录
@@ -240,6 +245,9 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
                 }else{//编辑
                     WeightBean weightBean = weightBeanList.get(0);
                     weightBean.setWeight(weight);
+                }
+                if(weightBeanList!=null && !weightBeanList.isEmpty()){
+                    mListView.setVisibility(View.VISIBLE);
                 }
                 weightListAdapter.setDatas(weightBeanList);
             }
