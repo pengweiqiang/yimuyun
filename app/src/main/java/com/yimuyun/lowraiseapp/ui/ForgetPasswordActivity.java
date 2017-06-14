@@ -96,7 +96,13 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
             mEtCode.requestFocus();
             return;
         }
+        if(!userCode.equals(code)){
+            mEtCode.requestFocus();
+            showErrorMsgToast("验证码输入错误");
+            return;
+        }
         UpdatePwdActivity.open(mContext,phone,code);
+        finish();
     }
     @Override
     public void resetCode(){
@@ -124,7 +130,9 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
                 xinget_code.setText("获取验证码");
                 timer.cancel();
             } else {
-                xinget_code.setText("剩余:" + msg.what + "秒");
+                if(xinget_code!=null) {
+                    xinget_code.setText("剩余:" + msg.what + "秒");
+                }
             }
         }
 

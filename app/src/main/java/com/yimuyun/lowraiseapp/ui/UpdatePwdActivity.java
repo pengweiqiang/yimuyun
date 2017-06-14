@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.ForgetPasswordContract;
 import com.yimuyun.lowraiseapp.presenter.ForgetPasswordPresenter;
@@ -96,6 +97,9 @@ public class UpdatePwdActivity extends RootActivity<ForgetPasswordPresenter> imp
 
     @Override
     public void forgetPasswordSuccess() {
-
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        intent.putExtra(Constants.USER_NAME,mobile);
+        mContext.startActivity(intent);
+        finish();
     }
 }

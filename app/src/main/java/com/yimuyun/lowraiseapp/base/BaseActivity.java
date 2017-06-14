@@ -112,7 +112,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
     public void startLoginActivity() {
         //清空登陆数据
         UserBean userBean = App.getInstance().getUserBeanInstance();
-        String userName = userBean.getPhoneNumber();
+        String userName = "";
+        if(userBean!=null) {
+            userName = userBean.getPhoneNumber();
+        }
         App.getInstance().setUserInstance(null);
         App.getAppComponent().preferencesHelper().setUserInstance(null);
         Intent intent = new Intent(mContext, LoginActivity.class);

@@ -280,6 +280,8 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
         equipmentDetailAdapter.notifyDataSetChanged();
 
         quarantinePicture = "";
+        mIvHead.setVisibility(View.INVISIBLE);
+        mTvPicture.setHint("请选择图片");
     }
 
     private void uploadImage(){

@@ -8,7 +8,6 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
-import com.yimuyun.lowraiseapp.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -56,11 +55,9 @@ public class QuarantinePresenter extends RxPresenter<QuarantineContract.View> im
                 .subscribeWith(new CommonSubscriber<Object>(mView, true) {
                     @Override
                     public void dataHandle(Object body) {
-                        if(body==null) {
+                        if(body!=null) {
                             mView.showErrorMsgToast("提交成功");
                             mView.insertQuarantineSuccess();
-                        }else{
-                            ToastUtil.show("查询结果为空");
                         }
                     }
 
