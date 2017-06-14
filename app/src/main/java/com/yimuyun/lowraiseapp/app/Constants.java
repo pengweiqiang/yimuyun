@@ -16,6 +16,12 @@ public class Constants {
     public static final String HOST_URL = "http://115.28.109.174:8383/yimu/";
 //    public static final String HOST_URL = "http://192.168.31.36:8080/";
 
+    public static final String HOST_QINIU_URL = "http://oriloodon.bkt.clouddn.com/";
+
+    public static final String accessKey = "5MdtfOaShfxW6Kw_AtNOnP3vDfVFGMNrR7U7OMDW";
+    public static final String secretKey = "zA2vnNlt5bAVhGFL3-OxaOXDlGbFW71kB-o2vduQ";
+    public static final String bucket = "yimu";
+
     //================= KEY ====================
 
 

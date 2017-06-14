@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,11 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.qiniu.util.Auth;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
@@ -29,8 +35,11 @@ import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.widget.GlideImageLoader;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.helper.StringUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +80,8 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
 
     EquipmentDetailAdapter equipmentDetailAdapter;
     private List<EquipmentDetailVo> equipmentDetailVoList=new ArrayList<>();
+
+    UploadManager uploadManager;
     @Override
     protected int getLayout() {
         return R.layout.activity_quarantine;
@@ -89,12 +100,7 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
             public void onClick(View v) {
                 if(checkInput()) {
                     stateLoading();
-                    Set<String> keys = equipmentIdMap.keySet();
-                    StringBuffer equipmentIds = new StringBuffer();
-                    for (String key : keys) {
-                        equipmentIds.append(key+",");
-                    }
-                    mPresenter.insertQuarantine(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1),quarantinePicture,personnelId);
+                    uploadImage();
                 }
             }
         });
@@ -107,6 +113,16 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
 
         initMenuListView();
         initImagePicker();
+
+        //构造一个带指定Zone对象的配置类
+        Configuration config = new Configuration.Builder()
+                .chunkSize(256 * 1024)  //分片上传时，每片的大小。 默认256K
+                .putThreshhold(512 * 1024)  // 启用分片上传阀值。默认512K
+                .connectTimeout(10) // 链接超时。默认10秒
+                .responseTimeout(60) // 服务器响应超时。默认60秒
+                .zone(com.qiniu.android.common.Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
+                .build();
+        uploadManager = new UploadManager(config);
     }
 
     private void initImagePicker(){
@@ -203,7 +219,7 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 if(images!=null && !images.isEmpty()) {
                     String picture = images.get(0).path;
-                    this.quarantinePicture = "12312";//TODO 上传图片
+                    this.quarantinePicture = picture;//TODO 上传图片
                     Glide.with(mContext).load(picture).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
                             error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
                             .transform(new GlideRoundTransform(mContext,5))
@@ -264,5 +280,44 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
         equipmentDetailAdapter.notifyDataSetChanged();
 
         quarantinePicture = "";
+    }
+
+    private void uploadImage(){
+        String key = null;
+        Auth auth = Auth.create(Constants.accessKey, Constants.secretKey);
+        String upToken = auth.uploadToken(Constants.bucket);
+        uploadManager.put(new File(quarantinePicture), key, upToken,
+                new UpCompletionHandler() {
+                    @Override
+                    public void complete(String key, ResponseInfo info, JSONObject res) {
+                        stateMain();
+                        //res包含hash、key等信息，具体字段取决于上传策略的设置
+                        if(info.isOK())
+                        {
+                            try {
+                                String pictureKey = res.getString("key");
+                                insertQuarantine(Constants.HOST_QINIU_URL+pictureKey);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            Log.i("qiniu", "Upload Success");
+                        }
+                        else{
+                            Log.i("qiniu", "Upload Fail");
+                            //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
+                        }
+                        Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + res);
+                    }
+                }, null);
+    }
+    private void insertQuarantine(String pictureUrl){
+        Set<String> keys = equipmentIdMap.keySet();
+        StringBuffer equipmentIds = new StringBuffer();
+        for (String key : keys) {
+            equipmentIds.append(key+",");
+        }
+        mPresenter.insertQuarantine(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1),pictureUrl,personnelId);
+
     }
 }

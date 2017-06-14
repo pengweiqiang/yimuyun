@@ -3,6 +3,7 @@ package com.yimuyun.lowraiseapp.ui.neweartag;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,11 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.qiniu.util.Auth;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
@@ -36,8 +42,11 @@ import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 import com.yimuyun.lowraiseapp.widget.MyPopupWindow;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.helper.StringUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +125,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         return R.layout.activity_new_ear_tag;
     }
 
+    UploadManager uploadManager;
 
     @Override
     protected void initEventAndData() {
@@ -129,7 +139,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             public void onClick(View v) {
                 if(checkInput()){
                     stateLoading();
-                    mPresenter.insertLiveStock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, picture, parentEquipmentId);
+                    uploadImage();
                 }
             }
         });
@@ -196,6 +206,17 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         mPresenter.getUserInfo(App.getInstance().getUserBeanInstance().getPhoneNumber());
 
         initImagePicker();
+
+
+        //构造一个带指定Zone对象的配置类
+        Configuration config = new Configuration.Builder()
+                .chunkSize(256 * 1024)  //分片上传时，每片的大小。 默认256K
+                .putThreshhold(512 * 1024)  // 启用分片上传阀值。默认512K
+                .connectTimeout(10) // 链接超时。默认10秒
+                .responseTimeout(60) // 服务器响应超时。默认60秒
+                .zone(com.qiniu.android.common.Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
+                .build();
+        uploadManager = new UploadManager(config);
     }
 
     private void initImagePicker(){
@@ -428,8 +449,41 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         });
     }
 
+    private void uploadImage(){
+        String key = null;
+        Auth auth = Auth.create(Constants.accessKey, Constants.secretKey);
+        String upToken = auth.uploadToken(Constants.bucket);
+        uploadManager.put(new File(picture), key, upToken,
+                new UpCompletionHandler() {
+                    @Override
+                    public void complete(String key, ResponseInfo info, JSONObject res) {
+                        stateMain();
+                        //res包含hash、key等信息，具体字段取决于上传策略的设置
+                        if(info.isOK())
+                        {
+                            try {
+                                String pictureKey = Constants.HOST_QINIU_URL+res.getString("key");
+                                insertLiveStock(pictureKey);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        else{
+                            Log.i("qiniu", "Upload Fail");
+                            //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
+                        }
+                    }
+                }, null);
+    }
+
     @Override
     public void insertLiveStockSuccess() {
 
+    }
+
+    private void insertLiveStock(String url){
+        stateLoading();
+        mPresenter.insertLiveStock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, url, parentEquipmentId);
     }
 }
