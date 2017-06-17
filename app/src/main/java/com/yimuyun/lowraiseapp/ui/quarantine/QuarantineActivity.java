@@ -27,11 +27,11 @@ import com.qiniu.util.Auth;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
-import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.quarantine.QuarantineContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.QuarantinePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
+import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 import com.yimuyun.lowraiseapp.widget.GlideImageLoader;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 
@@ -57,7 +57,7 @@ import static com.yimuyun.lowraiseapp.util.SystemUtil.dp2px;
  * @description 检疫证明
  * @Version
  */
-public class QuarantineActivity extends RootActivity<QuarantinePresenter> implements QuarantineContract.View{
+public class QuarantineActivity extends LongerBaseRootActivity<QuarantinePresenter> implements QuarantineContract.View{
 
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
@@ -125,6 +125,7 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
         uploadManager = new UploadManager(config);
     }
 
+
     private void initImagePicker(){
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
@@ -185,7 +186,11 @@ public class QuarantineActivity extends RootActivity<QuarantinePresenter> implem
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-        String equipmentId = "2";//TODO 获取耳标
+        Scan();
+    }
+    @Override
+    public void getTagId(String tagId) {
+        String equipmentId = tagId;//TODO 获取耳标
         if(equipmentIdMap.containsKey(equipmentId)){
             showErrorMsg("已扫描耳标"+equipmentId);
             return;

@@ -15,7 +15,6 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.Constants;
-import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.immune.ImmuneContract;
 import com.yimuyun.lowraiseapp.model.bean.DrugBean;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
@@ -25,6 +24,7 @@ import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DrugListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
+import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
 import org.jsoup.helper.StringUtil;
@@ -47,7 +47,7 @@ import static com.yimuyun.lowraiseapp.util.SystemUtil.dp2px;
  * @description 免疫管理
  * @Version
  */
-public class ImmuneManageActivity extends RootActivity<ImmunePresenter> implements ImmuneContract.View{
+public class ImmuneManageActivity extends LongerBaseRootActivity<ImmunePresenter> implements ImmuneContract.View{
 
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
@@ -136,6 +136,7 @@ public class ImmuneManageActivity extends RootActivity<ImmunePresenter> implemen
         initMenuListView();
     }
 
+
     private void initMenuListView(){
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -183,7 +184,11 @@ public class ImmuneManageActivity extends RootActivity<ImmunePresenter> implemen
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-        String equipmentId = "2";//TODO 获取耳标
+        Scan();
+    }
+    @Override
+    public void getTagId(String tagId) {
+        String equipmentId = tagId;//TODO 获取耳标
         if(equipmentIdMap.containsKey(equipmentId)){
             showErrorMsg("已扫描耳标"+equipmentId);
             return;

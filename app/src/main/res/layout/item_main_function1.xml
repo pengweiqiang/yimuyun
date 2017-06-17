@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_feed_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_weigh_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_immune_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_disinfect_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -221,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_diagnosis_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -263,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_new_tag_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 

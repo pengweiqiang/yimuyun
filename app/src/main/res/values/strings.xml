@@ -16,4 +16,8 @@
     <string name="sale_offline">线下销售</string>
     <string name="envior_monitor">环境检测</string>
     <string name="purchase">收购入栏</string>
+
+    <string name="serial_fail">串口初始化失败</string>
+    <string name="serialport_init_fail_">串口打开失败!!</string>
+    <string name="_power_now">当前功率：</string>
 </resources>

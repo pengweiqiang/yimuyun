@@ -183,7 +183,7 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(FeedManageActivity.class);
                     break;
                 case R.id.rl_weight:
-                    GetEarTagActivity.open(mContext,WeightManageActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext,WeightManageActivity.class.getName());
 //                    startActivityForIntent(WeightManageActivity.class);
                     break;
                 case R.id.rl_immune:
@@ -193,20 +193,20 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(DisinfectManageActivity.class);
                     break;
                 case R.id.rl_diagnosis:
-                    GetEarTagActivity.open(mContext,DiagnosisManageActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext,DiagnosisManageActivity.class.getName());
                     break;
                 case R.id.rl_new_ear_tag:
-                    GetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
                 case R.id.rl_quarantine:
                     startActivityForIntent(QuarantineActivity.class);
-//                    GetEarTagActivity.open(mContext,OnlineSaleActivity.class.getName());
+//                    LongerGetEarTagActivity.open(mContext,OnlineSaleActivity.class.getName());
                     break;
                 case R.id.rl_fertilization:
-                    GetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
                     break;
                 case R.id.rl_innocuity_deal:
-                    GetEarTagActivity.open(mContext, InnocuityDealActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext, InnocuityDealActivity.class.getName());
                     break;
                 case R.id.rl_offline_sale:
                     startActivityForIntent(OffSaleActivity.class);
@@ -215,7 +215,7 @@ public class MainActivity extends SimpleActivity {
                     startActivityForIntent(EnvironmentMonitorActivity.class);
                     break;
                 case R.id.rl_purchase:
-                    GetEarTagActivity.open(mContext, PurchaseActivity.class.getName());
+                    LongerGetEarTagActivity.open(mContext, PurchaseActivity.class.getName());
                     break;
 
             }
