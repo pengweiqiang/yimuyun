@@ -24,6 +24,7 @@ import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DrugListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
+import com.yimuyun.lowraiseapp.util.ToastUtil;
 import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
@@ -87,6 +88,7 @@ public class ImmuneManageActivity extends LongerBaseRootActivity<ImmunePresenter
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
         setToolBar(mToolBar, "免疫管理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,6 +191,7 @@ public class ImmuneManageActivity extends LongerBaseRootActivity<ImmunePresenter
     @Override
     public void getTagId(String tagId) {
         String equipmentId = tagId;//TODO 获取耳标
+        ToastUtil.shortShow(tagId);
         if(equipmentIdMap.containsKey(equipmentId)){
             showErrorMsg("已扫描耳标"+equipmentId);
             return;

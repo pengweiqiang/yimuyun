@@ -101,6 +101,7 @@ public class FeedManageActivity extends LongerBaseRootActivity<FeedPresenter> im
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
         setToolBar(mToolBar, "喂养管理", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

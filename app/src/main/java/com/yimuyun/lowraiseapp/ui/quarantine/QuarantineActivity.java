@@ -90,6 +90,7 @@ public class QuarantineActivity extends LongerBaseRootActivity<QuarantinePresent
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
         setToolBar(mToolBar, "检疫证明", "提交", R.mipmap.ic_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

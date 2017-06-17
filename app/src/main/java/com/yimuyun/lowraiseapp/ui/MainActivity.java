@@ -180,14 +180,14 @@ public class MainActivity extends SimpleActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.rl_feed:
-                    startActivityForIntent(FeedManageActivity.class);
+                    startActivityForIntent(FeedManageActivity.class);//
                     break;
                 case R.id.rl_weight:
                     LongerGetEarTagActivity.open(mContext,WeightManageActivity.class.getName());
 //                    startActivityForIntent(WeightManageActivity.class);
                     break;
                 case R.id.rl_immune:
-                    startActivityForIntent(ImmuneManageActivity.class);
+                    startActivityForIntent(ImmuneManageActivity.class);//
                     break;
                 case R.id.rl_disinfect:
                     startActivityForIntent(DisinfectManageActivity.class);
@@ -199,7 +199,7 @@ public class MainActivity extends SimpleActivity {
                     LongerGetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
                 case R.id.rl_quarantine:
-                    startActivityForIntent(QuarantineActivity.class);
+                    startActivityForIntent(QuarantineActivity.class);//
 //                    LongerGetEarTagActivity.open(mContext,OnlineSaleActivity.class.getName());
                     break;
                 case R.id.rl_fertilization:
@@ -209,7 +209,7 @@ public class MainActivity extends SimpleActivity {
                     LongerGetEarTagActivity.open(mContext, InnocuityDealActivity.class.getName());
                     break;
                 case R.id.rl_offline_sale:
-                    startActivityForIntent(OffSaleActivity.class);
+                    startActivityForIntent(OffSaleActivity.class);//
                     break;
                 case R.id.rl_environment_monitor:
                     startActivityForIntent(EnvironmentMonitorActivity.class);
