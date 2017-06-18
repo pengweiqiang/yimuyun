@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">伊牧云养殖端</string>
+    <string name="app_name">伊牧云低频养殖端</string>
 
     <string name="error_tips">糟糕！加载失败了~</string>
     <string name="loading">加载中...</string>
