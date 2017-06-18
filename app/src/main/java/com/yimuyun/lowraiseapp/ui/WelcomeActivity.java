@@ -7,7 +7,6 @@ import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.base.BaseActivity;
 import com.yimuyun.lowraiseapp.base.contract.home.WelcomeContract;
 import com.yimuyun.lowraiseapp.presenter.home.WelcomePresenter;
-import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 
 import butterknife.BindView;
 
@@ -41,7 +40,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     public void jumpToLogin() {
-        Intent intent = new Intent(this,ImmuneManageActivity.class);
+        Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
         finish();
     }

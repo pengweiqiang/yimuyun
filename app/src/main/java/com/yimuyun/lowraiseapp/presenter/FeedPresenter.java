@@ -60,6 +60,8 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
                     public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                         if(equipmentDetailVo!=null) {
                             mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                        }else{
+                            mView.showErrorMsg("耳标"+equipmentId+"信息查询为空");
                         }
                     }
 

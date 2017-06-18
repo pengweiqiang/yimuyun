@@ -27,11 +27,11 @@ import com.qiniu.util.Auth;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
+import com.yimuyun.lowraiseapp.base.LowBaseRootActivity;
 import com.yimuyun.lowraiseapp.base.contract.quarantine.QuarantineContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.QuarantinePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
-import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 import com.yimuyun.lowraiseapp.widget.GlideImageLoader;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 
@@ -51,13 +51,14 @@ import butterknife.OnClick;
 
 import static com.yimuyun.lowraiseapp.util.SystemUtil.dp2px;
 
+
 /**
  * @author will on 2017/6/10 12:14
  * @email pengweiqiang64@163.com
  * @description 检疫证明
  * @Version
  */
-public class QuarantineActivity extends LongerBaseRootActivity<QuarantinePresenter> implements QuarantineContract.View{
+public class QuarantineActivity extends LowBaseRootActivity<QuarantinePresenter> implements QuarantineContract.View{
 
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
@@ -187,7 +188,6 @@ public class QuarantineActivity extends LongerBaseRootActivity<QuarantinePresent
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-        Scan();
     }
     @Override
     public void getTagId(String tagId) {

@@ -172,6 +172,4 @@ dependencies {
     compile rootProject.ext.dependencies["crashreport-upgrade"]
     compile 'com.qiniu:qiniu-android-sdk:7.2.+'
     compile 'com.qiniu:qiniu-java-sdk:7.2.+'
-    compile files('libs/ModuleAPI_Android_2.2.0.0.jar')
-    compile files('libs/UHFLonger.jar')
 }

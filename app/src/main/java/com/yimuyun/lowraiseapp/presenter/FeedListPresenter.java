@@ -37,7 +37,7 @@ public class FeedListPresenter extends RxPresenter<FeedListContract.View> implem
                 .subscribeWith(new CommonSubscriber<FeedVo>(mView, true) {
                     @Override
                     public void dataHandle(FeedVo feedVo) {
-                        if(feedVo!=null) {
+                        if(feedVo!=null && feedVo.getFeeds()!=null && !feedVo.getFeeds().isEmpty()) {
                             mView.setFeedList(feedVo.getFeeds());
                         }else{
                             ToastUtil.show("查询结果为空");

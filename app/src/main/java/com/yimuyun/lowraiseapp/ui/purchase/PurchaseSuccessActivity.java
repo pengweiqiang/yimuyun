@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
-import com.yimuyun.lowraiseapp.ui.LongerGetEarTagActivity;
+import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
 
 /**
  * @author will on 2017/6/11 13:43
@@ -28,7 +28,7 @@ public class PurchaseSuccessActivity extends SimpleActivity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                LongerGetEarTagActivity.open(mContext,PurchaseActivity.class.getName());
+                LowGetEarTagActivity.open(mContext,PurchaseActivity.class.getName());
                 finish();
             }
         },3000);

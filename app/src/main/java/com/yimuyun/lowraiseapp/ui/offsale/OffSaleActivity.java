@@ -11,12 +11,12 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.base.LowBaseRootActivity;
 import com.yimuyun.lowraiseapp.base.contract.offsale.OffSaleContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.OffSalePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
-import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 
 import org.jsoup.helper.StringUtil;
 
@@ -38,7 +38,7 @@ import static com.yimuyun.lowraiseapp.util.SystemUtil.dp2px;
  * @description 线下销售
  * @Version
  */
-public class OffSaleActivity extends LongerBaseRootActivity<OffSalePresenter> implements OffSaleContract.View{
+public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> implements OffSaleContract.View{
 
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
@@ -160,7 +160,6 @@ public class OffSaleActivity extends LongerBaseRootActivity<OffSalePresenter> im
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-        Scan();
     }
     @Override
     public void getTagId(String tagId) {

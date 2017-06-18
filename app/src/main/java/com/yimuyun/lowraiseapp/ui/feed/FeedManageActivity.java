@@ -14,12 +14,12 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.Constants;
+import com.yimuyun.lowraiseapp.base.LowBaseRootActivity;
 import com.yimuyun.lowraiseapp.base.contract.feed.FeedContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.FeedBean;
 import com.yimuyun.lowraiseapp.presenter.FeedPresenter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
-import com.yimuyun.lowraiseapp.util.longer.LongerBaseRootActivity;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
 import org.jsoup.helper.StringUtil;
@@ -39,10 +39,10 @@ import static com.yimuyun.lowraiseapp.util.SystemUtil.dp2px;
 /**
  * @author will on 2017/6/10 12:14
  * @email pengweiqiang64@163.com
- * @description 饲养管理
+ * @descripion 饲养管理
  * @Version
  */
-public class FeedManageActivity extends LongerBaseRootActivity<FeedPresenter> implements FeedContract.View{
+public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> implements FeedContract.View{
 
     @BindView(R.id.tv_feed_name)
     TextView mTvFeedName;
@@ -192,7 +192,7 @@ public class FeedManageActivity extends LongerBaseRootActivity<FeedPresenter> im
 
     @OnClick(R.id.btn_add_ear_tag)
     public void addEarTag(View view){
-       Scan();
+        startReadTag();
     }
     @Override
     public void getTagId(String tagId) {
@@ -201,9 +201,10 @@ public class FeedManageActivity extends LongerBaseRootActivity<FeedPresenter> im
             showErrorMsg("已扫描耳标"+equipmentId);
             return;
         }
-
-        stateLoading();
-        mPresenter.getEquipmentDetailById(equipmentId);
+        synchronized (this){
+            stateLoading();
+            mPresenter.getEquipmentDetailById(equipmentId);
+        }
     }
 
     @OnClick(R.id.tv_feed_time)

@@ -1,18 +1,13 @@
-package com.yimuyun.lowraiseapp.ui;
+package com.yimuyun.lowraiseapp.base;
 
-import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
-//import com.qiniu.android.utils.StringUtils;
-import com.yimuyun.lowraiseapp.R;
-import com.yimuyun.lowraiseapp.app.Constants;
-import com.yimuyun.lowraiseapp.base.SimpleActivity;
 import com.hdhe.lowfrequency.SerialPort;
-
-import org.jsoup.helper.StringUtil;
+import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,43 +15,22 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 
+
 /**
- * @author will on 2017/6/11 13:43
- * @email pengweiqiang64@163.com
- * @description 低频
- * @Version
+ * @date: 2017/4/21
+ * @desciption:
  */
 
-public class LowGetEarTagActivity extends SimpleActivity{
-
-    public static final String FROM = "from";
-
-    private String className = "";
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_loading_get_ear_tag;
-    }
-
+public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootActivity<T> implements View.OnClickListener {
+    private int count = 0 ;
+    private String tagId = "";
     @Override
     protected void initEventAndData() {
-        className = getIntent().getStringExtra(FROM);
-
-        //模拟读卡
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent();
-//                intent.putExtra(Constants.EQUPIMENT_ID,getEquipmentId());
-//                intent.setClassName(mContext,className);
-//                startActivity(intent);
-//                finish();
-//            }
-//        },2000);
 
         initReadTag();
     }
 
-    public String tagId = "";
+
 
     private static final int PORT = 14; //串口
     private SerialPort mSerialPort;//串口操作类
@@ -94,9 +68,22 @@ public class LowGetEarTagActivity extends SimpleActivity{
         Log.e("", "start thread");
     }
 
-    private void startReadTag(){
+    private void startRead(){
         if(!startFlag){
             startFlag = true;
+        }else{
+            startFlag = false;
+            if(timerStartRead != null){
+                timerStartRead.cancel();
+            }
+        }
+    }
+
+    public void startReadTag(){
+        if(runFlag){
+            runFlag = false;
+        }else {
+            runFlag = true;
         }
     }
 
@@ -106,7 +93,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
             timerStartRead.cancel();
         }
     }
-    private int count = 0;
     //读数据线程
     private class ReadThread extends Thread {
         int size;
@@ -120,7 +106,7 @@ public class LowGetEarTagActivity extends SimpleActivity{
             while(runFlag) {
                 buffer = new byte[128];
                 if (mInputStream == null) return;
-                respBytes = LowGetEarTagActivity.this.read();
+                respBytes = LowBaseRootActivity.this.read();
                 if(respBytes != null){
                     String id = handleData(respBytes);
                     String id_hex = handleData2hex(respBytes);
@@ -128,8 +114,8 @@ public class LowGetEarTagActivity extends SimpleActivity{
 //                        if (checkBox_hex.isChecked()) {
 //                            updateUI(id_hex);
 //                        }else {
-                            count ++;
-                            updateUI(id);
+                        count ++;
+                        updateUI(id);
 
 //                        }
 
@@ -275,11 +261,10 @@ public class LowGetEarTagActivity extends SimpleActivity{
                     e.printStackTrace();
                 }
                 mPlayer.start();
+
+                getTagId(tagId);
             }
         });
-        if(count == 1) {
-            goNextActivity();
-        }
     }
 
     @Override
@@ -345,26 +330,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
 
 
 
+    public abstract void getTagId(String tagId);
 
-    private String getEquipmentId(){
-        //TODO 读卡获取（高频、低频）
-//        if(className.equals(NewEarTagManageActivity.class.getName())){
-//            return System.currentTimeMillis()+"";
-//        }
-        return tagId;
-    }
-
-    private void goNextActivity(){
-        Intent intent = new Intent();
-        intent.putExtra(Constants.EQUPIMENT_ID,getEquipmentId());
-        intent.setClassName(mContext,className);
-        startActivity(intent);
-        finish();
-    }
-
-    public static void open(Context context, String className){
-        Intent intent = new Intent(context,LowGetEarTagActivity.class);
-        intent.putExtra(FROM,className);
-        context.startActivity(intent);
-    }
 }

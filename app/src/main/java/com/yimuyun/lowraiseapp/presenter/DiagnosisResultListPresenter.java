@@ -59,7 +59,7 @@ public class DiagnosisResultListPresenter extends RxPresenter<DiagnosisResultLis
                 .subscribeWith(new CommonSubscriber<DiagnosisResultVo>(mView, true) {
                     @Override
                     public void dataHandle(DiagnosisResultVo diagnosisResultVo) {
-                        if(diagnosisResultVo!=null) {
+                        if(diagnosisResultVo!=null && diagnosisResultVo.getDiagnosisResults()!=null && !diagnosisResultVo.getDiagnosisResults().isEmpty()) {
                             mView.setDiagnosisResult(diagnosisResultVo.getDiagnosisResults());
                         }else{
                             ToastUtil.show("查询结果为空");
