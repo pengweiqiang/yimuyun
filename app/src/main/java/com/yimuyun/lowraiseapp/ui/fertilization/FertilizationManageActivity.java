@@ -139,7 +139,9 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
             if(equipmentDetailVo.getVarieties()!=null) {
                 mTvLiveStockName.setText(equipmentDetailVo.getVarieties().getName());
             }
-            mTvEquipmentNumber.setText("耳标编号："+livestockBean.getEquipmentId());
+            mTvEquipmentNumber.setText("耳标编号："+equipmentId);
+
+            equipmentId = livestockBean.getEquipmentId()+"";
             String sex = livestockBean.getSex();
             StringBuffer stringBuffer = new StringBuffer();
             if(String.valueOf(Constants.SEX_FEMALE).equals(sex)){

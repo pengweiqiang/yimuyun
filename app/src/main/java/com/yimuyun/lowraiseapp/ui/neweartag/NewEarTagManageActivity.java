@@ -323,11 +323,12 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             showErrorMsg("获取耳标为空");
             return false;
         }
-        parentEquipmentId = mTvParentEquipmentId.getText().toString().trim();
-        if(StringUtil.isBlank(parentEquipmentId)){
-            showErrorMsg("母体编号为空");
-            return false;
-        }
+//        parentEquipmentId = mTvParentEquipmentId.getText().toString().trim();
+//        if(StringUtil.isBlank(parentEquipmentId)){
+//            showErrorMsg("母体编号为空");
+//            return false;
+//        }
+        parentEquipmentId = equipmentId;
         if(StringUtil.isBlank(type)){
             showErrorMsg("请选择类型");
             return false;

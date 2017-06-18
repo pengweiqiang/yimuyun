@@ -53,6 +53,7 @@ public class PurchaseActivity extends RootActivity<PurchasePresenter> implements
 
 //    StringBuffer equipmentIds=new StringBuffer();
     Map<String,String> equipmentIdMap = new HashMap<>();
+    Map<String,String> equipIdRealMap = new HashMap<>();
 
     String enterpriseId;
     String personnelId;
@@ -158,6 +159,8 @@ public class PurchaseActivity extends RootActivity<PurchasePresenter> implements
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
         equipmentIdMap.put(equipmentId,equipmentId);
+        String equipIdReal = equipmentDetailVo.getLivestock().getEquipmentId()+"";
+        equipIdRealMap.put(equipIdReal,equipIdReal);
 
     }
 
@@ -165,7 +168,7 @@ public class PurchaseActivity extends RootActivity<PurchasePresenter> implements
     public void btnAddPurchase(View view){
         if(checkInput()){
             stateLoading();
-            Set<String> keys = equipmentIdMap.keySet();
+            Set<String> keys = equipIdRealMap.keySet();
             StringBuffer equipmentIds = new StringBuffer();
             for (String key : keys) {
                 equipmentIds.append(key+",");
