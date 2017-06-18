@@ -57,6 +57,8 @@ public class OffSalePresenter extends RxPresenter<OffSaleContract.View> implemen
                     public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                         if(equipmentDetailVo!=null) {
                             mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                        }else{
+                            mView.showErrorMsgToast("耳标"+equipmentId+"查询为空");
                         }
                     }
 

@@ -38,7 +38,7 @@ public class DiagnosisPresenter extends RxPresenter<DiagnosisContract.View> impl
                 .compose(RxUtil.<PadResultResponse<EquipmentDetailVo>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<EquipmentDetailVo>(mView, true) {
                     @Override
-                    public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
+                    public void dataHandle(EquipmentDetailVo equipmentDetailVo){
                         if(equipmentDetailVo!=null) {
                             mView.setLivestockInfo(equipmentDetailVo);
                         }else{

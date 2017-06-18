@@ -59,7 +59,7 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
                 .subscribeWith(new CommonSubscriber<VarietiesVo>(mView, true) {
                     @Override
                     public void dataHandle(VarietiesVo varietiesVo) {
-                        if(varietiesVo!=null) {
+                        if(varietiesVo!=null && varietiesVo.getVarieties()!=null && !varietiesVo.getVarieties().isEmpty()) {
                             mView.setVarietiesList(varietiesVo.getVarieties());
                         }else{
                             ToastUtil.show("查询品种为空");

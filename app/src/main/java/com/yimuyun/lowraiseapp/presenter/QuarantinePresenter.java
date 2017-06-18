@@ -37,6 +37,8 @@ public class QuarantinePresenter extends RxPresenter<QuarantineContract.View> im
                     public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                         if(equipmentDetailVo!=null) {
                             mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                        }else{
+                            mView.showErrorMsgToast("耳标"+equipmentId+"查询为空");
                         }
                     }
 
