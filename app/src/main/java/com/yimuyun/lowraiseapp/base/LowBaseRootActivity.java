@@ -15,6 +15,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 
+import static android.R.attr.tag;
+
 
 /**
  * @date: 2017/4/21
@@ -23,7 +25,7 @@ import java.util.Timer;
 
 public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootActivity<T> implements View.OnClickListener {
     private int count = 0 ;
-    private String tagId = "";
+    public String tagId = "";
     @Override
     protected void initEventAndData() {
 
@@ -233,8 +235,10 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
 //	}
 
     //更新UI
-    private void updateUI(final String tagId){
+    private void updateUI(String tagId){
         this.tagId = tagId;
+        tagId = "E2000016000201741120AB8D";//TODO
+        final String tagNewId = tagId;
         runOnUiThread(new Runnable() {
 
             private MediaPlayer mPlayer;
@@ -248,21 +252,17 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
                     mPlayer.setDataSource("/system/media/audio/ui/VideoRecord.ogg");  //选用系统声音文件
                     mPlayer.prepare();
                 } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (SecurityException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 mPlayer.start();
 
-                getTagId(tagId);
+                getTagId(tagNewId);
             }
         });
     }

@@ -5,6 +5,7 @@ import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.quarantine.QuarantineContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
@@ -30,15 +31,35 @@ public class QuarantinePresenter extends RxPresenter<QuarantineContract.View> im
 
     @Override
     public void getEquipmentDetailById(final String equipmentId) {
-        addSubscribe(mDataManager.getEquimentInfoById(equipmentId)
-                .compose(RxUtil.<PadResultResponse<EquipmentDetailVo>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<EquipmentDetailVo>(mView, true) {
+        addSubscribe(mDataManager.getEquipmentInfoByNumber(equipmentId)
+                .compose(RxUtil.<PadResultResponse<EquipmentInfoVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EquipmentInfoVo>(mView, true) {
                     @Override
-                    public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
-                        if(equipmentDetailVo!=null) {
-                            mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                    public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
+                        if(equipmentInfoVo!=null) {
+
+                            int equipId = equipmentInfoVo.getEquipment().getId();
+                            addSubscribe(mDataManager.getEquimentInfoById(equipId+"")
+                                    .compose(RxUtil.<PadResultResponse<EquipmentDetailVo>>rxSchedulerHelper())
+                                    .subscribeWith(new CommonSubscriber<EquipmentDetailVo>(mView, true) {
+                                        @Override
+                                        public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
+                                            if(equipmentDetailVo!=null) {
+                                                mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                                            }else{
+                                                mView.showErrorMsgToast("耳标"+equipmentId+"查询为空");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(String msg) {
+                                            super.onError(msg);
+                                            mView.stateMain();
+                                        }
+                                    }));
+
                         }else{
-                            mView.showErrorMsgToast("耳标"+equipmentId+"查询为空");
+                            mView.showErrorMsg("耳标"+equipmentId+"信息查询为空");
                         }
                     }
 
@@ -48,6 +69,7 @@ public class QuarantinePresenter extends RxPresenter<QuarantineContract.View> im
                         mView.stateMain();
                     }
                 }));
+
     }
 
     @Override

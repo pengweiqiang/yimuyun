@@ -3,6 +3,7 @@ package com.yimuyun.lowraiseapp.base.contract.neweartag;
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
 import com.yimuyun.lowraiseapp.base.BaseView;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.Varieties;
 
@@ -22,9 +23,13 @@ public interface NewEarTagContract {
 
         void insertLiveStockSuccess();
 
+        void setEquipmentId(EquipmentInfoVo equipmentInfoVo);
+
     }
 
     interface Presenter extends BasePresenter<View> {
+        void getEquipmentInfoByNumber(String equipmentNumber);
+
         void getUserInfo(String phoneNumber);
         //获取种类
         void getVarietiesList(String enterpriseId);

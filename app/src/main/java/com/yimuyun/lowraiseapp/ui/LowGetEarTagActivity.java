@@ -20,6 +20,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 
+import static android.R.attr.tag;
+
 /**
  * @author will on 2017/6/11 13:43
  * @email pengweiqiang64@163.com
@@ -351,6 +353,7 @@ public class LowGetEarTagActivity extends SimpleActivity{
 //        if(className.equals(NewEarTagManageActivity.class.getName())){
 //            return System.currentTimeMillis()+"";
 //        }
+        tagId = "E2000016000201741120AB8D";
         return tagId;
     }
 

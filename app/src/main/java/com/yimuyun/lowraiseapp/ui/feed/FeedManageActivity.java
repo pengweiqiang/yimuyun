@@ -90,6 +90,7 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
 
 //    private StringBuffer equipmentIds = new StringBuffer();
     Map<String,String> equipmentIdMap = new HashMap<>();
+    Map<String,String> equipmentRealIdMap = new HashMap<>();
     private String  feedTime, grass;
 
 
@@ -112,7 +113,7 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
             public void onClick(View v) {
                 if(checkFeeding()){
                     stateLoading();
-                    Set<String> keys = equipmentIdMap.keySet();
+                    Set<String> keys = equipmentRealIdMap.keySet();
                     StringBuffer equipmentIds = new StringBuffer();
                     for (String key : keys) {
                         equipmentIds.append(key+",");
@@ -254,6 +255,8 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
         equipmentIdMap.put(equipmentId,equipmentId);
+        String equipRealId = equipmentDetailVo.getLivestock().getEquipmentId()+"";
+        equipmentRealIdMap.put(equipRealId,equipRealId);
     }
 
     @Override

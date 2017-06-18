@@ -25,7 +25,6 @@ import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.diagnosis.DrugListActivity;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
-import com.yimuyun.lowraiseapp.util.ToastUtil;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
 import org.jsoup.helper.StringUtil;
@@ -67,6 +66,7 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
 
 
     Map<String,String> equipmentIdMap = new HashMap<>();
+    Map<String,String> equipmentRealIdMap = new HashMap<>();
 
     String immuneTime;
     long vaccineType;
@@ -99,7 +99,7 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
             public void onClick(View v) {
                 if(checkInput()) {
                     stateLoading();
-                    Set<String> keys = equipmentIdMap.keySet();
+                    Set<String> keys = equipmentRealIdMap.keySet();
                     StringBuffer equipmentIds = new StringBuffer();
                     for (String key : keys) {
                         equipmentIds.append(key+",");
@@ -283,6 +283,8 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
         equipmentIdMap.put(equipmentId,equipmentId);
+        String equipRealId = equipmentDetailVo.getLivestock().getEquipmentId()+"";
+        equipmentRealIdMap.put(equipRealId,equipRealId);
     }
 
     @Override

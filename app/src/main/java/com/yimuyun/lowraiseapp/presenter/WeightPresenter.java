@@ -4,6 +4,8 @@ package com.yimuyun.lowraiseapp.presenter;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.weight.WeightContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
@@ -30,16 +32,16 @@ public class WeightPresenter extends RxPresenter<WeightContract.View> implements
 
 
     @Override
-    public void getWeightList(String equipmentId) {
-        addSubscribe(mDataManager.getWeightList(equipmentId)
-                .compose(RxUtil.<PadResultResponse<WeightVo>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<WeightVo>(mView, true) {
+    public void getLivestockInfo(final String equipmentId) {
+        addSubscribe(mDataManager.getEquimentInfoById(equipmentId)
+                .compose(RxUtil.<PadResultResponse<EquipmentDetailVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EquipmentDetailVo>(mView, true) {
                     @Override
-                    public void dataHandle(WeightVo weightVo) {
-                        if(weightVo!=null) {
-                            mView.setWeightList(weightVo);
+                    public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
+                        if(equipmentDetailVo!=null) {
+                            mView.setLivestockInfo(equipmentDetailVo);
                         }else{
-                            ToastUtil.show("查询结果为空");
+                            mView.showErrorMsg("耳标"+equipmentId+"信息查询为空");
                         }
                     }
 
@@ -50,6 +52,52 @@ public class WeightPresenter extends RxPresenter<WeightContract.View> implements
                     }
                 }));
     }
+
+    @Override
+    public void getWeightList(final String equipmentId) {
+
+        addSubscribe(mDataManager.getEquipmentInfoByNumber(equipmentId)
+                .compose(RxUtil.<PadResultResponse<EquipmentInfoVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EquipmentInfoVo>(mView, true) {
+                    @Override
+                    public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
+                        if(equipmentInfoVo!=null) {
+
+                            String equipId = equipmentInfoVo.getEquipment().getId()+"";
+
+                            getLivestockInfo(equipId);
+                            addSubscribe(mDataManager.getWeightList(equipId)
+                                    .compose(RxUtil.<PadResultResponse<WeightVo>>rxSchedulerHelper())
+                                    .subscribeWith(new CommonSubscriber<WeightVo>(mView, true) {
+                                        @Override
+                                        public void dataHandle(WeightVo weightVo) {
+                                            if(weightVo!=null) {
+                                                mView.setWeightList(weightVo);
+                                            }else{
+                                                ToastUtil.show("查询结果为空");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(String msg) {
+                                            super.onError(msg);
+                                            mView.stateMain();
+                                        }
+                                    }));
+
+                        }else{
+                            mView.showErrorMsg("耳标"+equipmentId+"信息查询为空");
+                        }
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mView.stateMain();
+                    }
+                }));
+    }
+
 
     @Override
     public void insertWeight(String equipmentId, String weighTime, String weighPhase, String cultureProcess, String weight, Long weighId) {
@@ -71,4 +119,5 @@ public class WeightPresenter extends RxPresenter<WeightContract.View> implements
                     }
                 }));
     }
+
 }

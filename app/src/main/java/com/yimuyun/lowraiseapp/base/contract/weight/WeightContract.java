@@ -3,6 +3,7 @@ package com.yimuyun.lowraiseapp.base.contract.weight;
 
 import com.yimuyun.lowraiseapp.base.BasePresenter;
 import com.yimuyun.lowraiseapp.base.BaseView;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.WeightVo;
 
 /**
@@ -18,9 +19,12 @@ public interface WeightContract {
 
         void insertWeightSuccess();
 
+        void setLivestockInfo(EquipmentDetailVo equipmentDetailVo);
+
     }
 
     interface Presenter extends BasePresenter<View> {
+        void getLivestockInfo(String equipmentId);
         void getWeightList(String equipmentId);
         void insertWeight(String equipmentId,
                           String weighTime,String weighPhase,

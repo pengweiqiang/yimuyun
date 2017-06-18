@@ -15,6 +15,7 @@ import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.weight.WeightContract;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.LivestockBean;
 import com.yimuyun.lowraiseapp.model.bean.WeightBean;
 import com.yimuyun.lowraiseapp.model.bean.WeightVo;
@@ -95,7 +96,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
                 String cultureProcess = "养殖";//养殖过程
                 long weighId = App.getInstance().getUserBeanInstance().getUid();
                 stateLoading();
-                mPresenter.insertWeight(String.valueOf(livestockBean.getId()),weighTime,weighPhase,cultureProcess,weight,weighId);
+                mPresenter.insertWeight(String.valueOf(livestockBean.getEquipmentId()),weighTime,weighPhase,cultureProcess,weight,weighId);
             }
         });
         equipmentId = getIntent().getStringExtra(Constants.EQUPIMENT_ID);
@@ -149,21 +150,23 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
         if(livestockBean!=null){
             String isPregnancy = livestockBean.getIsPregnancy();
             mTvFertilization.setVisibility(View.VISIBLE);
-            if("1".equals(isPregnancy)){
-                mTvFertilization.setText("已孕");
-            }else{
-                mTvFertilization.setText("未孕");
-            }
-            mTvLiveStockName.setText(livestockBean.getNumber());
-            mTvEquipmentNumber.setText("耳标编号："+livestockBean.getEquipmentId());
+
+
             String sex = livestockBean.getSex();
             StringBuffer stringBuffer = new StringBuffer();
             if(String.valueOf(Constants.SEX_FEMALE).equals(sex)){
                 stringBuffer.append("母 ");
+                if("1".equals(isPregnancy)){
+                    mTvFertilization.setVisibility(View.VISIBLE);
+                    mTvFertilization.setText("已孕");
+                }else{
+                    mTvFertilization.setText("未孕");
+                }
             }else if(String.valueOf(Constants.SEX_MALE).equals(sex)){
                 stringBuffer.append("公 ");
+                mTvFertilization.setVisibility(View.GONE);
             }
-            stringBuffer.append(livestockBean.getLairageWeight());
+            stringBuffer.append(livestockBean.getLairageWeight()+"公斤");
             mTvLiveStockWeight.setText(stringBuffer.toString());
 
             Glide.with(mContext).load(livestockBean.getPicture()).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
@@ -180,6 +183,14 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
         weightBean.setId(DateUtil.getCurrentDay());
         weightListAdapter.notifyDataSetChanged();
         mListView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setLivestockInfo(EquipmentDetailVo equipmentDetailVo) {
+        if(equipmentDetailVo.getVarieties()!=null){
+            mTvLiveStockName.setText(equipmentDetailVo.getVarieties().getName());
+            mTvEquipmentNumber.setText("耳标编号："+equipmentDetailVo.getParentEquipment().getEquipmentNumber());
+        }
     }
 
     //添加记录

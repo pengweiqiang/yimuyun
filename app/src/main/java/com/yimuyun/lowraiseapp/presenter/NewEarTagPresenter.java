@@ -4,6 +4,7 @@ package com.yimuyun.lowraiseapp.presenter;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.neweartag.NewEarTagContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
@@ -29,6 +30,28 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
         this.mDataManager = mDataManager;
     }
 
+
+    @Override
+    public void getEquipmentInfoByNumber(final String equipmentNumber) {
+        addSubscribe(mDataManager.getEquipmentInfoByNumber(equipmentNumber)
+                .compose(RxUtil.<PadResultResponse<EquipmentInfoVo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EquipmentInfoVo>(mView, true) {
+                    @Override
+                    public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
+                        if(equipmentInfoVo!=null) {
+                            mView.setEquipmentId(equipmentInfoVo);
+                        }else{
+                            ToastUtil.show("耳标"+equipmentNumber+"查询结果为空");
+                        }
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mView.stateMain();
+                    }
+                }));
+    }
 
     @Override
     public void getUserInfo(String phoneNumber) {

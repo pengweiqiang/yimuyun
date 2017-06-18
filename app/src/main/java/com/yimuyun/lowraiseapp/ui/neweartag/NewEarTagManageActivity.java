@@ -31,6 +31,7 @@ import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RootActivity;
 import com.yimuyun.lowraiseapp.base.contract.neweartag.NewEarTagContract;
+import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.Personnel;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.Varieties;
@@ -106,6 +107,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     private String enterpriseId;
 
     String equipmentId;
+    private String equipmentNumber;
     String livestockMasterId;
     String type = "0";//牛0，羊1
     String state ="03";//状态 00饲养 01屠宰 02检疫不通过 03线上销售 04线下销售
@@ -144,7 +146,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             }
         });
 
-        equipmentId = getIntent().getStringExtra(Constants.EQUPIMENT_ID);
+        equipmentNumber = getIntent().getStringExtra(Constants.EQUPIMENT_ID);
         birthDayTimeSelector = new TimeSelector(mContext, new TimeSelector.ResultHandler() {
             @Override
             public void handle(String showTime, String paramTime) {
@@ -161,8 +163,8 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             }
         },"2000-01-01","2099-12-30");
 
-        mTvParentEquipmentId.setText(equipmentId);
-        mTvEquipmentId.setText(equipmentId);
+        mTvParentEquipmentId.setText(equipmentNumber);
+        mTvEquipmentId.setText(equipmentNumber);
 
         mRbCow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -203,7 +205,9 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         });
 
         stateLoading();
+        mPresenter.getEquipmentInfoByNumber(equipmentNumber);
         mPresenter.getUserInfo(App.getInstance().getUserBeanInstance().getPhoneNumber());
+
 
         initImagePicker();
 
@@ -480,6 +484,11 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     @Override
     public void insertLiveStockSuccess() {
 
+    }
+
+    @Override
+    public void setEquipmentId(EquipmentInfoVo equipmentInfoVo) {
+        equipmentId = equipmentInfoVo.getEquipment().getId()+"";
     }
 
     private void insertLiveStock(String url){
