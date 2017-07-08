@@ -8,9 +8,11 @@ import android.widget.Toast;
 
 //import com.qiniu.android.utils.StringUtils;
 import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
 import com.hdhe.lowfrequency.SerialPort;
+import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 
 import org.jsoup.helper.StringUtil;
 
@@ -85,7 +87,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         mOutputStream = mSerialPort.getOutputStream();
@@ -223,10 +224,8 @@ public class LowGetEarTagActivity extends SimpleActivity{
                 Thread.sleep(10);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -264,16 +263,12 @@ public class LowGetEarTagActivity extends SimpleActivity{
                     mPlayer.setDataSource("/system/media/audio/ui/VideoRecord.ogg");  //选用系统声音文件
                     mPlayer.prepare();
                 } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (SecurityException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 mPlayer.start();
@@ -297,7 +292,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
             if(mOutputStream!=null)
                 mOutputStream.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         if(timerStartRead != null){
@@ -353,7 +347,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
 //        if(className.equals(NewEarTagManageActivity.class.getName())){
 //            return System.currentTimeMillis()+"";
 //        }
-        tagId = "E2000016000201741120AB8D";
         return tagId;
     }
 
@@ -369,5 +362,11 @@ public class LowGetEarTagActivity extends SimpleActivity{
         Intent intent = new Intent(context,LowGetEarTagActivity.class);
         intent.putExtra(FROM,className);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
+        App.getInstance().removeActivity(PurchaseActivity.class.getSimpleName());
     }
 }

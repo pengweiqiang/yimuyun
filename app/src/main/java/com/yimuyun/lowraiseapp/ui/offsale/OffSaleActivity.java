@@ -166,7 +166,7 @@ public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> imple
     }
     @Override
     public void getTagId(String tagId) {
-        String equipmentId = tagId;//TODO 获取耳标
+        String equipmentId = tagId;
         if(equipmentIdMap.containsKey(equipmentId)){
             showErrorMsg("已扫描耳标"+equipmentId);
             return;

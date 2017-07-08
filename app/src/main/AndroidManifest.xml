@@ -48,7 +48,7 @@
 
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
@@ -101,7 +101,6 @@
         <activity
             android:name=".ui.purchase.PurchaseActivity"
             android:screenOrientation="portrait"
-            android:launchMode="singleInstance"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
 
         <activity android:name=".ui.purchase.PurchaseSuccessActivity"

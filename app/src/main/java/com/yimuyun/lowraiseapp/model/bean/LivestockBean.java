@@ -122,7 +122,7 @@ public class LivestockBean {
     }
 
     public String getLairageWeight() {
-        return lairageWeight;
+        return lairageWeight==null?"":lairageWeight;
     }
 
     public void setLairageWeight(String lairageWeight) {

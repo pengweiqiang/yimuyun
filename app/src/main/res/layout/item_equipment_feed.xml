@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="大水牛"
+        android:text=""
         android:textColor="@color/color_normal_text"
         android:textSize="14sp" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="123123123"
+        android:text=""
         android:textColor="@color/color_normal_text"
         android:textSize="14sp" />
 

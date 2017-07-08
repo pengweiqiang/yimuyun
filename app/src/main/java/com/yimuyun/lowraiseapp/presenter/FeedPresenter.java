@@ -71,7 +71,7 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
 
                     @Override
                     public void onError(String msg) {
-                        super.onError(msg);
+                        super.onError(equipmentId+" "+msg);
                         mView.stateMain();
                     }
                 }));

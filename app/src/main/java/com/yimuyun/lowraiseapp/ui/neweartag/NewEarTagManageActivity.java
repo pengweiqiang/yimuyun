@@ -289,7 +289,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 if(images!=null && !images.isEmpty()) {
                     String picture = images.get(0).path;
-                    this.picture = picture;//TODO 上传图片
+                    this.picture = picture;
                     Glide.with(mContext).load(picture).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
                             error(new ColorDrawable(mContext.getResources().getColor(R.color.color_line_grey)))//加载失败时显示的图片
                             .transform(new GlideRoundTransform(mContext,5))

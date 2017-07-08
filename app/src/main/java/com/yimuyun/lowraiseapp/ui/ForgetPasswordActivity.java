@@ -1,5 +1,6 @@
 package com.yimuyun.lowraiseapp.ui;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import com.yimuyun.lowraiseapp.presenter.ForgetPasswordPresenter;
 
 import org.jsoup.helper.StringUtil;
 
+import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,6 +43,8 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
     private String code="";
     private String phone = "";
 
+    private MyHandler handler;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_forget_password;
@@ -64,6 +68,7 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
     @Override
     protected void initEventAndData() {
         setToolBar(mToolBar,"忘记密码");
+        handler = new MyHandler(this);
     }
 
 
@@ -123,19 +128,44 @@ public class ForgetPasswordActivity extends RootActivity<ForgetPasswordPresenter
         mPresenter.getCode(phone);
     }
 
-    private Handler handler = new Handler() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(handler!=null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(timer!=null) {
+            timer.cancel();
+        }
+    }
+
+     static class MyHandler extends Handler {
+        private WeakReference<Activity> weakReference;
+        public MyHandler(Activity activity){
+            weakReference = new WeakReference<Activity>(activity);
+        }
         public void handleMessage(android.os.Message msg) {
+            ForgetPasswordActivity forgetPasswordActivity = (ForgetPasswordActivity) weakReference.get();
+            if(forgetPasswordActivity==null){
+                return;
+            }
             if (msg.what == 0) {
-                xinget_code.setEnabled(true);
-                xinget_code.setText("获取验证码");
-                timer.cancel();
+                forgetPasswordActivity.xinget_code.setEnabled(true);
+                forgetPasswordActivity.xinget_code.setText("获取验证码");
+                forgetPasswordActivity.timer.cancel();
             } else {
-                if(xinget_code!=null) {
-                    xinget_code.setText("剩余:" + msg.what + "秒");
+                if(forgetPasswordActivity.xinget_code!=null) {
+                    forgetPasswordActivity.xinget_code.setText("剩余:" + msg.what + "秒");
                 }
             }
         }
 
-        ;
+
     };
+
 }

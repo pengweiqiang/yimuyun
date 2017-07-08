@@ -59,7 +59,6 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         mOutputStream = mSerialPort.getOutputStream();
@@ -209,10 +208,8 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
                 Thread.sleep(10);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -237,7 +234,6 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
     //更新UI
     private void updateUI(String tagId){
         this.tagId = tagId;
-        tagId = "E2000016000201741120AB8D";//TODO
         final String tagNewId = tagId;
         runOnUiThread(new Runnable() {
 
@@ -280,7 +276,6 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
             if(mOutputStream!=null)
                 mOutputStream.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         if(timerStartRead != null){

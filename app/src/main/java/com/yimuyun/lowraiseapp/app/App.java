@@ -75,6 +75,18 @@ public class App extends Application{
         }
     }
 
+    public void removeActivity(String className){
+        if(allActivities!=null){
+            for(Activity act:allActivities){
+                if(act.getClass().getSimpleName().equals(className)){
+                    act.finish();
+                    allActivities.remove(act);
+                    break;
+                }
+            }
+        }
+    }
+
     public void exitApp() {
         if (allActivities != null) {
             synchronized (allActivities) {

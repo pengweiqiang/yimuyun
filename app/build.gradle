@@ -88,7 +88,7 @@ android {
                     // 默认名称 -> app-beta-release.apk
                     if (outputFile != null && outputFile.name.endsWith('release.apk')) {
                         // 输出APK名称为 proname-1.0.0-beta-release.apk
-                        def fileName = "yimuyunRasie-${defaultConfig.versionName}-${variant.productFlavors[0].name}-${buildTime("yyMMddHHmm")}-release.apk"
+                        def fileName = "yimuyun养殖端低频-${defaultConfig.versionName}-${variant.productFlavors[0].name}-${buildTime("yyMMddHHmm")}-release.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
