@@ -1,6 +1,7 @@
 package com.yimuyun.lowraiseapp.presenter;
 
 
+import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.purchase.PurchaseContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
@@ -94,7 +95,7 @@ public class PurchasePresenter extends RxPresenter<PurchaseContract.View> implem
 
     @Override
     public void insertSaleBuy(String equipmentIds, String enterpriseId, String personnelId) {
-        addSubscribe(mDataManager.insertBuy(equipmentIds, enterpriseId, personnelId)
+        addSubscribe(mDataManager.insertBuy(equipmentIds, enterpriseId, personnelId, Constants.APP_NUMBER)
                 .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<Object>(mView, true) {
                     @Override

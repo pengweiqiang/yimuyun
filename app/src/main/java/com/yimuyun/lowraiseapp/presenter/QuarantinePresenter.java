@@ -38,14 +38,14 @@ public class QuarantinePresenter extends RxPresenter<QuarantineContract.View> im
                     public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
                         if(equipmentInfoVo!=null) {
 
-                            int equipId = equipmentInfoVo.getEquipment().getId();
+                            final int equipId = equipmentInfoVo.getEquipment().getId();
                             addSubscribe(mDataManager.getEquimentInfoById(equipId+"")
                                     .compose(RxUtil.<PadResultResponse<EquipmentDetailVo>>rxSchedulerHelper())
                                     .subscribeWith(new CommonSubscriber<EquipmentDetailVo>(mView, true) {
                                         @Override
                                         public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                                             if(equipmentDetailVo!=null) {
-                                                mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
+                                                mView.setEquipmentDetail(equipmentDetailVo,equipmentId,equipId+"");
                                             }else{
                                                 mView.showErrorMsgToast("耳标"+equipmentId+"查询为空");
                                             }

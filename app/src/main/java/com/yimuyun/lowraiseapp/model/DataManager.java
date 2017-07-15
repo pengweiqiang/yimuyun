@@ -71,8 +71,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<UserBean>> login(String userName, String password) {
-        return mHttpHelper.login(userName,password);
+    public Flowable<PadResultResponse<UserBean>> login(String userName, String password,String appNumber) {
+        return mHttpHelper.login(userName,password,appNumber);
     }
 
     @Override
@@ -131,8 +131,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<Object>> insertBuy(String equipmentIds, String enterpriseId, String personnelId) {
-        return mHttpHelper.insertBuy(equipmentIds, enterpriseId, personnelId);
+    public Flowable<PadResultResponse<Object>> insertBuy(String equipmentIds, String enterpriseId, String personnelId,String appNum) {
+        return mHttpHelper.insertBuy(equipmentIds, enterpriseId, personnelId,appNum);
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 
 public interface QuarantineContract {
     interface View extends BaseView {
-        void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo, String equipmentId);
+        void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo, String equipmentId,String equipmentSid);
         void insertQuarantineSuccess();
 
 

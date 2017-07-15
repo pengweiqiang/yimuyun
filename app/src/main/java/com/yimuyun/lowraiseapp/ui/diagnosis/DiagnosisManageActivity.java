@@ -60,6 +60,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
 
 
     private String equipmentId;//耳标 应该从低频获取
+    private String equipmentSid;//耳标的主键id
 
     DiagnosisTreatmentVo diagnosisTreatmentVo;
     @Override
@@ -89,7 +90,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
                 String result = diagnosisTreatmentVo.getDiagnosisResult().getId()+"";
                 String dragId = diagnosisTreatmentVo.getDrug().getId()+"";
                 String time = DateUtil.formartTime2String_(diagnosisTreatmentVo.getDiagnosisTreatment().getTime());
-                mPresenter.insertDiagnosisTreatment(equipmentId,personnelId,treatmentPlanId,symptoms,result,dragId,time);
+                mPresenter.insertDiagnosisTreatment(equipmentSid,personnelId,treatmentPlanId,symptoms,result,dragId,time);
             }
         });
         equipmentId = getIntent().getStringExtra(Constants.EQUPIMENT_ID);
@@ -135,6 +136,7 @@ public class DiagnosisManageActivity extends RootActivity<DiagnosisPresenter> im
 
     private void showLiveStockInfo(){
         if(livestockBean!=null){
+            this.equipmentSid = livestockBean.getEquipmentId()+"";
             String isPregnancy = livestockBean.getIsPregnancy();
             mTvFertilization.setVisibility(View.VISIBLE);
             if("1".equals(isPregnancy)){

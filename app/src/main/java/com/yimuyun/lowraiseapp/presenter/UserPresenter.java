@@ -1,6 +1,7 @@
 package com.yimuyun.lowraiseapp.presenter;
 
 
+import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.UserContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
@@ -29,7 +30,7 @@ public class UserPresenter extends RxPresenter<UserContract.View> implements Use
 
     @Override
     public void login(String userName, String password) {
-        addSubscribe(mDataManager.login(userName, password)
+        addSubscribe(mDataManager.login(userName, password, Constants.APP_NUMBER)
                 .compose(RxUtil.<PadResultResponse<UserBean>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<UserBean>(mView, true) {
                     @Override

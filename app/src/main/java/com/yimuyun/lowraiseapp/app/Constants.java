@@ -16,6 +16,8 @@ public class Constants {
     public static final String HOST_URL = "http://115.28.109.174:8383/yimu/";
 //    public static final String HOST_URL = "http://192.168.31.36:8080/";
 
+    public static final String APP_NUMBER = "yy0011";//低频养殖端
+
     public static final String HOST_QINIU_URL = "http://oriloodon.bkt.clouddn.com/";
 
     public static final String accessKey = "5MdtfOaShfxW6Kw_AtNOnP3vDfVFGMNrR7U7OMDW";

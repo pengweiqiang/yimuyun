@@ -28,8 +28,8 @@ public class EquipmentBean {
     private String brand;
     private String model;
     private String state;
-    private int createTime;
-    private int updateTime;
+    private long createTime;
+    private long updateTime;
 
     public int getId() {
         return id;
@@ -87,19 +87,19 @@ public class EquipmentBean {
         this.state = state;
     }
 
-    public int getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(int createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
 
-    public int getUpdateTime() {
+    public long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(int updateTime) {
+    public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
     }
 }

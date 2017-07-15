@@ -26,7 +26,7 @@ public interface UserApis {
      * 用户登录
      */
     @POST("culture/v1/user/login")
-    Flowable<PadResultResponse<UserBean>> login(@Query("phoneNumber") String userName, @Query("password") String password);
+    Flowable<PadResultResponse<UserBean>> login(@Query("phoneNumber") String userName, @Query("password") String password,@Query("appNumber") String appNumber);
 
     /**
      * 用户详情

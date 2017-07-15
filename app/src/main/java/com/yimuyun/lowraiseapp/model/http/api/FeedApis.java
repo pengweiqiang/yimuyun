@@ -132,7 +132,7 @@ public interface FeedApis {
      */
     @POST("culture/v1/sale/buy")
     Flowable<PadResultResponse<Object>> insertBuy(@Query("equipmentIds")String equipmentIds,@Query("enterpriseId")String enterpriseId,
-                                                     @Query("personnelId")String personnelId);
+                                                     @Query("personnelId")String personnelId,@Query("appNum")String appNum);
 
     /**
      * 受孕转换

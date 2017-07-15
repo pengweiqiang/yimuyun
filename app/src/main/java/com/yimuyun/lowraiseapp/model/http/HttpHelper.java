@@ -34,7 +34,7 @@ public interface HttpHelper {
      * @param password
      * @return
      */
-    Flowable<PadResultResponse<UserBean>> login(String userName, String password);
+    Flowable<PadResultResponse<UserBean>> login(String userName, String password,String appNumber);
 
     //饲料
     Flowable<PadResultResponse<FeedVo>> feedList(String enterpriseId);
@@ -105,7 +105,7 @@ public interface HttpHelper {
      * @return
      */
     Flowable<PadResultResponse<Object>> insertBuy(String equipmentIds,String enterpriseId,
-                                                  String personnelId);
+                                                  String personnelId,String appNum);
 
     /**
      * 受孕转换

@@ -69,7 +69,8 @@ public class QuarantineActivity extends LowBaseRootActivity<QuarantinePresenter>
     @BindView(R.id.iv_livestock_head)
     ImageView mIvHead;
 
-    Map<String,String> equipmentIdMap = new HashMap<>();
+    Map<String,String> equipmentIdMap = new HashMap<>();//耳标编号
+    Map<String,String> equipmentSidMap = new HashMap<>();//耳标主键id
 
 
     String quarantinePicture;
@@ -270,12 +271,13 @@ public class QuarantineActivity extends LowBaseRootActivity<QuarantinePresenter>
 
 
     @Override
-    public void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo, String equipmentId) {
+    public void setEquipmentDetail(EquipmentDetailVo equipmentDetailVo, String equipmentId,String equipmentSid) {
         findViewById(R.id.ll_equipments).setVisibility(View.VISIBLE);
         equipmentDetailVoList.add(0,equipmentDetailVo);
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
         equipmentIdMap.put(equipmentId,equipmentId);
+        equipmentSidMap.put(equipmentSid,equipmentSid);
     }
 
 
@@ -320,7 +322,7 @@ public class QuarantineActivity extends LowBaseRootActivity<QuarantinePresenter>
                 }, null);
     }
     private void insertQuarantine(String pictureUrl){
-        Set<String> keys = equipmentIdMap.keySet();
+        Set<String> keys = equipmentSidMap.keySet();
         StringBuffer equipmentIds = new StringBuffer();
         for (String key : keys) {
             equipmentIds.append(key+",");

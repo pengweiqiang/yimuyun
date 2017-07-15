@@ -41,8 +41,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<UserBean>> login(String userName, String password) {
-        return mUserApisService.login(userName, password);
+    public Flowable<PadResultResponse<UserBean>> login(String userName, String password,String appNumber) {
+        return mUserApisService.login(userName, password,appNumber);
     }
 
     @Override
@@ -101,8 +101,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<Object>> insertBuy(String equipmentIds, String enterpriseId, String personnelId) {
-        return feedApis.insertBuy(equipmentIds, enterpriseId, personnelId);
+    public Flowable<PadResultResponse<Object>> insertBuy(String equipmentIds, String enterpriseId, String personnelId,String appNum) {
+        return feedApis.insertBuy(equipmentIds, enterpriseId, personnelId,appNum);
     }
 
     @Override

@@ -189,6 +189,8 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
     public void setLivestockInfo(EquipmentDetailVo equipmentDetailVo) {
         if(equipmentDetailVo.getVarieties()!=null){
             mTvLiveStockName.setText(equipmentDetailVo.getVarieties().getName());
+        }
+        if(equipmentDetailVo.getParentEquipment()!=null){
             mTvEquipmentNumber.setText("耳标编号："+equipmentDetailVo.getParentEquipment().getEquipmentNumber());
         }
     }
