@@ -83,7 +83,7 @@ public class DisinfectManageActivity extends RootActivity<DisinfectPresenter> im
                 time = paramTime;
                 mTvDisinfectTime.setText(showTime);
             }
-        }, DateUtil.format(new Date(),"yyyy-MM-dd"), "2099-12-31");
+        }, DateUtil.formatBeforeDate(new Date(),"yyyy-MM-dd",-30), "2099-12-31");
         stateLoading();
         mPresenter.getUserInfo(App.getInstance().getUserBeanInstance().getPhoneNumber());
     }

@@ -11,6 +11,7 @@ import com.yimuyun.lowraiseapp.base.contract.enviromentmonitor.EnvironmentMonito
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.presenter.EnvironmentMonitorPresenter;
+import com.yimuyun.lowraiseapp.util.NumberFormatCheckUtils;
 
 import org.jsoup.helper.StringUtil;
 
@@ -86,14 +87,34 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
             mEtBeam.requestFocus();
             return false;
         }
+        if(!NumberFormatCheckUtils.checkNumber(beam)){
+            mEtBeam.requestFocus();
+            showErrorMsgToast("请输入正确的光照");
+            return false;
+        }
         temperature = mEtTemperature.getText().toString().trim();
         if(StringUtil.isBlank(temperature)){
-            mEtBeam.requestFocus();
+            mEtTemperature.requestFocus();
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(temperature)){
+            mEtTemperature.requestFocus();
+            showErrorMsgToast("请输入正确的温度");
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkTemprature(temperature)){
+            mEtTemperature.requestFocus();
+            showErrorMsgToast("请输入正确的温度");
             return false;
         }
         humidity = mEtHumidity.getText().toString().trim();
-        if(StringUtil.isBlank(beam)){
+        if(StringUtil.isBlank(humidity)){
             mEtHumidity.requestFocus();
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(humidity)){
+            mEtHumidity.requestFocus();
+            showErrorMsgToast("请输入正确的湿度");
             return false;
         }
         so2 = mEtSO2.getText().toString().trim();
@@ -101,9 +122,19 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
             mEtSO2.requestFocus();
             return false;
         }
+        if(!NumberFormatCheckUtils.checkNumber(so2)){
+            mEtSO2.requestFocus();
+            showErrorMsgToast("请输入正确的SO₂浓度");
+            return false;
+        }
         co2 = mEtCO2.getText().toString().trim();
         if(StringUtil.isBlank(co2)){
             mEtCO2.requestFocus();
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(co2)){
+            mEtCO2.requestFocus();
+            showErrorMsgToast("请输入正确的CO₂浓度");
             return false;
         }
         h2s = mEtH2s.getText().toString().trim();
@@ -111,14 +142,29 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
             mEtH2s.requestFocus();
             return false;
         }
+        if(!NumberFormatCheckUtils.checkNumber(h2s)){
+            mEtH2s.requestFocus();
+            showErrorMsgToast("请输入正确的H₂S浓度");
+            return false;
+        }
         nh3 = mEtNH3.getText().toString().trim();
         if(StringUtil.isBlank(nh3)){
             mEtNH3.requestFocus();
             return false;
         }
+        if(!NumberFormatCheckUtils.checkNumber(nh3)){
+            mEtNH3.requestFocus();
+            showErrorMsgToast("请输入正确的NH3浓度");
+            return false;
+        }
         ch4 = mEtCH4.getText().toString().trim();
         if(StringUtil.isBlank(ch4)){
             mEtCH4.requestFocus();
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(ch4)){
+            mEtCH4.requestFocus();
+            showErrorMsgToast("请输入正确的CH4浓度");
             return false;
         }
         isPassed = true;
@@ -142,6 +188,13 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
 
     @Override
     public void insertEnvironmentSucecess() {
-
+        mEtBeam.setText("");
+        mEtTemperature.setText("");
+        mEtHumidity.setText("");
+        mEtSO2.setText("");
+        mEtCO2.setText("");
+        mEtH2s.setText("");
+        mEtNH3.setText("");
+        mEtCH4.setText("");
     }
 }
