@@ -290,6 +290,59 @@
             </RelativeLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_online"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_main_item_function">
+
+                <ImageView
+                    android:id="@+id/iv_online"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_environment_monitor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_online"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="22dp"
+                        android:background="#33e53b" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/online"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="19sp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

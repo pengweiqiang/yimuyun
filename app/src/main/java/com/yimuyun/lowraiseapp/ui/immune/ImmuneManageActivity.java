@@ -290,6 +290,7 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
     @Override
     public void insertImmuneSuccess() {
         equipmentIdMap.clear();
+        equipmentRealIdMap.clear();
         equipmentDetailVoList.clear();
         equipmentDetailAdapter.notifyDataSetChanged();
 

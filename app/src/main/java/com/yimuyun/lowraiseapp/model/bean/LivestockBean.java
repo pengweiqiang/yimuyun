@@ -32,6 +32,7 @@ public class LivestockBean {
 
     private int id;
     private int equipmentId;
+    private String equipmentNumberApp;
     private String number;
     private int enterpriseId;
     private int livestockMasterId;
@@ -191,5 +192,13 @@ public class LivestockBean {
 
     public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getEquipmentNumberApp() {
+        return equipmentNumberApp==null?"":equipmentNumberApp;
+    }
+
+    public void setEquipmentNumberApp(String equipmentNumberApp) {
+        this.equipmentNumberApp = equipmentNumberApp;
     }
 }

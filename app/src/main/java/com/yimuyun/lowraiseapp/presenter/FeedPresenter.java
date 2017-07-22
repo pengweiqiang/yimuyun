@@ -85,6 +85,9 @@ public class FeedPresenter extends RxPresenter<FeedContract.View> implements Fee
                     @Override
                     public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                         if(equipmentDetailVo!=null) {
+                            if(equipmentDetailVo.getLivestock()!=null){
+                                equipmentDetailVo.getLivestock().setEquipmentNumberApp(equipmentNumber);
+                            }
                             mView.setEquipmentDetail(equipmentDetailVo,equipmentNumber);
                         }else{
                             mView.showErrorMsg("耳标"+equipmentNumber+"信息查询为空");

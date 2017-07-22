@@ -21,6 +21,7 @@ import com.yimuyun.lowraiseapp.ui.immune.ImmuneManageActivity;
 import com.yimuyun.lowraiseapp.ui.innocuitydeal.InnocuityDealActivity;
 import com.yimuyun.lowraiseapp.ui.neweartag.NewEarTagManageActivity;
 import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.online.OnlineSaleActivity;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 import com.yimuyun.lowraiseapp.ui.quarantine.QuarantineActivity;
 import com.yimuyun.lowraiseapp.ui.weight.WeightManageActivity;
@@ -61,6 +62,7 @@ public class MainActivity extends SimpleActivity {
             mViewInnocuityDeal,//无害化处理
             mViewOfflineSale,//线下销售
             mVewnvironmentMonitor,//环境监测
+            mViewOnline,//线上销售
             mViewPurchase;//收购入栏
 
 
@@ -102,6 +104,7 @@ public class MainActivity extends SimpleActivity {
         mViewOfflineSale = functionView2.findViewById(R.id.rl_offline_sale);
         mVewnvironmentMonitor = functionView2.findViewById(R.id.rl_environment_monitor);
         mViewPurchase = functionView2.findViewById(R.id.rl_purchase);
+        mViewOnline = functionView2.findViewById(R.id.rl_online);
 
         mViewFeed.setOnClickListener(onClickListener);
         mViewWeight.setOnClickListener(onClickListener);
@@ -116,6 +119,7 @@ public class MainActivity extends SimpleActivity {
         mViewOfflineSale.setOnClickListener(onClickListener);
         mVewnvironmentMonitor.setOnClickListener(onClickListener);
         mViewPurchase.setOnClickListener(onClickListener);
+        mViewOnline.setOnClickListener(onClickListener);
 
 
         viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
@@ -179,6 +183,9 @@ public class MainActivity extends SimpleActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.rl_online:
+                    LowGetEarTagActivity.open(mContext,OnlineSaleActivity.class.getName());
+                    break;
                 case R.id.rl_feed:
                     startActivityForIntent(FeedManageActivity.class);//
                     break;

@@ -104,6 +104,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
             ToastUtil.show("耳标为空");
             return;
         }
+        mTvEquipmentNumber.setText("耳标编号："+equipmentId);
         weightListAdapter = new WeightListAdapter(mContext,weightBeanList);
         mListView.setAdapter(weightListAdapter);
 
@@ -190,9 +191,9 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
         if(equipmentDetailVo.getVarieties()!=null){
             mTvLiveStockName.setText(equipmentDetailVo.getVarieties().getName());
         }
-        if(equipmentDetailVo.getParentEquipment()!=null){
-            mTvEquipmentNumber.setText("耳标编号："+equipmentDetailVo.getParentEquipment().getEquipmentNumber());
-        }
+//        if(equipmentDetailVo.getParentEquipment()!=null){
+//            mTvEquipmentNumber.setText("耳标编号："+equipmentDetailVo.getParentEquipment().getEquipmentNumber());
+//        }
     }
 
     //添加记录

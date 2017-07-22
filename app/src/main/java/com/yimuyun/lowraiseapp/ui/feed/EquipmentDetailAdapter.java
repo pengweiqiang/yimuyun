@@ -64,20 +64,16 @@ public class EquipmentDetailAdapter extends BaseListAdapter{
         }
         EquipmentDetailVo equipmentDetailVo = getItem(position);
         StringBuffer liveStockNameSb = new StringBuffer();
+        String equipmentNumber = "";
         if(equipmentDetailVo.getVarieties()!=null) {
             liveStockNameSb.append(equipmentDetailVo.getVarieties().getName());
         }
         if(equipmentDetailVo.getLivestock()!=null){
+            equipmentNumber = equipmentDetailVo.getLivestock().getEquipmentNumberApp();
             liveStockNameSb.append(" "+equipmentDetailVo.getLivestock().getLairageWeight()+"公斤");
-
-        }
-        if(equipmentDetailVo.getParentEquipment()!=null){
-            viewHolder.mTvEquipmentNumber.setText(String.valueOf(equipmentDetailVo.getParentEquipment().getEquipmentNumber()));
-        }else{
-            viewHolder.mTvEquipmentNumber.setText("");
         }
 
-
+        viewHolder.mTvEquipmentNumber.setText(equipmentNumber);
         viewHolder.mTvLiveStockName.setText(liveStockNameSb.toString());
 
 

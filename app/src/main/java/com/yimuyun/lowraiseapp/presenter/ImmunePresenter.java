@@ -65,6 +65,9 @@ public class ImmunePresenter extends RxPresenter<ImmuneContract.View> implements
                                         @Override
                                         public void dataHandle(EquipmentDetailVo equipmentDetailVo) {
                                             if(equipmentDetailVo!=null) {
+                                                if(equipmentDetailVo.getLivestock()!=null){
+                                                    equipmentDetailVo.getLivestock().setEquipmentNumberApp(equipmentId);
+                                                }
                                                 mView.setEquipmentDetail(equipmentDetailVo,equipmentId);
                                             }else{
                                                 mView.showErrorMsg("耳标"+equipmentId+"查询结果为空");

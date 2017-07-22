@@ -49,9 +49,11 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
 
 //    StringBuffer equipmentIds=new StringBuffer();
     Map<String,String> equipmentIdMap = new HashMap<>();
+    Map<String,String> equipmentRealIdMap = new HashMap<>();
 
 
     String equipmentIdCurrent;
+    String equipmentId;
 
     @Override
     protected int getLayout() {
@@ -139,7 +141,9 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
         equipmentDetailVoList.add(0,equipmentDetailVo);
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
+        String equipmentNumber = equipmentDetailVo.getLivestock().getEquipmentId()+"";
         equipmentIdMap.put(equipmentId,equipmentId);
+        equipmentRealIdMap.put(equipmentNumber,equipmentNumber);
 
     }
 
@@ -155,7 +159,7 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
     public void btnAddPurchase(View view){
         if(checkInput()){
             stateLoading();
-            Set<String> keys = equipmentIdMap.keySet();
+            Set<String> keys = equipmentRealIdMap.keySet();
             StringBuffer equipmentIds = new StringBuffer();
             for (String key : keys) {
                 equipmentIds.append(key+",");

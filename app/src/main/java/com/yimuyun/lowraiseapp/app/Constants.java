@@ -83,6 +83,7 @@ public class Constants {
     public static final String TYPE = "type";
     public static final String SELECTED_FEED = "selectedFeed";
     public static final String EQUPIMENT_ID = "equpimentId";
+    public static final String PARENT_EQUIPMENT_ID = "parentEquipmentId";
     public static final String SELECTED_USER_ITEM = "selectedUser";
     public static final String ADD_DIAGNOSI_RECORD = "diagnosisTreatment";
     public static final String SELECTED_DIAGNOSIS_RESULT = "selectedDiagnosisResult";
@@ -104,6 +105,7 @@ public class Constants {
     public static final int REQUEST_DRUG = 1005;
     public static final int REQUEST_DISINFECT = 1006;
     public static final int REQUEST_IMAGE_PICKER = 1007;
+    public static final int REQUEST_PARENT_EQUIPMENT_ID = 1008;
 
 
 

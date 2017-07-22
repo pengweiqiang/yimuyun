@@ -23,12 +23,12 @@ public interface NewEarTagContract {
 
         void insertLiveStockSuccess();
 
-        void setEquipmentId(EquipmentInfoVo equipmentInfoVo);
+        void setEquipmentId(EquipmentInfoVo equipmentInfoVo,boolean isParent);
 
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getEquipmentInfoByNumber(String equipmentNumber);
+        void getEquipmentInfoByNumber(String equipmentNumber,boolean isParent);
 
         void getUserInfo(String phoneNumber);
         //获取种类

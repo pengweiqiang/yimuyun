@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.Timer;
 
 import static android.R.attr.tag;
@@ -28,7 +29,6 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
     public String tagId = "";
     @Override
     protected void initEventAndData() {
-
         initReadTag();
     }
 
@@ -116,7 +116,8 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
 //                            updateUI(id_hex);
 //                        }else {
                         count ++;
-                        updateUI(id);
+                        BigInteger srch = new BigInteger(id_hex, 16);
+                        updateUI(srch.toString());
 
 //                        }
 

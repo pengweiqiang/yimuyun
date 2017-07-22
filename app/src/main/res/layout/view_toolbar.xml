@@ -17,17 +17,19 @@
         android:layout_gravity="center"
         android:text="概览菜单"
         android:textColor="#333333"
-        android:textSize="18sp"/>
+        android:textSize="@dimen/action_bar_title_size"/>
 
 
     <TextView
         android:id="@+id/tv_right"
         android:layout_gravity="right|center_vertical"
         android:textColor="@color/colorGreen1"
-        android:textSize="15sp"
+        android:textSize="@dimen/title_right_size"
         android:gravity="center"
         android:text="提交"
         android:visibility="visible"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:layout_width="wrap_content"

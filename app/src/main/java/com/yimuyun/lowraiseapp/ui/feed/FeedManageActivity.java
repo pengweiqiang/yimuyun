@@ -175,7 +175,15 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
                     case 0:
                         // delete
                         EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
-                        equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
+                        String equipmentId = String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId());
+                        String equipmentNumber = equipmentRealIdMap.get(equipmentId);
+                        equipmentRealIdMap.remove(equipmentId);
+
+                        if(equipmentDetailVo.getParentEquipment()!=null) {
+                            equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getParentEquipment().getEquipmentNumber()));
+                        }else{
+                            equipmentIdMap.remove(equipmentNumber);
+                        }
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 
@@ -254,9 +262,11 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
         equipmentDetailVoList.add(0,equipmentDetailVo);
         equipmentDetailAdapter.setDatas(equipmentDetailVoList);
 
-        equipmentIdMap.put(equipmentId,equipmentId);
+
         String equipRealId = equipmentDetailVo.getLivestock().getEquipmentId()+"";
-        equipmentRealIdMap.put(equipRealId,equipRealId);
+        equipmentRealIdMap.put(equipRealId,equipmentId);
+
+        equipmentIdMap.put(equipmentId,equipmentId);
     }
 
     @Override

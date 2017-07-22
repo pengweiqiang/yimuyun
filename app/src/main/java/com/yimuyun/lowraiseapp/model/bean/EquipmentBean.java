@@ -40,7 +40,7 @@ public class EquipmentBean {
     }
 
     public String getEquipmentNumber() {
-        return equipmentNumber;
+        return equipmentNumber==null?"":equipmentNumber;
     }
 
     public void setEquipmentNumber(String equipmentNumber) {

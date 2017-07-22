@@ -9,6 +9,9 @@
 
     <dimen name="home_normal_text_size">15sp</dimen>
 
+    <dimen name="title_right_size">16sp</dimen>
+    <dimen name="action_bar_title_size">18sp</dimen>
+
     <dimen name="spinner_supply_size">18sp</dimen>
 
     <dimen name="navigation_height">56dp</dimen>

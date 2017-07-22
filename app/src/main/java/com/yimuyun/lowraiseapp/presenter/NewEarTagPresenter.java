@@ -32,14 +32,14 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
 
 
     @Override
-    public void getEquipmentInfoByNumber(final String equipmentNumber) {
+    public void getEquipmentInfoByNumber(final String equipmentNumber, final boolean isParent) {
         addSubscribe(mDataManager.getEquipmentInfoByNumber(equipmentNumber)
                 .compose(RxUtil.<PadResultResponse<EquipmentInfoVo>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<EquipmentInfoVo>(mView, true) {
                     @Override
                     public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
                         if(equipmentInfoVo!=null) {
-                            mView.setEquipmentId(equipmentInfoVo);
+                            mView.setEquipmentId(equipmentInfoVo,isParent);
                         }else{
                             ToastUtil.show("耳标"+equipmentNumber+"查询结果为空");
                         }

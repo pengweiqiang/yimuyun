@@ -36,6 +36,7 @@ import com.yimuyun.lowraiseapp.model.bean.Personnel;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.Varieties;
 import com.yimuyun.lowraiseapp.presenter.NewEarTagPresenter;
+import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectWayListAdapter;
 import com.yimuyun.lowraiseapp.widget.GlideImageLoader;
@@ -104,6 +105,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     ImageView mIvHead;
 
 
+
     private String enterpriseId;
 
     String equipmentId;
@@ -118,6 +120,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     String isPregnancy = "2"; //是否已孕 1已孕，2未怀孕
     String picture = "";
     String parentEquipmentId;
+    String parentEquipmentNumber;
 
     TimeSelector birthDayTimeSelector;
     TimeSelector lairageTimeSelector;
@@ -163,7 +166,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             }
         },"2000-01-01","2099-12-30");
 
-        mTvParentEquipmentId.setText(equipmentNumber);
+//        mTvParentEquipmentId.setText(equipmentNumber);
         mTvEquipmentId.setText(equipmentNumber);
 
         mRbCow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -205,7 +208,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         });
 
         stateLoading();
-        mPresenter.getEquipmentInfoByNumber(equipmentNumber);
+        mPresenter.getEquipmentInfoByNumber(equipmentNumber,false);
         mPresenter.getUserInfo(App.getInstance().getUserBeanInstance().getPhoneNumber());
 
 
@@ -237,7 +240,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
     }
 
-    @OnClick({R.id.tv_birthday_time,R.id.tv_lairage_time})
+    @OnClick({R.id.tv_birthday_time,R.id.tv_lairage_time,R.id.ll_parent_equipment})
     public void selectBirthDaytime(View view){
         switch (view.getId()){
             case R.id.tv_birthday_time:
@@ -246,8 +249,12 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             case R.id.tv_lairage_time:
                 lairageTimeSelector.show();
                 break;
+            case R.id.ll_parent_equipment://母体耳标
+                LowGetEarTagActivity.open(NewEarTagManageActivity.this,NewEarTagManageActivity.class.getSimpleName(),"2");
+                break;
         }
     }
+
 
     @OnClick({R.id.tv_varieties,R.id.tv_deal_personnel,R.id.tv_is_pregnancy,R.id.tv_picture,R.id.iv_livestock_head})
     public void selectOptions(View view){
@@ -306,6 +313,11 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             Personnel personnel = (Personnel)data.getSerializableExtra(Constants.SELECTED_USER_ITEM);
             mTvPersonnel.setText(personnel.getName());
             livestockMasterId = personnel.getId()+"";
+        }else if(requestCode == Constants.REQUEST_PARENT_EQUIPMENT_ID){//母体耳标
+            String parentEquipmentNumber = data.getStringExtra(Constants.EQUPIMENT_ID);
+            mTvParentEquipmentId.setText(parentEquipmentNumber);
+            stateLoading();
+            mPresenter.getEquipmentInfoByNumber(parentEquipmentNumber,false);
         }
 
 
@@ -328,7 +340,8 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
 //            showErrorMsg("母体编号为空");
 //            return false;
 //        }
-        parentEquipmentId = equipmentId;
+//        parentEquipmentId = equipmentId;
+        //TODO 重新读取父的EquipmentNumber
         if(StringUtil.isBlank(type)){
             showErrorMsg("请选择类型");
             return false;
@@ -488,8 +501,12 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     }
 
     @Override
-    public void setEquipmentId(EquipmentInfoVo equipmentInfoVo) {
-        equipmentId = equipmentInfoVo.getEquipment().getId()+"";
+    public void setEquipmentId(EquipmentInfoVo equipmentInfoVo,boolean isParent) {
+        if(isParent){
+            parentEquipmentId = equipmentInfoVo.getEquipment().getId()+"";
+        }else {
+            equipmentId = equipmentInfoVo.getEquipment().getId() + "";
+        }
     }
 
     private void insertLiveStock(String url){

@@ -1,17 +1,17 @@
 package com.yimuyun.lowraiseapp.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Toast;
 
-//import com.qiniu.android.utils.StringUtils;
+import com.hdhe.lowfrequency.SerialPort;
 import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
-import com.hdhe.lowfrequency.SerialPort;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 
 import org.jsoup.helper.StringUtil;
@@ -20,9 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.Timer;
 
-import static android.R.attr.tag;
+//import com.qiniu.android.utils.StringUtils;
+import static android.R.attr.type;
+import static com.tencent.bugly.crashreport.crash.c.h;
 
 /**
  * @author will on 2017/6/11 13:43
@@ -34,8 +37,10 @@ import static android.R.attr.tag;
 public class LowGetEarTagActivity extends SimpleActivity{
 
     public static final String FROM = "from";
+    public static final String TYPE = "type";//2 是获取母体耳标
 
     private String className = "";
+    private String type = "";
     @Override
     protected int getLayout() {
         return R.layout.activity_loading_get_ear_tag;
@@ -44,6 +49,7 @@ public class LowGetEarTagActivity extends SimpleActivity{
     @Override
     protected void initEventAndData() {
         className = getIntent().getStringExtra(FROM);
+        type = getIntent().getStringExtra(TYPE);
 
         //模拟读卡
 //        new Handler().postDelayed(new Runnable() {
@@ -132,8 +138,9 @@ public class LowGetEarTagActivity extends SimpleActivity{
 //                            updateUI(id_hex);
 //                        }else {
                             count ++;
-                            updateUI(id);
-
+//                            updateUI(id);
+                        BigInteger srch = new BigInteger(id_hex, 16);
+                            updateUI(srch.toString());
 //                        }
 
                     }
@@ -352,9 +359,13 @@ public class LowGetEarTagActivity extends SimpleActivity{
 
     private void goNextActivity(){
         Intent intent = new Intent();
-        intent.putExtra(Constants.EQUPIMENT_ID,getEquipmentId());
-        intent.setClassName(mContext,className);
-        startActivity(intent);
+        intent.putExtra(Constants.EQUPIMENT_ID, getEquipmentId());
+        if("2".equals(type)){
+            setResult(RESULT_OK,intent);
+        }else {
+            intent.setClassName(mContext, className);
+            startActivity(intent);
+        }
         finish();
     }
 
@@ -362,6 +373,13 @@ public class LowGetEarTagActivity extends SimpleActivity{
         Intent intent = new Intent(context,LowGetEarTagActivity.class);
         intent.putExtra(FROM,className);
         context.startActivity(intent);
+    }
+
+    public static void open(Activity activity,String className,String type){
+        Intent intent = new Intent(activity,LowGetEarTagActivity.class);
+        intent.putExtra(FROM,className);
+        intent.putExtra(TYPE,type);
+        activity.startActivityForResult(intent,Constants.REQUEST_PARENT_EQUIPMENT_ID);
     }
 
     @Override
