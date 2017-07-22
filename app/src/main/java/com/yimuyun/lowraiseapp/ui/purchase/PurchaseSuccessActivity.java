@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.yimuyun.lowraiseapp.R;
+import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
 import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
 
@@ -22,6 +23,7 @@ import java.lang.ref.WeakReference;
 public class PurchaseSuccessActivity extends SimpleActivity{
 
     MyHandler myHandler;
+    private String toClassName = "";
     @Override
     protected int getLayout() {
         return R.layout.activity_purchase_success;
@@ -29,11 +31,12 @@ public class PurchaseSuccessActivity extends SimpleActivity{
 
     @Override
     protected void initEventAndData() {
+        toClassName = getIntent().getStringExtra(Constants.ACTIVITY_NAME);
         myHandler = new MyHandler(mContext);
         myHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                LowGetEarTagActivity.open(mContext,PurchaseActivity.class.getName());
+                LowGetEarTagActivity.open(mContext,toClassName);
                 finish();
             }
         },3000);
@@ -51,8 +54,9 @@ public class PurchaseSuccessActivity extends SimpleActivity{
     }
 
 
-    public static void open(Context context){
+    public static void open(Context context,String className){
         Intent intent = new Intent(context,PurchaseSuccessActivity.class);
+        intent.putExtra(Constants.ACTIVITY_NAME,className);
         context.startActivity(intent);
     }
 
