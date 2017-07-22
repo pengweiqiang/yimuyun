@@ -1,5 +1,6 @@
 package com.yimuyun.lowraiseapp.ui.fertilization;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,12 +15,16 @@ import com.yimuyun.lowraiseapp.base.contract.fertilization.FertilizationContract
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.LivestockBean;
 import com.yimuyun.lowraiseapp.presenter.FertilizationPresenter;
+import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
+import com.yimuyun.lowraiseapp.util.DateUtil;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
 import org.jsoup.helper.StringUtil;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,6 +71,12 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
         return R.layout.activity_fertilization_manage;
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        initEventAndData();
+    }
 
     @Override
     protected void initEventAndData() {
@@ -77,7 +88,9 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showConfirmDialog();
+                if(checkInput()) {
+                    showConfirmDialog();
+                }
             }
         });
         equipmentId = getIntent().getStringExtra(Constants.EQUPIMENT_ID);
@@ -149,10 +162,24 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
             }else if(String.valueOf(Constants.SEX_MALE).equals(sex)){
                 stringBuffer.append("公 ");
                 setToolBar(mToolBar,"受孕管理");
+                mRbPregancy.setEnabled(false);
+                mRbPregancy.setClickable(false);
                 findViewById(R.id.ll_pregnancy).setVisibility(View.GONE);
             }
 //            stringBuffer.append(livestockBean.getLairageWeight());
             mTvLiveStockWeight.setText(stringBuffer.toString());
+
+            long initTime = livestockBean.getInitialTime();
+
+            if(initTime!=0) {
+                initialTime = DateUtil.format(new Date(initTime),"yyyyMMdd");
+                mTvInitialTime.setText(DateUtil.formartTime2String(initTime));
+            }
+            long laiTime = livestockBean.getLairageTime();
+            if(laiTime!=0) {
+                lairageTime = DateUtil.format(new Date(laiTime),"yyyyMMdd");
+                mTvLairageTime.setText(DateUtil.formartTime2String(laiTime));
+            }
 
             Glide.with(mContext).load(livestockBean.getPicture()).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
                     error(R.mipmap.ic_default_head)//加载失败时显示的图片
@@ -164,7 +191,7 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
 
     @Override
     public void updatePreganacySuccess() {
-
+        LowGetEarTagActivity.open(mContext,FertilizationManageActivity.class.getName());
     }
 
     @OnClick({R.id.tv_initial_time,R.id.tv_lairage_time})
@@ -198,6 +225,19 @@ public class FertilizationManageActivity extends RootActivity<FertilizationPrese
             }
         });
 
+    }
+
+    private boolean checkInput(){
+        if(StringUtil.isBlank(initialTime) || StringUtil.isBlank(lairageTime)){
+            return false;
+        }
+        if(!StringUtil.isBlank(lairageTime) && !StringUtil.isBlank(initialTime)){
+            if(DateUtil.compareAfterDate(initialTime,lairageTime,"yyyyMMdd")) {
+                showErrorMsg("出生时间和入栏时间选择错误");
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -129,14 +129,12 @@ public class FeedManageActivity extends LowBaseRootActivity<FeedPresenter> imple
                 feedTime = paramTime;
                 mTvFeedTime.setText(showTime);
             }
-        }, DateUtil.format(new Date(),"yyyy-MM-dd"), "2099-12-31");
+        }, DateUtil.formatBeforeDate(new Date(),"yyyy-MM-dd",-30), "2099-12-31");
 
         equipmentDetailAdapter = new EquipmentDetailAdapter(mContext,equipmentDetailVoList);
         mListView.setAdapter(equipmentDetailAdapter);
         mListView.addFooterView(new View(this));
-
         initMenuListView();
-
 
     }
 
