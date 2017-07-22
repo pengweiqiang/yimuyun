@@ -136,7 +136,7 @@ public class AddDiagnosisRecordActivity extends RootActivity<AddDiagnosisPresent
 
     @OnClick(R.id.tv_diagnosis_personnel)
     public void selectPersonnal(View view){
-        UserListActivity.open(AddDiagnosisRecordActivity.this);
+        UserListActivity.open(AddDiagnosisRecordActivity.this,"诊疗人员");
     }
 
     @OnClick(R.id.tv_diagnosis_way)

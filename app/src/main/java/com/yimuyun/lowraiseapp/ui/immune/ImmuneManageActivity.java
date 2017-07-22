@@ -208,7 +208,7 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
 
     @OnClick(R.id.tv_immnue_personnel)
     public void selectPersonnal(View view){
-        UserListActivity.open(ImmuneManageActivity.this);
+        UserListActivity.open(ImmuneManageActivity.this,"免疫人员");
     }
 
     private boolean checkInput(){

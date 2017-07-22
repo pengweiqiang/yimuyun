@@ -145,7 +145,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="诊疗人员"
+                android:text="消毒人员"
                 android:textColor="@color/color_normal_text"
                 android:textSize="@dimen/home_normal_text_size" />
 
@@ -157,7 +157,7 @@
                 android:drawablePadding="7dp"
                 android:drawableRight="@mipmap/btn_right_back"
                 android:gravity="right|center_vertical"
-                android:hint="请选择诊疗人员"
+                android:hint="请选择消毒人员"
                 android:textColor="@color/color_normal_text"
                 android:textColorHint="@color/color_grey_text"
                 android:textSize="@dimen/home_normal_text_size" />

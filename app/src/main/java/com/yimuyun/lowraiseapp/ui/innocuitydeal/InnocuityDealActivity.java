@@ -189,7 +189,7 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
     }
     @OnClick(R.id.tv_deal_personnel)
     public void selectUser(View view){
-        UserListActivity.open(InnocuityDealActivity.this);
+        UserListActivity.open(InnocuityDealActivity.this,"处理人员");
     }
 
     @Override

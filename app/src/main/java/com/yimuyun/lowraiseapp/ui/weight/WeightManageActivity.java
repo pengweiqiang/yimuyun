@@ -180,6 +180,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
 
     @Override
     public void insertWeightSuccess() {
+        weight = "";
         WeightBean weightBean = weightBeanList.get(0);
         weightBean.setId(DateUtil.getCurrentDay());
         weightListAdapter.notifyDataSetChanged();

@@ -268,7 +268,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 mPresenter.getVarietiesList(enterpriseId);
                 break;
             case R.id.tv_deal_personnel:
-                UserListActivity.open(NewEarTagManageActivity.this);
+                UserListActivity.open(NewEarTagManageActivity.this,"选择畜主");
                 break;
             case R.id.tv_is_pregnancy:
                 showPregancyView();

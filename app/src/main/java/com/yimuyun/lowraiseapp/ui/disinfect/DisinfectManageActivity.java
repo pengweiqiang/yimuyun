@@ -95,7 +95,7 @@ public class DisinfectManageActivity extends RootActivity<DisinfectPresenter> im
 
     @OnClick(R.id.tv_diagnosis_personnel)
     public void selectPersonnal(View view){
-        UserListActivity.open(DisinfectManageActivity.this);
+        UserListActivity.open(DisinfectManageActivity.this,"消毒人员");
     }
 
     private boolean checkInput(){

@@ -90,6 +90,7 @@ public class Constants {
     public static final String SELECTED_DIAGNOSIS_TREATMENT_PLAN = "selectedDiagnosisTreatmentPlan";
     public static final String SELECTED_DRUG = "selectedDrug";
     public static final String SELECTED_DISINFECT_NAME = "selectedDisinfectName";
+    public static final String ACTION_BAR_TITLE = "actionBarTitle";
 
 
 

@@ -44,6 +44,8 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
     EditText mEtSearchFriends;
 
     private String enterpriseId;
+    private String title = "";
+
     @Override
     protected int getLayout() {
         return R.layout.activity_user_list;
@@ -52,7 +54,8 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
 
     @Override
     protected void initEventAndData() {
-        setToolBar(mToolBar,"选择畜主");
+        title = getIntent().getStringExtra(Constants.ACTION_BAR_TITLE);
+        setToolBar(mToolBar,title);
 
         stateLoading();
         UserBean userBean = App.getInstance().getUserBeanInstance();
@@ -86,8 +89,9 @@ public class UserListActivity extends RootActivity<UserListPresenter> implements
         mListView.addHeaderView(mViewFriendHeader);
     }
 
-    public static void open(Activity activity){
+    public static void open(Activity activity,String title){
         Intent intent = new Intent(activity,UserListActivity.class);
+        intent.putExtra(Constants.ACTION_BAR_TITLE,title);
         activity.startActivityForResult(intent, Constants.REQUEST_USER_ITEM);
     }
 

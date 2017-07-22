@@ -95,7 +95,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发布时间"
+            android:text="发病时间"
             android:textColor="@color/color_normal_text"
             android:textSize="@dimen/home_normal_text_size" />
 
@@ -109,7 +109,7 @@
             android:paddingBottom="10dp"
             android:drawableRight="@mipmap/btn_right_back"
             android:gravity="right|center_vertical"
-            android:hint="请选择发布时间"
+            android:hint="请选择发病时间"
             android:textColor="@color/color_normal_text"
             android:textColorHint="@color/color_grey_text"
             android:textSize="@dimen/home_normal_text_size" />
