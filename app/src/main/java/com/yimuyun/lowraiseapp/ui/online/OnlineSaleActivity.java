@@ -18,6 +18,7 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.OnlineSalePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseSuccessActivity;
+import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,7 +126,8 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
                     case 0:
                         // delete
                         EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
-                        equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
+                        equipmentRealIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
+                        equipmentIdMap.remove(equipmentDetailVo.getLivestock().getEquipmentNumberApp());
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 
@@ -159,13 +161,7 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
     @OnClick(R.id.btn_add)
     public void btnAddPurchase(View view){
         if(checkInput()){
-            stateLoading();
-            Set<String> keys = equipmentRealIdMap.keySet();
-            StringBuffer equipmentIds = new StringBuffer();
-            for (String key : keys) {
-                equipmentIds.append(key+",");
-            }
-            mPresenter.insertOnLineSale(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1));
+            showCommitDialog();
         }
     }
 
@@ -182,6 +178,24 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
         return isPass;
     }
 
+    private void showCommitDialog(){
+        final MsgAlertDialog msgAlertDialog = new MsgAlertDialog(mContext);
+        msgAlertDialog.show();
+        msgAlertDialog.setMsgText("确定发布？");
+        msgAlertDialog.setConfirmOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msgAlertDialog.dismiss();
+                stateLoading();
+                Set<String> keys = equipmentRealIdMap.keySet();
+                StringBuffer equipmentIds = new StringBuffer();
+                for (String key : keys) {
+                    equipmentIds.append(key+",");
+                }
+                mPresenter.insertOnLineSale(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1));
+            }
+        });
+    }
 
 
 

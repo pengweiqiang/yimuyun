@@ -143,8 +143,27 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
             mListView.setVisibility(View.VISIBLE);
         }
         this.livestockBean = weightVo.getLivestock();
+        if(livestockBean!=null){
+            if(!StringUtil.isBlank(livestockBean.getLairageWeight())) {
+                WeightBean weightBeanLairage = new WeightBean();
+                weightBeanLairage.setWeight(livestockBean.getLairageWeight());
+                weightBeanLairage.setWeighTime(livestockBean.getLairageTime());
+                weightBeanLairage.setWeighPhase("入栏重量");
+                weightBeanLairage.setId(-321);
+                weightBeanList.add((weightBeanList.size())<0?0:(weightBeanList.size()), weightBeanLairage);
+            }
+            if(!StringUtil.isBlank(livestockBean.getInitialWeight())) {
+                WeightBean weightBeanInit = new WeightBean();
+                weightBeanInit.setWeight(livestockBean.getInitialWeight());
+                weightBeanInit.setId(-123);
+                weightBeanInit.setWeighTime(livestockBean.getInitialTime());
+                weightBeanInit.setWeighPhase("出生重量");
+                weightBeanList.add((weightBeanList.size())<0?0:(weightBeanList.size()), weightBeanInit);
+            }
+        }
         weightListAdapter.setDatas(weightBeanList);
         showLiveStockInfo();
+
     }
 
     private void showLiveStockInfo(){
