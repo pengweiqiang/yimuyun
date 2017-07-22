@@ -181,7 +181,7 @@ public class PurchaseActivity extends RootActivity<PurchasePresenter> implements
         equipmentDetailVoList.clear();
         equipmentDetailAdapter.notifyDataSetChanged();
         equipmentIdMap.clear();
-        PurchaseSuccessActivity.open(mContext);
+        PurchaseSuccessActivity.open(mContext,PurchaseActivity.class.getName());
     }
 
 
