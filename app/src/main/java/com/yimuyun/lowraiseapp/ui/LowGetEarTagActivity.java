@@ -12,6 +12,9 @@ import com.yimuyun.lowraiseapp.R;
 import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.base.SimpleActivity;
+import com.yimuyun.lowraiseapp.ui.fertilization.FertilizationManageActivity;
+import com.yimuyun.lowraiseapp.ui.offsale.OffSaleActivity;
+import com.yimuyun.lowraiseapp.ui.online.OnlineSaleActivity;
 import com.yimuyun.lowraiseapp.ui.purchase.PurchaseActivity;
 
 import org.jsoup.helper.StringUtil;
@@ -386,5 +389,6 @@ public class LowGetEarTagActivity extends SimpleActivity{
     public void onBackPressedSupport() {
         super.onBackPressedSupport();
         App.getInstance().removeActivity(PurchaseActivity.class.getSimpleName());
+        App.getInstance().removeActivity(OnlineSaleActivity.class.getSimpleName());
     }
 }
