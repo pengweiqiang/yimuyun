@@ -17,6 +17,7 @@ import com.yimuyun.lowraiseapp.base.contract.onlinesale.OnlineSaleContract;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.OnlineSalePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
+import com.yimuyun.lowraiseapp.ui.purchase.PurchaseSuccessActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -152,7 +153,7 @@ public class OnlineSaleActivity extends RootActivity<OnlineSalePresenter> implem
         equipmentDetailVoList.clear();
         equipmentDetailAdapter.notifyDataSetChanged();
         equipmentIdMap.clear();
-
+        PurchaseSuccessActivity.open(mContext,OnlineSaleActivity.class.getName());
     }
 
     @OnClick(R.id.btn_add)

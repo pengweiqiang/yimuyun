@@ -17,6 +17,9 @@ import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.presenter.OffSalePresenter;
 import com.yimuyun.lowraiseapp.ui.feed.EquipmentDetailAdapter;
 import com.yimuyun.lowraiseapp.util.DateUtil;
+import com.yimuyun.lowraiseapp.util.NumberFormatCheckUtils;
+import com.yimuyun.lowraiseapp.util.PhoneFormatCheckUtils;
+import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 
 import org.jsoup.helper.StringUtil;
 
@@ -84,13 +87,7 @@ public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> imple
             @Override
             public void onClick(View v) {
                 if(checkInput()){
-                    stateLoading();
-                    Set<String> keys = equipmentRealIdMap.keySet();
-                    StringBuffer equipmentIds = new StringBuffer();
-                    for (String key : keys) {
-                        equipmentIds.append(key+",");
-                    }
-                    mPresenter.insertOffSale(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1),salesTime,customerName,contactWay,unitPrice,weight);
+                    showCommitDialog();
                 }
             }
         });
@@ -138,7 +135,9 @@ public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> imple
                     case 0:
                         // delete
                         EquipmentDetailVo equipmentDetailVo = equipmentDetailVoList.remove(position);
-                        equipmentIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
+                        String equipmentNumber = equipmentDetailVo.getLivestock().getEquipmentNumberApp();
+                        equipmentIdMap.remove(equipmentNumber);
+                        equipmentRealIdMap.remove(String.valueOf(equipmentDetailVo.getLivestock().getEquipmentId()));
                         equipmentDetailAdapter.notifyDataSetChanged();
                         break;
 
@@ -192,9 +191,19 @@ public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> imple
             mEtPhone.requestFocus();
             return false;
         }
+        if(!PhoneFormatCheckUtils.isPhoneLegal(contactWay)){
+            showErrorMsgToast("请输入正确的手机号格式");
+            mEtPhone.requestFocus();
+            return false;
+        }
         unitPrice = mEtUnitPrice.getText().toString().trim();
         if(StringUtil.isBlank(unitPrice)){
             mEtUnitPrice.requestFocus();
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(unitPrice)){
+            mEtUnitPrice.requestFocus();
+            showErrorMsgToast("请输入正确的价格");
             return false;
         }
         salesTime = DateUtil.format(new Date(),"yyyyMMdd");
@@ -217,5 +226,24 @@ public class OffSaleActivity extends LowBaseRootActivity<OffSalePresenter> imple
         equipmentDetailVoList.clear();
         equipmentDetailAdapter.notifyDataSetChanged();
         equipmentIdMap.clear();
+    }
+
+    private void showCommitDialog(){
+        final MsgAlertDialog msgAlertDialog = new MsgAlertDialog(mContext);
+        msgAlertDialog.show();
+        msgAlertDialog.setMsgText("提交线下销售信息后，该耳标即停止追溯，确认提交？");
+        msgAlertDialog.setConfirmOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msgAlertDialog.dismiss();
+                stateLoading();
+                Set<String> keys = equipmentRealIdMap.keySet();
+                StringBuffer equipmentIds = new StringBuffer();
+                for (String key : keys) {
+                    equipmentIds.append(key+",");
+                }
+                mPresenter.insertOffSale(equipmentIds.toString().substring(0,equipmentIds.toString().length()-1),salesTime,customerName,contactWay,unitPrice,weight);
+            }
+        });
     }
 }
