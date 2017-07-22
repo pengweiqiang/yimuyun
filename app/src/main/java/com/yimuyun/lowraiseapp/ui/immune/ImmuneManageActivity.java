@@ -115,7 +115,7 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
                 immuneTime = paramTime;
                 mTvImmnueTime.setText(showTime);
             }
-        }, DateUtil.format(new Date(),"yyyy-MM-dd"), "2099-12-31");
+        }, DateUtil.formatBeforeDate(new Date(),"yyyy-MM-dd",-30), "2099-12-31");
 
         mRbWayInject.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

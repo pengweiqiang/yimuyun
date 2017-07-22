@@ -39,8 +39,11 @@ import com.yimuyun.lowraiseapp.presenter.NewEarTagPresenter;
 import com.yimuyun.lowraiseapp.ui.LowGetEarTagActivity;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
 import com.yimuyun.lowraiseapp.ui.disinfect.DisinfectWayListAdapter;
+import com.yimuyun.lowraiseapp.util.DateUtil;
+import com.yimuyun.lowraiseapp.util.NumberFormatCheckUtils;
 import com.yimuyun.lowraiseapp.widget.GlideImageLoader;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
+import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
 import com.yimuyun.lowraiseapp.widget.MyPopupWindow;
 import com.yimuyun.lowraiseapp.widget.TimeSelector;
 
@@ -96,6 +99,8 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     RadioButton mRbFemale;
     @BindView(R.id.rb_male)
     RadioButton mRbMale;
+    @BindView(R.id.rb_xieyang)
+    RadioButton mRbXieyang;
 
     @BindView(R.id.tv_is_pregnancy)
     TextView mTvIsPregnancy;
@@ -174,6 +179,8 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     type = "0";
+                    mRbMale.setChecked(true);
+                    mRbXieyang.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -183,6 +190,8 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     type = "1";
+                    mRbMale.setChecked(true);
+                    mRbXieyang.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -192,6 +201,16 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 if(isChecked){
                     sex = "1";
                     mTvIsPregnancy.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        mRbXieyang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    sex = "2";
+                    isPregnancy = "2";
+                    mTvIsPregnancy.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -217,13 +236,20 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
 
         //构造一个带指定Zone对象的配置类
         Configuration config = new Configuration.Builder()
-                .chunkSize(256 * 1024)  //分片上传时，每片的大小。 默认256K
-                .putThreshhold(512 * 1024)  // 启用分片上传阀值。默认512K
+//                .chunkSize(256 * 1024)  //分片上传时，每片的大小。 默认256K
+//                .putThreshhold(512 * 1024)  // 启用分片上传阀值。默认512K
                 .connectTimeout(10) // 链接超时。默认10秒
                 .responseTimeout(60) // 服务器响应超时。默认60秒
                 .zone(com.qiniu.android.common.Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
                 .build();
         uploadManager = new UploadManager(config);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        initEventAndData();
     }
 
     private void initImagePicker(){
@@ -354,14 +380,54 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             showErrorMsg("请选择性别");
             return false;
         }
+        initialWeight = mEtInitWeight.getText().toString().trim();
+        if(StringUtil.isBlank(initialWeight)){
+            mEtInitWeight.requestFocus();
+            showErrorMsg("请输入出生重量");
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(initialWeight)){
+            mEtInitWeight.requestFocus();
+            showErrorMsg("请填写正确的出生重量");
+            return false;
+        }
+        lairageWeight = mEtLairageWeight.getText().toString().trim();
+        if(StringUtil.isBlank(lairageWeight)){
+            mEtLairageWeight.requestFocus();
+            showErrorMsg("请输入入栏重量");
+            return false;
+        }
+        if(!NumberFormatCheckUtils.checkNumber(lairageWeight)){
+            mEtLairageWeight.requestFocus();
+            showErrorMsg("请填写正确的入栏重量");
+            return false;
+        }
+        if(Double.valueOf(initialWeight)>Double.valueOf(lairageWeight)){
+            showErrorMsg("出生重量不能大于入栏重量");
+            return false;
+        }
+        if(StringUtil.isBlank(initialTime) || StringUtil.isBlank(lairageTime)){
+            showErrorMsg("请选择时间");
+            return false;
+        }
+        if(!StringUtil.isBlank(initialTime) && !StringUtil.isBlank(lairageTime)){
+            if(DateUtil.compareAfterDate(initialTime,lairageTime,"yyyyMMdd")){
+                showErrorMsgToast("出生时间和入栏时间选择错误");
+                return false;
+            }
+        }
         birthplace = mEtBirthdayAddress.getText().toString();
         if(StringUtil.isBlank(birthplace)){
             showErrorMsg("请输入出生地");
             mEtBirthdayAddress.requestFocus();
             return false;
         }
-        initialWeight = mEtInitWeight.getText().toString().trim();
-        lairageWeight = mEtLairageWeight.getText().toString().trim();
+        if(StringUtil.isBlank(picture)){
+            showErrorMsg("请选择图片");
+            return false;
+        }
+
+
 
 
         return isPassed ;
@@ -497,7 +563,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
 
     @Override
     public void insertLiveStockSuccess() {
-
+        showCommitSuccessDialog();
     }
 
     @Override
@@ -512,5 +578,18 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
     private void insertLiveStock(String url){
         stateLoading();
         mPresenter.insertLiveStock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, url, parentEquipmentId);
+    }
+
+    private void showCommitSuccessDialog(){
+        final MsgAlertDialog msgAlertDialog = new MsgAlertDialog(mContext);
+        msgAlertDialog.show();
+        msgAlertDialog.setMsgText("是否继续新建耳标？");
+        msgAlertDialog.setConfirmOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msgAlertDialog.dismiss();
+                LowGetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
+            }
+        });
     }
 }
