@@ -167,7 +167,7 @@ public class WeightManageActivity extends RootActivity<WeightPresenter> implemen
                 stringBuffer.append("公 ");
                 mTvFertilization.setVisibility(View.GONE);
             }
-            stringBuffer.append(livestockBean.getLairageWeight()+"公斤");
+//            stringBuffer.append(livestockBean.getLairageWeight()+"公斤");
             mTvLiveStockWeight.setText(stringBuffer.toString());
 
             Glide.with(mContext).load(livestockBean.getPicture()).placeholder(R.mipmap.ic_default_head).//加载中显示的图片
