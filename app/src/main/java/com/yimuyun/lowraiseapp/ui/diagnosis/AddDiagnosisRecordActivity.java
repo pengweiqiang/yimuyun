@@ -90,7 +90,7 @@ public class AddDiagnosisRecordActivity extends RootActivity<AddDiagnosisPresent
                 time = paramTime;
                 mTvFeedTime.setText(showTime);
             }
-        }, DateUtil.format(new Date(),"yyyy-MM-dd"), "2099-12-31");
+        }, DateUtil.formatBeforeDate(new Date(),"yyyy-MM-dd",-30), "2099-12-31");
 
         diagnosisTreatmentVo = (DiagnosisTreatmentVo)getIntent().getSerializableExtra(Constants.ADD_DIAGNOSI_RECORD);
 

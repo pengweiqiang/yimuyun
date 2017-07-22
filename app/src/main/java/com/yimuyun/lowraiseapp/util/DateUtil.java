@@ -15,7 +15,8 @@ import static java.lang.System.currentTimeMillis;
  */
 
 public class DateUtil {
-
+    public static final String DATE_FORMATE_YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String DATE_FORMATE_YYYY_年_MM_月_DD日 = "yyyy年MM月dd日";
     /**
      * 获取当前日期
      * @return
@@ -247,4 +248,32 @@ public class DateUtil {
         }
         return (returnValue);
     }
+
+    /**
+     * 传入当前时间往之前移动day天得到指定的格式
+     * @param date
+     * @param pattern
+     * @param day
+     * @return
+     */
+    public static String formatBeforeDate(Date date,String pattern,int day){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH,day);
+        Date beforeDate = calendar.getTime();
+        return format(beforeDate,pattern);
+    }
+
+    public static boolean compareAfterDate(String dateStr1,String dateStr2,String pattern){
+        Date date1,date2;
+        try {
+            date1 = parse(dateStr1, pattern);
+            date2 = parse(dateStr2, pattern);
+        }catch (Exception e){
+            return false;
+        }
+        return date1.after(date2);
+    }
+
+
 }

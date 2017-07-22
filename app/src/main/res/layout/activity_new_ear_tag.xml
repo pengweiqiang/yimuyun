@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text=""
                     android:textColor="@color/colorRed"
                     android:textSize="16sp" />
 
@@ -319,7 +319,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
                     <RadioButton
                         android:id="@+id/rb_male"
@@ -330,6 +330,18 @@
                         android:checked="true"
                         android:paddingLeft="5dp"
                         android:text="公"
+                        android:textColor="@color/color_normal_text"
+                        android:textSize="@dimen/home_normal_text_size" />
+                    <RadioButton
+                        android:id="@+id/rb_xieyang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/checked_selector"
+                        android:checked="true"
+                        android:paddingLeft="5dp"
+                        android:text="羯羊"
+                        android:visibility="invisible"
                         android:textColor="@color/color_normal_text"
                         android:textSize="@dimen/home_normal_text_size" />
 
