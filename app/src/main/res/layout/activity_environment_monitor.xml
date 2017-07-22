@@ -106,7 +106,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:digits="01234567890."
+                android:digits="01234567890.-"
                 android:inputType="number"
                 android:gravity="right|center_vertical"
                 android:hint="请输入"
@@ -209,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="SO2浓度"
+                android:text="SO₂浓度"
                 android:textColor="@color/color_normal_text"
                 android:textSize="@dimen/home_normal_text_size" />
 
@@ -267,7 +267,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="CO2浓度"
+                android:text="CO₂浓度"
                 android:textColor="@color/color_normal_text"
                 android:textSize="@dimen/home_normal_text_size" />
 
@@ -325,7 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="H2S浓度"
+                android:text="H₂S浓度"
                 android:textColor="@color/color_normal_text"
                 android:textSize="@dimen/home_normal_text_size" />
 
