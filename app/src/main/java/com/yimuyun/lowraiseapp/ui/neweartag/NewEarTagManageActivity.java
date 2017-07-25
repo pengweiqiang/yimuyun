@@ -180,7 +180,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 if(isChecked){
                     type = "0";
                     mRbMale.setChecked(true);
-                    mRbXieyang.setVisibility(View.INVISIBLE);
+                    mRbXieyang.setText("犍牛");
                 }
             }
         });
@@ -191,7 +191,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 if(isChecked){
                     type = "1";
                     mRbMale.setChecked(true);
-                    mRbXieyang.setVisibility(View.VISIBLE);
+                    mRbXieyang.setText("羯羊");
                 }
             }
         });

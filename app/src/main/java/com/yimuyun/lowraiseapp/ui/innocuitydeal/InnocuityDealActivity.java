@@ -17,6 +17,7 @@ import com.yimuyun.lowraiseapp.model.bean.LivestockBean;
 import com.yimuyun.lowraiseapp.model.bean.Personnel;
 import com.yimuyun.lowraiseapp.presenter.InnocuityDealPresenter;
 import com.yimuyun.lowraiseapp.ui.UserListActivity;
+import com.yimuyun.lowraiseapp.util.DateUtil;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
 import com.yimuyun.lowraiseapp.widget.GlideRoundTransform;
 import com.yimuyun.lowraiseapp.widget.MsgAlertDialog;
@@ -226,12 +227,22 @@ public class InnocuityDealActivity extends RootActivity<InnocuityDealPresenter> 
             return false;
         }
         if(StringUtil.isBlank(disposalTime)){
-            showErrorMsg("请选择发布时间");
+            showErrorMsg("请选择发病时间");
             return false;
         }
         if(StringUtil.isBlank(deathTime)){
             showErrorMsg("请选择死亡时间");
             return false;
+        }
+        if(StringUtil.isBlank(disposalTime) || StringUtil.isBlank(deathTime)){
+            showErrorMsg("请选择时间");
+            return false;
+        }
+        if(!StringUtil.isBlank(disposalTime) && !StringUtil.isBlank(deathTime)){
+            if(DateUtil.compareAfterDate(disposalTime,deathTime,"yyyyMMdd")){
+                showErrorMsgToast("发病时间和死亡时间选择错误");
+                return false;
+            }
         }
         deathReason = mEtDeadReason.getText().toString().trim();
         if(StringUtil.isBlank(deathReason)){

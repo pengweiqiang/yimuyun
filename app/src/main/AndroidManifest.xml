@@ -76,7 +76,7 @@
             android:name=".ui.neweartag.NewEarTagManageActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity
             android:name=".ui.immune.ImmuneManageActivity"
             android:screenOrientation="portrait"
@@ -90,7 +90,7 @@
         <activity
             android:name=".ui.environmentmonitor.EnvironmentMonitorActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
 
         <activity
             android:name=".ui.innocuitydeal.InnocuityDealActivity"
