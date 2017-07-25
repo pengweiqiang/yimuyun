@@ -199,7 +199,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    sex = "1";
+                    sex = "0";
                     mTvIsPregnancy.setVisibility(View.VISIBLE);
                 }
             }
@@ -219,7 +219,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    sex = "0";
+                    sex = "1";
                     isPregnancy = "2";
                     mTvIsPregnancy.setVisibility(View.INVISIBLE);
                 }

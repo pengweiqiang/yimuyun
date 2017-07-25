@@ -1,10 +1,12 @@
 package com.yimuyun.lowraiseapp.presenter;
 
 
+import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.neweartag.NewEarTagContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
+import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.bean.UserInfo;
 import com.yimuyun.lowraiseapp.model.bean.VarietiesVo;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
@@ -38,6 +40,16 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
                 .subscribeWith(new CommonSubscriber<EquipmentInfoVo>(mView, true) {
                     @Override
                     public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
+                        //耳标授权企业 start
+                        if(equipmentInfoVo.getApplicationEquipment()!=null){
+                            int applicationEnterPriseId = equipmentInfoVo.getApplicationEquipment().getEnterpriseId();
+                            UserBean userBean = App.getInstance().getUserBeanInstance();
+                            if(userBean.getUserInfo()!=null && applicationEnterPriseId!=userBean.getUserInfo().getEnterprise().getId()){
+                                mView.showErrorMsg("该耳标没有授权给该企业"+applicationEnterPriseId);
+                                return;
+                            }
+                        }
+                        //耳标授权企业 end
                         if(equipmentInfoVo!=null) {
                             mView.setEquipmentId(equipmentInfoVo,isParent);
                         }else{

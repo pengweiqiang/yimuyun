@@ -1,12 +1,14 @@
 package com.yimuyun.lowraiseapp.presenter;
 
 
+import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.base.RxPresenter;
 import com.yimuyun.lowraiseapp.base.contract.fertilization.FertilizationContract;
 import com.yimuyun.lowraiseapp.model.DataManager;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentDetailVo;
 import com.yimuyun.lowraiseapp.model.bean.EquipmentInfoVo;
 import com.yimuyun.lowraiseapp.model.bean.FertilizationBean;
+import com.yimuyun.lowraiseapp.model.bean.UserBean;
 import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
@@ -39,6 +41,17 @@ public class FertilizationPresenter extends RxPresenter<FertilizationContract.Vi
                     @Override
                     public void dataHandle(EquipmentInfoVo equipmentInfoVo) {
                         if(equipmentInfoVo!=null) {
+
+                            //耳标授权企业 start
+                            if(equipmentInfoVo.getApplicationEquipment()!=null){
+                                int applicationEnterPriseId = equipmentInfoVo.getApplicationEquipment().getEnterpriseId();
+                                UserBean userBean = App.getInstance().getUserBeanInstance();
+                                if(userBean.getUserInfo()!=null && applicationEnterPriseId!=userBean.getUserInfo().getEnterprise().getId()){
+                                    mView.showErrorMsg("该耳标没有授权给该企业"+applicationEnterPriseId);
+                                    return;
+                                }
+                            }
+                            //耳标授权企业 end
 
                             int equipId = equipmentInfoVo.getEquipment().getId();
                             addSubscribe(mDataManager.getEquimentInfoById(equipId+"")
