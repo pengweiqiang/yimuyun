@@ -3,6 +3,8 @@ package com.yimuyun.lowraiseapp.model.prefs;
 
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 
+import java.util.Map;
+
 
 public interface PreferencesHelper {
 
@@ -15,6 +17,11 @@ public interface PreferencesHelper {
     void setUserInstance(UserBean userBean);
 
     UserBean getUserInstance();
+
+    void saveLastNewEarTagData(Map<String,Object> params );
+
+
+    Map<String,Object> getLastNewEarTagData();
 
 //    void setNoImageState(boolean state);
 //

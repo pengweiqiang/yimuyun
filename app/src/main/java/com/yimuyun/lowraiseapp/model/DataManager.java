@@ -22,6 +22,7 @@ import com.yimuyun.lowraiseapp.model.http.response.PadResultResponse;
 import com.yimuyun.lowraiseapp.model.prefs.PreferencesHelper;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 
@@ -68,6 +69,16 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public UserBean getUserInstance() {
         return mPreferencesHelper.getUserInstance();
+    }
+
+    @Override
+    public void saveLastNewEarTagData(Map<String, Object> params) {
+        mPreferencesHelper.saveLastNewEarTagData(params);
+    }
+
+    @Override
+    public Map<String, Object> getLastNewEarTagData() {
+        return mPreferencesHelper.getLastNewEarTagData();
     }
 
     @Override

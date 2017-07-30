@@ -8,6 +8,8 @@ import com.yimuyun.lowraiseapp.app.App;
 import com.yimuyun.lowraiseapp.app.Constants;
 import com.yimuyun.lowraiseapp.model.bean.UserBean;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 /**
@@ -68,6 +70,26 @@ public class ImplPreferencesHelper implements PreferencesHelper {
             userBean = new Gson().fromJson(userBeanStr, UserBean.class);
         }
         return userBean;
+    }
+
+    @Override
+    public void saveLastNewEarTagData(Map<String, Object> params) {
+        if (params != null) {
+            mSPrefs.edit().putString(Constants.SP_NEW_EAR_TAG_CACHE, new Gson().toJson(params)).apply();
+        } else {
+            mSPrefs.edit().putString(Constants.SP_NEW_EAR_TAG_CACHE, "").apply();
+        }
+
+    }
+
+    @Override
+    public Map<String, Object> getLastNewEarTagData() {
+        Map<String, Object> params = null;
+        String dataStr = mSPrefs.getString(Constants.SP_NEW_EAR_TAG_CACHE, null);
+        if (dataStr != null) {
+            params = new Gson().fromJson(dataStr, Map.class);
+        }
+        return params;
     }
 
 
