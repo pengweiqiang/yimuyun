@@ -120,14 +120,18 @@ public class ImmuneManageActivity extends LowBaseRootActivity<ImmunePresenter> i
         mRbWayInject.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                immuneWay = mRbWayInject.getText().toString().trim();
+                if(isChecked) {
+                    immuneWay = mRbWayInject.getText().toString().trim();
+                }
             }
         });
 
         mRbOralMedication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                immuneWay = mRbOralMedication.getText().toString().trim();
+                if(isChecked) {
+                    immuneWay = mRbOralMedication.getText().toString().trim();
+                }
             }
         });
 

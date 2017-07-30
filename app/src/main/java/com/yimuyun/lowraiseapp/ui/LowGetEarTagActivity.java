@@ -284,8 +284,10 @@ public class LowGetEarTagActivity extends SimpleActivity{
                 mPlayer.start();
             }
         });
-        if(count == 1) {
-            goNextActivity();
+        synchronized (this) {
+            if (count == 1) {
+                goNextActivity();
+            }
         }
     }
 

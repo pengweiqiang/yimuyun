@@ -154,7 +154,7 @@ public class EnvironmentMonitorActivity extends RootActivity<EnvironmentMonitorP
         }
         if(!NumberFormatCheckUtils.checkNumber(nh3)){
             mEtNH3.requestFocus();
-            showErrorMsgToast("请输入正确的NH3浓度");
+            showErrorMsgToast("请输入正确的NH₃浓度");
             return false;
         }
         ch4 = mEtCH4.getText().toString().trim();

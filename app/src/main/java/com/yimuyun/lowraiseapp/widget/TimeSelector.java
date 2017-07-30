@@ -21,6 +21,8 @@ import org.jsoup.helper.StringUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static android.media.CamcorderProfile.get;
+
 /**
  * @author will on 2017/6/11 15:24
  * @email pengweiqiang64@163.com
@@ -124,6 +126,18 @@ public class TimeSelector {
         seletorDialog.show();
 
 
+    }
+    public void showCurrentTime(){
+        if (startCalendar.getTime().getTime() >= endCalendar.getTime().getTime()) {
+            Toast.makeText(context, "start>end", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!excuteWorkTime()) return;
+        initParameter();
+        initTimer();
+        addListener();
+        seletorDialog.show();
     }
 
     private void initDialog() {
@@ -311,7 +325,7 @@ public class TimeSelector {
             }
         }
 
-        loadComponent();
+        loadComponent(true);
 
     }
 
@@ -414,14 +428,24 @@ public class TimeSelector {
 
     }
 
-    private void loadComponent() {
+    private void loadComponent(boolean isShowNowDate) {
         year_pv.setData(year);
         month_pv.setData(month);
         day_pv.setData(day);
-        year_pv.setSelected(0);
-        month_pv.setSelected(0);
-        day_pv.setSelected(0);
+        Calendar nowCalendar = Calendar.getInstance();
+        int nowYear = nowCalendar.get(Calendar.YEAR);
+
+        int nowMonth = nowCalendar.get(Calendar.MONTH)+ 1;
+        selectedCalender.set(Calendar.DAY_OF_MONTH, 1);
+        selectedCalender.set(Calendar.MONTH, nowMonth - 1);
+        dayChange();
+
+        int nowDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
+        year_pv.setSelected(year.indexOf(nowYear+""));
+        month_pv.setSelected(month.indexOf(nowMonth<10?("0"+nowMonth):(nowMonth+"")));
+        day_pv.setSelected(day.indexOf(nowDay<10?("0"+nowDay):(""+nowDay)));
         excuteScroll();
+        selectedCalender.setTime(nowCalendar.getTime());
     }
 
     private void excuteScroll() {

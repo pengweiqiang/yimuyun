@@ -591,5 +591,12 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 LowGetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
             }
         });
+        msgAlertDialog.setCancelText("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msgAlertDialog.dismiss();
+                finish();
+            }
+        });
     }
 }

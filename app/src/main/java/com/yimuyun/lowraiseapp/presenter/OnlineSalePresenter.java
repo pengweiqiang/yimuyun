@@ -114,7 +114,7 @@ public class OnlineSalePresenter extends RxPresenter<OnlineSaleContract.View> im
                     @Override
                     public void dataHandle(Object body) {
                         if(body==null) {
-                            mView.showErrorMsgToast("提交成功");
+                            mView.showErrorMsgToast("收购成功");
                             mView.insertOnlineSaleSuccess();
                         }
                     }

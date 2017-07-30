@@ -203,6 +203,7 @@ public class MainActivity extends SimpleActivity {
                     LowGetEarTagActivity.open(mContext,DiagnosisManageActivity.class.getName());
                     break;
                 case R.id.rl_new_ear_tag:
+//                    startActivityForIntent(NewEarTagManageActivity.class);//
                     LowGetEarTagActivity.open(mContext,NewEarTagManageActivity.class.getName());
                     break;
                 case R.id.rl_quarantine:

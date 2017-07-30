@@ -41,6 +41,8 @@ public interface NewEarTagContract {
                              String birthplace,String varietiesId,
                              String sex,String isPregnancy,
                              String picture,String parentEquipmentId);
+
+//        void saveLastSelectData();
     }
 
 }

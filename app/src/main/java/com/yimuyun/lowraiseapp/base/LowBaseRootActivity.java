@@ -258,8 +258,9 @@ public abstract class LowBaseRootActivity<T extends BasePresenter> extends RootA
                     e.printStackTrace();
                 }
                 mPlayer.start();
-
-                getTagId(tagNewId);
+                synchronized (this) {
+                    getTagId(tagNewId);
+                }
             }
         });
     }
