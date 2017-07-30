@@ -78,6 +78,8 @@ public class Constants {
 
     public static final String SP_USER_INSTANCE_STR = "";
 
+    public static final String SP_NEW_EAR_TAG_CACHE = "new_ear_tag_cache";
+
     //================= INTENT ====================
     public static final String ID = "id";
     public static final String TYPE = "type";
