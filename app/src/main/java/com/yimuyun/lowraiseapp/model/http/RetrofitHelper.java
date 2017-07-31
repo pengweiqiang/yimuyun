@@ -81,8 +81,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId) {
-        return feedApis.getVarietieList(enterpriseId);
+    public Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId,String type) {
+        return feedApis.getVarietieList(enterpriseId,type);
     }
 
     @Override
