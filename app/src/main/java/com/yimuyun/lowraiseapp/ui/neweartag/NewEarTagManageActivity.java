@@ -54,6 +54,7 @@ import org.jsoup.helper.StringUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -115,12 +116,13 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
 
     String equipmentId;
     private String equipmentNumber;
-    String livestockMasterId;
+    String livestockMasterId,livestockName;
     String type = "0";//牛0，羊1
     String state ="03";//状态 00饲养 01屠宰 02检疫不通过 03线上销售 04线下销售
     String initialWeight;
     String initialTime; String lairageWeight;
-    String lairageTime; String birthplace; String varietiesId;
+    String initialShowTime;String lairageShowTime;
+    String lairageTime; String birthplace; String varietiesId,varietiesName;
     String sex = "1";//性别 公1，母0
     String isPregnancy = "2"; //是否已孕 1已孕，2未怀孕
     String picture = "";
@@ -159,6 +161,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             @Override
             public void handle(String showTime, String paramTime) {
                 initialTime = paramTime;
+                initialShowTime = showTime;
                 mTvBirthDayTime.setText(showTime);
             }
         },"1989-01-01","2099-12-30");
@@ -167,6 +170,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             @Override
             public void handle(String showTime, String paramTime) {
                 lairageTime = paramTime;
+                lairageShowTime = showTime;
                 mTvLairageTime.setText(showTime);
             }
         },"2000-01-01","2099-12-30");
@@ -179,7 +183,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     type = "0";
-                    mRbMale.setChecked(true);
+//                    mRbMale.setChecked(true);
                     mRbXieyang.setText("犍牛");
                 }
             }
@@ -190,7 +194,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     type = "1";
-                    mRbMale.setChecked(true);
+//                    mRbMale.setChecked(true);
                     mRbXieyang.setText("羯羊");
                 }
             }
@@ -243,6 +247,71 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                 .zone(com.qiniu.android.common.Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
                 .build();
         uploadManager = new UploadManager(config);
+
+        initCacheView();
+    }
+
+    public void initCacheView(){
+        try {
+            Map<String, Object> cacheData = mPresenter.getLastSelectData();
+            if (cacheData != null) {
+//            params.put("type",type);
+//            params.put("state",state);
+//            params.put("initialWeight",initialWeight);
+//            params.put("initialTime",initialTime);
+//            params.put("lairageWeight",lairageWeight);
+//            params.put("lairageTime",lairageTime);
+//            params.put("birthplace",birthplace);
+//            params.put("varietiesId",varietiesId);
+//            params.put("sex",sex);
+//            params.put("isPregnancy",isPregnancy);
+                if (cacheData.containsKey("initialWeight")) {
+                    livestockMasterId = (String) cacheData.get("livestockMasterId");
+                    livestockName = (String) cacheData.get("livestockName");
+                    initialWeight = (String) cacheData.get("initialWeight");
+                    initialTime = (String) cacheData.get("initialTime");
+                    initialShowTime = (String)cacheData.get("initialShowTime");
+                    lairageWeight = (String) cacheData.get("lairageWeight");
+                    lairageTime = (String) cacheData.get("lairageTime");
+                    lairageShowTime = (String)cacheData.get("lairageShowTime");
+                    birthplace = (String) cacheData.get("birthplace");
+                    type = (String) cacheData.get("type");
+                    varietiesId = (String) cacheData.get("varietiesId");
+                    varietiesName = (String) cacheData.get("varietiesName");
+                    sex = (String) cacheData.get("sex");
+                    isPregnancy = (String) cacheData.get("isPregnancy");
+                    if ("0".equals(type)) {//牛
+                        mRbCow.setChecked(true);
+                        mRbXieyang.setText("犍牛");
+                    } else {
+                        mRbSheep.setChecked(true);
+                        mRbXieyang.setText("羯羊");
+                    }
+                    if ("0".equals(sex)) {
+                        mRbFemale.setChecked(true);
+                    } else if ("1".equals(sex)) {
+                        mRbMale.setChecked(true);
+                    } else {
+                        mRbXieyang.setChecked(true);
+                    }
+                    if ("1".equals(isPregnancy)) {//已怀孕
+                        mTvIsPregnancy.setText("怀孕");
+                    } else {
+                        mTvIsPregnancy.setText("未怀孕");
+                    }
+                    mEtInitWeight.setText(initialWeight);
+                    mEtLairageWeight.setText(lairageWeight);
+                    mEtBirthdayAddress.setText(birthplace);
+                    mTvLairageTime.setText(lairageShowTime);
+                    mTvBirthDayTime.setText(initialShowTime);
+                    mTvVarieties.setText(varietiesName);
+                    mTvPersonnel.setText(livestockName);
+
+                }
+            }
+        }catch (Exception e){
+
+        }
     }
 
     @Override
@@ -291,7 +360,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
                     return;
                 }
                 stateLoading();
-                mPresenter.getVarietiesList(enterpriseId);
+                mPresenter.getVarietiesList(enterpriseId,type);
                 break;
             case R.id.tv_deal_personnel:
                 UserListActivity.open(NewEarTagManageActivity.this,"选择畜主");
@@ -338,6 +407,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
         }else if(requestCode == Constants.REQUEST_USER_ITEM){
             Personnel personnel = (Personnel)data.getSerializableExtra(Constants.SELECTED_USER_ITEM);
             mTvPersonnel.setText(personnel.getName());
+            livestockName = personnel.getName();
             livestockMasterId = personnel.getId()+"";
         }else if(requestCode == Constants.REQUEST_PARENT_EQUIPMENT_ID){//母体耳标
             String parentEquipmentNumber = data.getStringExtra(Constants.EQUPIMENT_ID);
@@ -376,6 +446,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
             showErrorMsg("请选择品种");
             return false;
         }
+        varietiesName = mTvVarieties.getText().toString().trim();
         if(StringUtil.isBlank(sex)){
             showErrorMsg("请选择性别");
             return false;
@@ -577,7 +648,7 @@ public class NewEarTagManageActivity extends RootActivity<NewEarTagPresenter> im
 
     private void insertLiveStock(String url){
         stateLoading();
-        mPresenter.insertLiveStock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, url, parentEquipmentId);
+        mPresenter.insertLiveStock(enterpriseId,equipmentId, livestockMasterId,livestockName, type, state, initialWeight, initialTime,initialShowTime, lairageWeight, lairageTime,lairageShowTime, birthplace, varietiesId,varietiesName, sex, isPregnancy, url, parentEquipmentId);
     }
 
     private void showCommitSuccessDialog(){
