@@ -61,7 +61,7 @@ public interface HttpHelper {
 
     Flowable<PadResultResponse<EquipmentInfoVo>> getEquipmentInfoByNumber(String equipmentNumber);
 
-    Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId);
+    Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId,String type);
 
 
     Flowable<PadResultResponse<EquipmentDetailVo>> getEquimentInfoById(String equipmentId);

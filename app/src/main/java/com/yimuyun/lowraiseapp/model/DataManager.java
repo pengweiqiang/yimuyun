@@ -122,8 +122,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId) {
-        return mHttpHelper.getVarietieList(enterpriseId);
+    public Flowable<PadResultResponse<VarietiesVo>> getVarietieList(String enterpriseId,String type) {
+        return mHttpHelper.getVarietieList(enterpriseId,type);
     }
 
     @Override

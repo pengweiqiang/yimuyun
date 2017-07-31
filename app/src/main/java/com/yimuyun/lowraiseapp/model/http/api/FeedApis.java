@@ -51,7 +51,7 @@ public interface FeedApis {
      * @return
      */
     @GET("culture/v1/livestock/varieties/list")
-    Flowable<PadResultResponse<VarietiesVo>> getVarietieList(@Query("enterpriseId")String enterpriseId);
+    Flowable<PadResultResponse<VarietiesVo>> getVarietieList(@Query("enterpriseId")String enterpriseId,@Query("type")String type);
     /**
      * 喂养录入
      * @param equipmentIds
