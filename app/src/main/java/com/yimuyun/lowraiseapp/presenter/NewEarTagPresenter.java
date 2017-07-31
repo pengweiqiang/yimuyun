@@ -14,6 +14,9 @@ import com.yimuyun.lowraiseapp.util.CommonSubscriber;
 import com.yimuyun.lowraiseapp.util.RxUtil;
 import com.yimuyun.lowraiseapp.util.ToastUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 /**
@@ -88,8 +91,8 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
     }
 
     @Override
-    public void getVarietiesList(String enterpriseId) {
-        addSubscribe(mDataManager.getVarietieList(enterpriseId)
+    public void getVarietiesList(String enterpriseId,String type) {
+        addSubscribe(mDataManager.getVarietieList(enterpriseId,type)
                 .compose(RxUtil.<PadResultResponse<VarietiesVo>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<VarietiesVo>(mView, true) {
                     @Override
@@ -110,7 +113,23 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
     }
 
     @Override
-    public void insertLiveStock(String enterpriseId,String equipmentId, String livestockMasterId, String type, String state, String initialWeight, String initialTime, String lairageWeight, String lairageTime, String birthplace, String varietiesId, String sex, String isPregnancy, String picture, String parentEquipmentId) {
+    public void insertLiveStock(String enterpriseId,String equipmentId, String livestockMasterId,String livestockName, String type, String state, String initialWeight, String initialTime,String initialShowTime, String lairageWeight, String lairageTime,String lairageShowTime, String birthplace, String varietiesId,String varietiesName, String sex, String isPregnancy, String picture, String parentEquipmentId) {
+        final Map<String,Object> params = new HashMap<>();
+        params.put("livestockName",livestockName);
+        params.put("livestockMasterId",livestockMasterId);
+        params.put("type",type);
+        params.put("state",state);
+        params.put("initialWeight",initialWeight);
+        params.put("initialTime",initialTime);
+        params.put("initialShowTime",initialShowTime);
+        params.put("lairageWeight",lairageWeight);
+        params.put("lairageTime",lairageTime);
+        params.put("lairageShowTime",lairageShowTime);
+        params.put("birthplace",birthplace);
+        params.put("varietiesId",varietiesId);
+        params.put("varietiesName",varietiesName);
+        params.put("sex",sex);
+        params.put("isPregnancy",isPregnancy);
         addSubscribe(mDataManager.insertLivestock(enterpriseId,equipmentId, livestockMasterId, type, state, initialWeight, initialTime, lairageWeight, lairageTime, birthplace, varietiesId, sex, isPregnancy, picture, parentEquipmentId)
                 .compose(RxUtil.<PadResultResponse<Object>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<Object>(mView, true) {
@@ -119,6 +138,8 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
                         if(body==null) {
                             mView.showErrorMsgToast("提交成功");
                             mView.insertLiveStockSuccess();
+
+                            saveLastSelectData(params);
                         }
                     }
 
@@ -128,5 +149,15 @@ public class NewEarTagPresenter extends RxPresenter<NewEarTagContract.View> impl
                         mView.stateMain();
                     }
                 }));
+    }
+
+    @Override
+    public void saveLastSelectData(Map<String,Object> params) {
+        mDataManager.saveLastNewEarTagData(params);
+    }
+
+    @Override
+    public Map<String, Object> getLastSelectData() {
+        return mDataManager.getLastNewEarTagData();
     }
 }
