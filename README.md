@@ -29,7 +29,7 @@ A pure reading App based on Material Design + MVP + RxJava2 + Retrofit + Dagger2
 * 使用x5WebView做阅览页，比原生WebView体验更佳
 * 使用SVG及其动画实现progressbar的效果
 * 使用RxPermissions做6.0+动态权限适配
-* 使用Jsoup解析V2EX站点DOM
+* RFID读取耳标设备ID
 * 使用Material-dialogs 实现dialog
 
 
